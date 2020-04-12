@@ -1,0 +1,39 @@
+
+
+.home-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(187, 201, 199);
+}
+
+
+
+.main-area {
+    width: 70vw;
+    margin: 5vh auto;
+    
+}
+
+.card-content {
+    background-color: rgb(75, 159, 192);
+}
+
+.home-card {
+    margin-left: 2vw;
+    
+}
+ .has-border-radius-5 {
+     border-radius: 5px;
+ }
+
+/* .home-card-img{
+    height: 50%;
+} */
+
+/* .card-image figure {
+    height: 70%;
+} */
+

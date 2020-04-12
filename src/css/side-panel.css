@@ -1,0 +1,37 @@
+#side-panel {
+    width: 20vw;
+    height: 100vh; 
+}
+
+.panel {
+   position: relative;
+   height: 98%;
+}
+
+.side-panel-contents{
+    margin-top: 2vh;
+    height: 100%;
+}
+
+.logout-btn {
+    position: absolute;
+    bottom: 2px;
+    left: 0px;
+
+}
+
+.panel-block {
+    padding-left: 40px;
+}
+
+.panel-block-img {
+    padding: 20px;
+    
+}
+
+.panel-block-img img {
+    border-radius: 8px;
+}
+
+
+
