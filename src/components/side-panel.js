@@ -17,7 +17,7 @@ class SidePanel extends Component {
     componentDidMount () {
         let temp_user = getUser();
         if (!temp_user.images[0]) {
-            let image = "https://lh3.googleusercontent.com/proxy/6qM2XeC7GidAEwKNqnsd_rYcqdBlMda55Q-gTYlkjcS0KCQZ-bAxJsYCywnzHrQPC-ks2n5IPV-_maVVQkmUSyCzIwyXeQTa2YW8O1mjhZ6_Cl5jr5q2q08jjs_JnUA"
+            let image = "https://res.cloudinary.com/persia/image/upload/v1586683045/toolshare/Layout/avatar_brcvks.png"
             this.setState({tempImgUrl: image })
         } else {
             this.setState({tempImgUrl:temp_user.images[0].imgPath})

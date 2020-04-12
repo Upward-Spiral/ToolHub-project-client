@@ -6,4 +6,12 @@
   text-align: center;
 }
 
+a {
+  color: rgb(17, 20, 34);
+}
+
+a:hover {
+  color: blue;
+}
+
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom';
 import DefaultLayout from "../layouts/Default";
 
 
@@ -27,7 +27,7 @@ class home extends Component {
                             <div className="card-content">
                                 <div className="media"> 
                                     <div className="media-content">
-                                        <p className="title is-4">Find a tool</p>
+                                        <p className="title is-4"><Link to="/tool/search">Find a tool</Link></p>
                                     </div>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@ class home extends Component {
                             <div className="card-content">
                                 <div className="media">                               
                                     <div className="media-content">
-                                        <p className="title is-4">Add a tool</p>                               
+                                        <p className="title is-4"><Link to="/tool/add">Add a tool</Link></p>                               
                                     </div>
                                 </div>                               
                             </div>
@@ -59,7 +59,7 @@ class home extends Component {
                             <div className="card-content">
                                 <div className="media">
                                     <div className="media-content">
-                                        <p className="title is-4">Start a project</p>
+                                        <p className="title is-4"><Link to="/project/add">Start a project</Link></p>
                                     </div>
                                 </div>                               
                             </div>
@@ -75,7 +75,7 @@ class home extends Component {
                             <div className="card-content">
                                 <div className="media">
                                     <div className="media-content">
-                                        <p className="title is-4">Get inspired</p>
+                                        <p className="title is-4"><Link to="/project/list">Get inspired</Link></p>
                                     </div>
                                 </div> 
                             </div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {signupSecond} from "../utils/auth";
 import {getTempUserId} from "../utils/auth";
 
+
 class SignupSecond extends Component {
     constructor() {
         super()
@@ -95,7 +96,7 @@ class SignupSecond extends Component {
                                         onChange={this.handleInputChange}/>
                                 </div>
                             </div>
-{/*                             
+                            
                             <div className="field">
                                 <label className="label">Email:</label>
                                 <div className="control">
@@ -106,7 +107,7 @@ class SignupSecond extends Component {
                                         value={this.state.tempUserInfo.email} 
                                         onChange={this.handleInputChange}/>
                                 </div>
-                            </div> */}
+                            </div>
 
                             <div className="field">
                                 <label className="label">Phone number:</label>
