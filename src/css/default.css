@@ -1,0 +1,12 @@
+
+
+.home-page {
+    position: relative;
+}
+
+.side-panel-contents {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 25vw;
+}

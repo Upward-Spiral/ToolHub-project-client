@@ -9,7 +9,7 @@ const axios = Axios.create({
 });
 
 export const UploadToolImg = (theFile)=> {
-    debugger
+    // debugger
     return axios({
             method: "POST",
             url: "upload-image",

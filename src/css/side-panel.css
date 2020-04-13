@@ -1,5 +1,8 @@
+
+
+
 #side-panel {
-    width: 20vw;
+    width: 25vw;
     height: 100vh; 
 }
 
@@ -15,7 +18,7 @@
 
 .logout-btn {
     position: absolute;
-    bottom: 2px;
+    bottom: 3px;
     left: 0px;
 
 }

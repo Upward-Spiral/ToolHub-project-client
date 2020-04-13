@@ -22,7 +22,7 @@ export const getCatL1List = (categoryName)=> { // e.g piler
 }
 
 export const getCatL2List = (categoryTree)=> { // e.g ["file", "common"]
-    debugger
+    // debugger
     let catList = [];
     let targetParrentCat = categories.filter((category)=>{
         return category.name === categoryTree[0]  // returns file object

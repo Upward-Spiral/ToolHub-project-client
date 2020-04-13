@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {signupSecond} from "../utils/auth";
 import {getTempUserId} from "../utils/auth";
+import {getGeoCode} from '../utils/geoCode';
 
 
 class SignupSecond extends Component {
@@ -22,7 +23,9 @@ class SignupSecond extends Component {
                 unitNo: "",
                 city: "",
                 pcode: "",
-                // email: "",
+                locationType:"Point",
+                locationLatt:0,
+                locationLong:0,
                 _id : ""
             }, 
             error:null   
@@ -37,26 +40,37 @@ class SignupSecond extends Component {
     }
 
     handleFormSubmit(event) {
-       event.preventDefault();
         debugger
-        signupSecond(this.state.tempUserInfo)
-        .then((response) => {
-            if (response.status===200) {
-                this.setState({error:null}, ()=>{
-                    this.props.history.push({
-                        pathname:`/signup-confirm`
+        event.preventDefault();
+        let temp_user = {...this.state.tempUserInfo};
+        let address = `${temp_user.street1} ${temp_user.street2} ${temp_user.lotNo} ${temp_user.unitNo}, ${temp_user.pcode} ${temp_user.city}`
+        getGeoCode(address)
+            .then((geoLoc)=>{
+                console.log(geoLoc)
+                temp_user.locationLatt = geoLoc.lat;
+                temp_user.locationLong = geoLoc.lon;
+                this.setState({tempUserInfo:temp_user})
+                signupSecond(this.state.tempUserInfo)
+                    .then((response) => {
+                        if (response.status===200) {
+                            this.setState({error:null}, ()=>{
+                                this.props.history.push({
+                                    pathname:`/signup-confirm`
+                                })
+                            })
+                        } else {
+                            console.log(response);
+                        }
+                        
+                        
                     })
-                })
-            } else {
-                console.log(response);
-            }
-            
-            
+                    .catch((error)=> {
+                        console.log(error.response);
+                        this.setState({error: error.response && error.response.data})
+                    });
         })
-        .catch((error)=> {
-            console.log(error.response);
-            this.setState({error: error.response && error.response.data})
-        });
+        console.log(this.state.tempUserInfo)
+        
     }
 
     componentDidMount () {
@@ -93,18 +107,6 @@ class SignupSecond extends Component {
                                         type="text" 
                                         name="lastname" 
                                         value={this.state.tempUserInfo.lastname} 
-                                        onChange={this.handleInputChange}/>
-                                </div>
-                            </div>
-                            
-                            <div className="field">
-                                <label className="label">Email:</label>
-                                <div className="control">
-                                    <input
-                                        className="input" 
-                                        type="email" 
-                                        name="email" 
-                                        value={this.state.tempUserInfo.email} 
                                         onChange={this.handleInputChange}/>
                                 </div>
                             </div>

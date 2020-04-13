@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import DefaultLayout from "../layouts/Default";
 import {UploadToolImg,createNewTool} from '../utils/toolQueries';
 import {getCatL0List, getCatL1List, getCatL2List} from '../utils/service'
+import {getUser} from '../utils/auth';
 
 class AddTool extends Component {
     constructor(props) {
@@ -28,7 +29,10 @@ class AddTool extends Component {
                 modelNo: "",
                 category:[],
                 description: "",
-                images: []
+                images: [],
+                locationType:"Point",
+                locationLatt:0,
+                locationLong:0
 
             }, 
             error:null   
@@ -43,7 +47,7 @@ class AddTool extends Component {
     }
 
     handleFileUpload = (e) => {
-        debugger
+        // debugger
         console.log("The file to be uploaded is: ", e.target.files[0]);
 
         const uploadData = new FormData();
@@ -126,7 +130,13 @@ class AddTool extends Component {
     componentDidMount () {
         debugger
         let temp_cat0_list = getCatL0List();
-        this.setState({catL0List:temp_cat0_list})
+        let current_user = getUser()
+        let user_long = current_user.location.coordinates[0]
+        let user_latt = current_user.location.coordinates[1]
+        let temp_tool = {...this.state.tempToolInfo}
+        temp_tool.locationLong = user_long
+        temp_tool.locationLatt = user_latt
+        this.setState({catL0List:temp_cat0_list,tempToolInfo:temp_tool})
     }
 
     render() {

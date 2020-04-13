@@ -1,9 +1,12 @@
-@import './css/home.css';
+/* @import './css/home.css';
 @import './css/side-panel.css';
-
+@import './css/toolshed.css';
+@import './css/default.css';
+@import './css/search.css'; */
 
 .App {
   text-align: center;
+  
 }
 
 a {

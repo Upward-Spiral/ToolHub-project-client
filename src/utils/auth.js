@@ -8,7 +8,7 @@ const axios = Axios.create({
 });
 
 export const signup = (user)=>{
-    debugger
+    // debugger
     return axios({
         method: "POST",
         url: "signup",
@@ -23,7 +23,7 @@ export const signup = (user)=>{
 }
 
 export const signupSecond = (user)=>{
-    debugger
+    // debugger
     return axios({
         method: "POST",
         url: "update-np",
@@ -37,7 +37,7 @@ export const signupSecond = (user)=>{
 }
 
 export const login = (user) => {
-    debugger
+    // debugger
     return axios({
         method: "POST",
         url: "login",

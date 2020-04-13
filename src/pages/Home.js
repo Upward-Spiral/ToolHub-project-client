@@ -27,7 +27,7 @@ class home extends Component {
                             <div className="card-content">
                                 <div className="media"> 
                                     <div className="media-content">
-                                        <p className="title is-4"><Link to="/tool/search">Find a tool</Link></p>
+                                        <p className="is-2"><Link to="/tool/search">Find a tool</Link></p>
                                     </div>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@ class home extends Component {
                             <div className="card-content">
                                 <div className="media">                               
                                     <div className="media-content">
-                                        <p className="title is-4"><Link to="/tool/add">Add a tool</Link></p>                               
+                                        <p className="is-2"><Link to="/tool/add">Add a tool</Link></p>                               
                                     </div>
                                 </div>                               
                             </div>
@@ -59,7 +59,7 @@ class home extends Component {
                             <div className="card-content">
                                 <div className="media">
                                     <div className="media-content">
-                                        <p className="title is-4"><Link to="/project/add">Start a project</Link></p>
+                                        <p className="is-2"><Link to="/project/add">Start a project</Link></p>
                                     </div>
                                 </div>                               
                             </div>
@@ -75,7 +75,7 @@ class home extends Component {
                             <div className="card-content">
                                 <div className="media">
                                     <div className="media-content">
-                                        <p className="title is-4"><Link to="/project/list">Get inspired</Link></p>
+                                        <p className="is-2"><Link to="/project/list">Get inspired</Link></p>
                                     </div>
                                 </div> 
                             </div>
