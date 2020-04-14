@@ -32,7 +32,7 @@ class SidePanel extends Component {
         return (
             <div className="side-panel-contents">
                 <nav className="panel is-info">
-                    <p className="panel-heading">
+                    <p className="panel-heading" id="panel-heading">
                         {this.state.user.displayname}
                     </p>
                     <div className="panel-block-img">
@@ -59,13 +59,11 @@ class SidePanel extends Component {
                     </p>
                     <p className="panel-block">
                         <Link to="/">Intro</Link>
-                    </p>
-
-                    
+                    </p> 
                     <div className="panel-block">
-                        <button className="button is-link is-outlined is-fullwidth logout-btn">
-                        <Link to="/logout">Logout</Link>
-                        </button>
+                        
+                        <Link to="/logout"><button className="button is-link is-outlined is-fullwidth logout-btn">Logout</button></Link>
+                        
                     </div>
                     </nav>
                 <div>

@@ -49,8 +49,8 @@ class SignupSecond extends Component {
                 console.log(geoLoc)
                 temp_user.locationLatt = geoLoc.lat;
                 temp_user.locationLong = geoLoc.lon;
-                this.setState({tempUserInfo:temp_user})
-                signupSecond(this.state.tempUserInfo)
+                // this.setState({tempUserInfo:temp_user})
+                signupSecond(temp_user)
                     .then((response) => {
                         if (response.status===200) {
                             this.setState({error:null}, ()=>{

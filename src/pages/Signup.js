@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {signup} from "../utils/auth";
+import { Link } from 'react-router-dom';
 
 class Signup extends Component {
     constructor() {
@@ -57,9 +58,10 @@ class Signup extends Component {
     render() {
             return (          
                 <div>
-                    <h1>Signup Form</h1>
-                    <h3>Page 1 of 2</h3>
-                    <div className= "add-form">                  
+                   
+                    <div className= "signup-form"> 
+                    <h1 class="title is-1 page-title">Signup</h1>  
+                    <h4 class="title is-4">Page 1 of 2</h4>               
                         <form onSubmit={this.handleFormSubmit}>
                             <div className="field">
                                 <label className="label">Username:</label>
@@ -121,8 +123,11 @@ class Signup extends Component {
                                         onChange={this.handleInputChange}/>
                                 </div>
                             </div>
-
-                            <input className="button is-link" type="submit" value="Next" />
+                            <div className="btn-group">
+                                <input className="button is-link" type="submit" value="Next" />
+                                <button class="button is-light back-btn"><Link to="/">Back</Link></button>
+                            </div>
+                            
                         </form>
                         
                     </div>

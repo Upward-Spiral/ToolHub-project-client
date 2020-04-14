@@ -42,3 +42,23 @@ export const createNewTool = (newTool)=> {
     })
 
 }
+
+export const searchTools = (searchData) => {
+    debugger
+    return axios({
+        method: "POST",
+        url: "search",
+        data: qs.stringify(searchData)    
+    })
+    .then((response)=>{
+        if (response.status!==200){
+            console.log(response);
+            response=response.data
+        }
+            
+        return (response)
+    })
+    .catch ((err) => {
+        console.log(err)
+    })
+}

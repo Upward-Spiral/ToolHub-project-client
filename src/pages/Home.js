@@ -6,16 +6,13 @@ import DefaultLayout from "../layouts/Default";
 class home extends Component {
     constructor(props) {
         super(props)
-
-        this.state = {
-                 
+        this.state = {            
         }
     }
 
     render() {
         return (
-            <DefaultLayout>
-                
+            <DefaultLayout> 
                 <div className="columns is-multiline is-tablet">
                     <div className="column is-5">
                         <div className="card home-card">
@@ -24,13 +21,15 @@ class home extends Component {
                                     <img className="home-card-img" src="https://res.cloudinary.com/persia/image/upload/v1586649334/toolshare/Layout/find_a_tool_xb9v0q.jpg" alt="find a tool"/>
                                 </figure>
                             </div>
-                            <div className="card-content">
-                                <div className="media"> 
-                                    <div className="media-content">
-                                        <p className="is-2"><Link to="/tool/search">Find a tool</Link></p>
+                            <Link to="/tool/search">
+                                <div className="card-content">
+                                    <div className="media"> 
+                                        <div className="media-content">
+                                            <p className="is-2">Find a tool</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </Link>
                         </div>
                     </div>
                     <div className="column is-5">
@@ -40,13 +39,15 @@ class home extends Component {
                                     <img className="home-card-img" src="https://res.cloudinary.com/persia/image/upload/v1586651915/toolshare/Layout/toolbox_kl52cu.jpg" alt="add a tool"/>
                                 </figure>
                             </div>
+                            <Link to="/tool/add">
                             <div className="card-content">
                                 <div className="media">                               
                                     <div className="media-content">
-                                        <p className="is-2"><Link to="/tool/add">Add a tool</Link></p>                               
+                                        <p className="is-2">Add a tool</p>                               
                                     </div>
                                 </div>                               
                             </div>
+                            </Link>
                         </div>
                     </div>
                     <div className="column is-5">
@@ -56,13 +57,15 @@ class home extends Component {
                                     <img className="home-card-img" src="https://res.cloudinary.com/persia/image/upload/v1586652210/toolshare/Layout/laptop-level-tool_ly0yj6.jpg" alt="start a project"/>
                                 </figure>
                             </div>
+                            <Link to="/project/add">
                             <div className="card-content">
                                 <div className="media">
                                     <div className="media-content">
-                                        <p className="is-2"><Link to="/project/add">Start a project</Link></p>
+                                        <p className="is-2">Start a project</p>
                                     </div>
                                 </div>                               
                             </div>
+                            </Link>
                         </div>
                     </div>
                     <div className="column is-5">
@@ -72,18 +75,19 @@ class home extends Component {
                                     <img className="home-card-img" src="https://res.cloudinary.com/persia/image/upload/v1586652702/toolshare/Layout/inspiration_j3kb3y.jpg" alt="get inspired"/>
                                 </figure>
                             </div>
+                            <Link to="/project/list">
                             <div className="card-content">
                                 <div className="media">
                                     <div className="media-content">
-                                        <p className="is-2"><Link to="/project/list">Get inspired</Link></p>
+                                        <p className="is-2">Get inspired</p>
                                     </div>
                                 </div> 
                             </div>
+                            </Link>
                         </div>
                     </div>
                 </div>
-            </DefaultLayout>
-      
+            </DefaultLayout>    
         )
     }
 }

@@ -1,4 +1,10 @@
 @import './App.css';
+@import './css/login.css';
+@import './css/home.css';
+@import './css/side-panel.css';
+@import './css/toolshed.css';
+@import './css/default.css';
+@import './css/search.css';
 
 
 body {
@@ -9,7 +15,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(187, 201, 199);
+  
+}
+
+html {
+  background-color: rgb(229, 229, 229);
 }
 
 code {
@@ -36,7 +46,7 @@ a:hover {
 }
 
 
-/* from Home.css */
+from Home.css
 
 .home-page {
   display: flex;

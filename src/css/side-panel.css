@@ -36,5 +36,11 @@
     border-radius: 8px;
 }
 
+#panel-heading {
+    background-color: rgb(133, 213, 213);
+    color: rgb(34, 158, 157);
+    font-weight: 900;
+}
+
 
 

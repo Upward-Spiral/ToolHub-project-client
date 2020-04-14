@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {login} from "../utils/auth";
+import { Link } from 'react-router-dom';
 
 
 class Login extends Component {
@@ -64,7 +65,8 @@ class Login extends Component {
                         </div>:
                         ""     
                     }
-                    <div className= "add-form">                  
+                    <div className= "login-form">    
+                    <h1 class="title is-1 page-title">Login</h1>              
                         <form onSubmit={this.handleFormSubmit}>
 
                             <div className="field">
@@ -94,6 +96,7 @@ class Login extends Component {
                             </div>
 
                             <input className="button is-link" type="submit" value="Login" />
+                            <button class="button is-light back-btn"><Link to="/">Back</Link></button>
                         </form>
                         
                     </div>
