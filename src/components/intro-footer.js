@@ -1,16 +1,13 @@
 import React from 'react';
+import {Card} from 'react-bootstrap';
 
 function introFooter() {
     return (
         <div>
-            <footer class="footer">
-                <div class="content has-text-centered">
-                    <p>
-                    <strong>Toolshare</strong> by <a href="https://github.com/Upward-Spiral">Azadeh Farshidi</a>. 
-                    The source code is licensed. The website content is licensed .
-                    </p>
-                </div>
-            </footer>
+            <Card>
+                <Card.Body><strong>Toolshare</strong> by <a href="https://github.com/Upward-Spiral">Azadeh Farshidi</a>. 
+                    The source code is licensed. The website content is licensed .</Card.Body>
+            </Card>
         </div>
     )
 }

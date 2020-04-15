@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {getUser} from "../utils/auth";
+import {Button,Container,Row,Col,Card,ListGroup} from 'react-bootstrap';
 
 class SidePanel extends Component {
     constructor() {
@@ -12,7 +13,6 @@ class SidePanel extends Component {
         }
                  
         }
-
 
     componentDidMount () {
         let temp_user = getUser();
@@ -27,51 +27,37 @@ class SidePanel extends Component {
 
     }
 
-
     render() {
         return (
-            <div className="side-panel-contents">
-                <nav className="panel is-info">
-                    <p className="panel-heading" id="panel-heading">
-                        {this.state.user.displayname}
-                    </p>
-                    <div className="panel-block-img">
-                        <img src={this.state.tempImgUrl} alt=""/>
-                    </div>
-                    
-                    <p className="panel-block is-active">
-                      <Link to="/user/home">Dashboard</Link>
-                    </p>
-                    <p className="panel-block">
-                      <Link to="/tool/shed">Toolshed</Link>
-                    </p>
-                    <p className="panel-block">
-                      <Link to="/user/feed">Craft Buddies</Link>
-                    </p>
-                    <p className="panel-block">
-                      <Link to="/user/requests">Requests</Link>
-                    </p>
-                    <p className="panel-block">
-                      <Link to="/user/profile">Profile</Link>
-                    </p>
-                    <p className="panel-block">
-                        <Link to="/user/settings">Settings</Link>
-                    </p>
-                    <p className="panel-block">
-                        <Link to="/">Intro</Link>
-                    </p> 
-                    <div className="panel-block">
-                        
-                        <Link to="/logout"><button className="button is-link is-outlined is-fullwidth logout-btn">Logout</button></Link>
-                        
-                    </div>
-                    </nav>
-                <div>
+            <Container className="side-panel-contents">
+                <Row>
+                    <Col>
+                        <Card style={{ width: '18rem' }}>
+                            <Card.Header>Today's date</Card.Header>
+                            <Card.Img variant="top" src={this.state.tempImgUrl} />
+                            <Card.Body>
+                                <Card.Title>{this.state.user.displayname}</Card.Title> 
+                                {/* <Button variant="primary">Go somewhere</Button> */}
+                            </Card.Body>
+                            <ListGroup className="list-group-flush">
+                                <ListGroup.Item className="sidebar-list-item"><Link to="/user/home">Dashboard</Link></ListGroup.Item>
+                                <ListGroup.Item className="sidebar-list-item"><Link to="/tool/shed">Toolshed</Link></ListGroup.Item>
+                                <ListGroup.Item className="sidebar-list-item"><Link to="/user/feed">Fellow Craftsmen</Link></ListGroup.Item>
+                                <ListGroup.Item className="sidebar-list-item"><Link to="/user/requests">Requests</Link></ListGroup.Item>
+                                <ListGroup.Item className="sidebar-list-item"><Link to="/user/profile">Profile</Link></ListGroup.Item>
+                                <ListGroup.Item className="sidebar-list-item"><Link to="/user/settings">Settings</Link></ListGroup.Item>
+                                <ListGroup.Item className="sidebar-list-item"><Link to="/">Intro</Link></ListGroup.Item>
+                                <ListGroup.Item>
+                                    <Link to="/logout"><Button variant="secondary bottom" size="lg" block>Logout</Button></Link>
+                                </ListGroup.Item>    
+                        </ListGroup>
+                        </Card>
+                            
+                    </Col>
+                </Row>
+            </Container>
+                     
 
-                    
-                    
-                </div>
-            </div>
         )
     }
 }

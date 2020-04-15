@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {login} from "../utils/auth";
 import { Link } from 'react-router-dom';
-
+import {Button,Form,} from 'react-bootstrap';
 
 class Login extends Component {
     constructor() {
@@ -64,13 +64,46 @@ class Login extends Component {
                             {/* <h6>{this.state.error}</h6> */}
                         </div>:
                         ""     
-                    }
-                    <div className= "login-form">    
-                    <h1 class="title is-1 page-title">Login</h1>              
-                        <form onSubmit={this.handleFormSubmit}>
+                    } 
+                    
+                    <h1 class="title is-1 page-title">Login</h1>
+                    <div className= "login-form">  
+                    <Form onSubmit={this.handleFormSubmit}>
+                        <Form.Group controlId="formBasicUsername">
+                            <Form.Label>Username:</Form.Label>
+                            <Form.Control 
+                                type="text" 
+                                placeholder="Enter username"
+                                name="username" 
+                                required
+                                value={this.state.loginData.username} 
+                                onChange={this.handleInputChange} />
+                        </Form.Group>
+
+                        <Form.Group controlId="formBasicPassword">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control 
+                                type="password" 
+                                placeholder="Password"
+                                name="password" 
+                                required
+                                value={this.state.loginData.password} 
+                                onChange={this.handleInputChange} />   {/* the handler gets the event object by default */}
+                        </Form.Group>
+
+                        <Button variant="primary" type="submit">Login</Button>
+                        <Button variant="secondary"><Link to="/">Back</Link></Button>{' '}
+                    </Form>
+
+
+
+
+                      
+                                 
+                        {/* <form onSubmit={this.handleFormSubmit}>
 
                             <div className="field">
-                                <label className="label">Username:</label>
+                                <label className="label"></label>
                                 <div className="control">
                                     <input
                                         className="input" 
@@ -78,7 +111,7 @@ class Login extends Component {
                                         name="username" 
                                         required
                                         value={this.state.loginData.username} 
-                                        onChange={this.handleInputChange}/>  {/* the handler gets the event object by default */}
+                                        onChange={this.handleInputChange}/>  
                                 </div>
                             </div>
 
@@ -96,8 +129,8 @@ class Login extends Component {
                             </div>
 
                             <input className="button is-link" type="submit" value="Login" />
-                            <button class="button is-light back-btn"><Link to="/">Back</Link></button>
-                        </form>
+                            <Link to="/"><button class="button is-light back-btn">Back</button></Link>
+                        </form> */}
                         
                     </div>
                 </div>

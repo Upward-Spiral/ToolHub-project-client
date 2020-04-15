@@ -4,9 +4,24 @@
     position: relative;
 }
 
+.main-area {
+
+    position: absolute;
+    right: 0;
+    top: 30px;
+    width: 70vw;
+
+}
+
+
+
 .side-panel-contents {
     position: fixed;
     left: 0px;
     top: 0px;
     width: 25vw;
+}
+#side-panel {
+    width: 25vw;
+    height: 100vh; 
 }

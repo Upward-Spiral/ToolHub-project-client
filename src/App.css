@@ -1,20 +1,25 @@
-/* @import './css/home.css';
+@import './css/home.css';
 @import './css/side-panel.css';
 @import './css/toolshed.css';
 @import './css/default.css';
-@import './css/search.css'; */
+@import './css/search.css';
 
-.App {
+/* $body-bg: #e5e5e5;
+
+
+@import "../node_modules/bootstrap/scss/bootstrap"; */
+
+/* .App {
   text-align: center;
   
-}
+} */
 
-a {
+/* a {
   color: rgb(17, 20, 34);
-}
+} */
 
-a:hover {
+/* a:hover {
   color: blue;
-}
+} */
 
 

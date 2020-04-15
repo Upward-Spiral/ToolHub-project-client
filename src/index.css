@@ -6,6 +6,7 @@
 @import './css/default.css';
 @import './css/search.css';
 
+@import './custom.scss';
 
 body {
   margin: 0;
@@ -15,136 +16,152 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
-}
-
-html {
   background-color: rgb(229, 229, 229);
 }
+
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+a:hover {
+  text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* a {
   color: black;
 } */
 
 /* form App.css */
-.App {
+/* .App {
   text-align: center;
   
-}
+} */
 
-a {
+/* a {
   color: rgb(17, 20, 34);
 
-}
+} */
 
-a:hover {
+/* a:hover {
   color: blue;
-}
+} */
 
 
-from Home.css
+/* from Home.css */
 
-.home-page {
+/* .home-page {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  /* height: 100vh; */
-  /* background-color: rgb(187, 201, 199); */
-}
 
-.main-area {
+} */
+
+/* .main-area {
   width: 70vw;
   margin: 50px 40px;
   
-}
+} */
 
-.card-content {
+/* .card-content {
   background-color: rgb(75, 159, 192);
-}
+} */
 
-.home-card {
+/* .home-card {
   margin-left: 2vw;
   
-}
-.has-border-radius-5 {
+} */
+/* .has-border-radius-5 {
    border-radius: 5px;
-}
+} */
 
 /* from Default.css */
-.home-page {
+/* .home-page {
   position: relative;
-}
+} */
 
-.side-panel-contents {
+/* .side-panel-contents {
   position: fixed;
   left: 0px;
   top: 0px;
   width: 25vw;
-}
+} */
 
 /* form side-panel.css */
 
-#side-panel {
+/* #side-panel {
   width: 25vw;
   height: 100vh; 
-}
+} */
 
-.panel {
+/* .panel {
  position: relative;
  height: 98%;
-}
+} */
 
-.side-panel-contents{
+/* .side-panel-contents{
   margin-top: 2vh;
   height: 100%;
-}
+} */
 
-.logout-btn {
+/* .logout-btn {
   position: absolute;
   bottom: 3px;
   left: 0px;
 
-}
+} */
 
-.panel-block {
+/* .panel-block {
   padding-left: 40px;
-}
+} */
 
-.panel-block-img {
+/* .panel-block-img {
   padding: 20px;
   
-}
+} */
 
-.panel-block-img img {
+/* .panel-block-img img {
   border-radius: 8px;
-}
+} */
 
-/* from toolshed.css  */
+/* from toolshed.css 
 #toolshed {
-  /* height: 96vh; */
+  height: 96vh;
   width: 65vw;
   margin-left: 5vw;
-}
+} */
 
 /* from search.css  */
-.search-page {
+/* .search-page {
   height: 96vh;
-}
+} */
 
-.search-page-lower-part {
+/* .search-page-lower-part {
   margin-top: 50px;
-}
+} */
 
 
-#map {
+/* #map {
   width: 100%;
   height: 400px;
-}
+} */
 
 
 

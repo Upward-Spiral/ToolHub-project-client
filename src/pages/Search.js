@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import DefaultLayout from "../layouts/Default";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import {getGeoCode} from '../utils/geoCode';
-import { Button, Field, Control, Input, Card, Content, Media, Container, Level } from 'reactbulma';
 import {getUser} from '../utils/auth';
 import {searchTools} from '../utils/toolQueries';
 
@@ -63,26 +62,24 @@ class Search extends Component {
     render() {
         return (
             <DefaultLayout>
+
+
+
+
+
+
                 <div className="search-page">
                     <div className="search-page-upper-part">
                         <h1>search page</h1>
                         <h2>lat: {this.state.userLocation.lat}</h2>
                         <h2>lon: {this.state.userLocation.lon}</h2>
-                        <Container fluid>
-                            <Level>
-                                <Level.Item hasTextCentered>
-                                    <Field hasAddons>    
-                                        <Control>
-                                            <Input name="word" placeholder="Enter a name" onChange={this.handleInputChange}/>
-                                        </Control>
-                                        <Control>
-                                            <Button info onClick={this.handleSearch}>     
+                        
+                                            <input name="word" placeholder="Enter a name" onChange={this.handleInputChange}/>
+                                       
+                                            <button info onClick={this.handleSearch}>     
                                                 Search
-                                            </Button>
-                                        </Control>
-                                    </Field>
-                                </Level.Item>
-                            </Level>
+                                            </button>
+                              
                             {this.state.toolList && 
                                 this.state.toolList.map((tool)=>{
                                     return (
@@ -122,7 +119,7 @@ class Search extends Component {
                                                                     {/* <p><small>about</small></p> */}
                                                                     <p>{Math.round(tool.distanceFrom/1000)}</p>
                                                                     <p><small>Km away</small></p>
-                                                                    <p><small>{tool.available ? <FontAwesomeIcon icon="check-square" /> : <FontAwesomeIcon icon="cross-square" />}</small></p>
+                                                                    <p>{tool.available ? <small>available</small> : <small>unavailable</small> }</p>
                                                                 </article>                                                             
                                                             </div>                                                       
                                                         </div>
@@ -133,89 +130,36 @@ class Search extends Component {
                                     )
                                 })
                                 } 
-                            <div id="map"></div>    
-                        </Container>                       
+                            <div id="map"></div>                          
                     </div>
-                    <div className="search-page-lower-part">
-                    <Container fluid> 
-                        <div className="columns is-multiline is-tablet">
+                        <image src='http://bulma.io/images/placeholders/1280x960.png' ratio='4by3' />
+                        <p is='6'>Search Term</p>    
+                    </div>
+                    <div className="column is-3">
+                        <image src='http://bulma.io/images/placeholders/1280x960.png' ratio='4by3' />
+
+                        <p is='6'>Search Term</p>
+                    </div>
                             <div className="column is-3">
-                                <Card>
-                                    <Card.Image src='http://bulma.io/images/placeholders/1280x960.png' ratio='4by3' />
-                                    <Card.Content>
-                                        <Media>    
-                                            <Media.Content>
-                                                <p is='6'>Search Term</p>    
-                                            </Media.Content>
-                                        </Media>
-                                        <Content>
-                                        
-                                        <small>11:09 PM - 1 Jan 2016</small>
-                                        </Content>
-                                    </Card.Content>
-                                </Card>
+                               
+                                    <image src='http://bulma.io/images/placeholders/1280x960.png' ratio='4by3' />
+
+                                    <p is='6'>Search Term</p>
+ 
                             </div>
                             <div className="column is-3">
-                                <Card>
-                                    <Card.Image src='http://bulma.io/images/placeholders/1280x960.png' ratio='4by3' />
-                                    <Card.Content>
-                                        <Media>
-                                            
-                                            <Media.Content>
-                                                <p is='6'>Search Term</p>
-                                                
-                                            </Media.Content>
-                                        </Media>
-                                        <Content>
-                                        
-                                        <small>11:09 PM - 1 Jan 2016</small>
-                                        </Content>
-                                    </Card.Content>
-                                </Card>
+                               
+                                    <image src='http://bulma.io/images/placeholders/1280x960.png' ratio='4by3' />
+                                   
+                                        <p is='6'>Search Term</p>
+
                             </div>
-                            <div className="column is-3">
-                                <Card>
-                                    <Card.Image src='http://bulma.io/images/placeholders/1280x960.png' ratio='4by3' />
-                                    <Card.Content>
-                                        <Media>
-                                            
-                                            <Media.Content>
-                                                <p is='6'>Search Term</p>
-                                                
-                                            </Media.Content>
-                                        </Media>
-                                        <Content>
-                                        
-                                        <small>11:09 PM - 1 Jan 2016</small>
-                                        </Content>
-                                    </Card.Content>
-                                </Card>
-                            </div>
-                            <div className="column is-3">
-                                <Card>
-                                    <Card.Image src='http://bulma.io/images/placeholders/1280x960.png' ratio='4by3' />
-                                    <Card.Content>
-                                        <Media>
-                                            
-                                            <Media.Content>
-                                                <p is='6'>Search Term</p>
-                                                
-                                            </Media.Content>
-                                        </Media>
-                                        <Content>
-                                        
-                                        <small>11:09 PM - 1 Jan 2016</small>
-                                        </Content>
-                                    </Card.Content>
-                                </Card>
-                            </div>
-                        </div>
+                        
                             
                             
 
-                    </Container>
-                    </div>
-                </div>
+
+
                 
                 
             </DefaultLayout>

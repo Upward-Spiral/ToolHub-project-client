@@ -1,46 +1,45 @@
 
 
 
-#side-panel {
-    width: 25vw;
-    height: 100vh; 
+.sidebar-list-item a {
+    color: #229e9e;
 }
 
-.panel {
+/* .panel {
    position: relative;
    height: 98%;
-}
+} */
 
-.side-panel-contents{
+/* .side-panel-contents{
     margin-top: 2vh;
     height: 100%;
-}
+} */
 
-.logout-btn {
+/* .logout-btn {
     position: absolute;
     bottom: 3px;
     left: 0px;
 
-}
+} */
 
-.panel-block {
+/* .panel-block {
     padding-left: 40px;
-}
+} */
 
-.panel-block-img {
+/* .panel-block-img {
     padding: 20px;
     
-}
+} */
 
-.panel-block-img img {
+/* .panel-block-img img {
     border-radius: 8px;
-}
+} */
 
-#panel-heading {
+/* #panel-heading {
     background-color: rgb(133, 213, 213);
     color: rgb(34, 158, 157);
     font-weight: 900;
-}
+} */
 
 
 
