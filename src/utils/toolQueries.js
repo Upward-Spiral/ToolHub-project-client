@@ -54,6 +54,7 @@ export const searchTools = (searchData) => {
         if (response.status!==200){
             console.log(response);
             response=response.data
+            
         }
             
         return (response)
@@ -61,4 +62,69 @@ export const searchTools = (searchData) => {
     .catch ((err) => {
         console.log(err)
     })
+}
+
+export const shareTool = (toolId) => {
+    debugger
+    return axios({
+            method: "GET",
+            url: `/share/${toolId}`,   
+        })
+        .then((response)=>{
+            if (response.status!==200){
+                console.log(response);
+                response=response.data
+            }
+                
+            return (response)
+        })
+}
+
+export const unshareTool = (toolId) => {
+    debugger
+    return axios({
+            method: "GET",
+            url: `/unshare/${toolId}`,   
+        })
+        .then((response)=>{
+            if (response.status!==200){
+                console.log(response);
+                response=response.data
+            }
+                
+            return (response)
+        })
+}
+
+
+export const borrowTool = (toolId) => {
+    debugger
+    return axios({
+            method: "GET",
+            url: `/borrow/${toolId}`,   
+        })
+        .then((response)=>{
+            if (response.status!==200){
+                console.log(response);
+                response=response.data
+            }
+                
+            return (response)
+        })
+}
+
+export const reserveTool = (toolId) => {
+    debugger
+    return axios({
+            method: "GET",
+            url: `/reserve/${toolId}`,   
+        })
+        .then((response)=>{
+            if (response.status!==200){
+                console.log(response);
+                response=response.data
+            }
+                
+            return (response)
+        })
 }

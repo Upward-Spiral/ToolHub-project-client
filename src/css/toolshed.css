@@ -1,6 +1,27 @@
 
-/* #toolshed {
+#toolshed {
 
     width: 65vw;
-    margin-left: 5vw;
-} */
+    margin-right: 5vw;
+    margin-top: 5vh;
+}
+
+.toolshed-element {
+    border: 2px solid rgb(133, 213, 213);
+    border-radius: 10px;
+    margin: 5px 0px;
+    background-color: rgb(133, 213, 213);
+}
+
+.toolshed-element img {
+    margin: 15px;
+    border-radius: 5px;
+}
+
+.offer-it-btn {
+    margin-top: 20px;
+}
+
+#add-tool-btn {
+    margin: 20px;
+}
