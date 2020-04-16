@@ -3,7 +3,7 @@ import Axios from "axios";
 // import {setUser} from "../utils/auth";
 
 const axios = Axios.create({
-    baseURL: 'http://localhost:3020/user/',
+    baseURL: `${process.env.REACT_APP_API_BASE}/user`,
     withCredentials: true,
     headers: { 'content-type': 'application/x-www-form-urlencoded' }
 });
@@ -12,7 +12,7 @@ export const logout = ()=> {
     // debugger
     return axios({
             method: "GET",
-            url: "logout",    
+            url: "/logout",    
         })
         .then((response)=>{
             if (response.status===201)

@@ -3,7 +3,7 @@ import qs from "qs";
 // import {setUser} from "../utils/auth";
 
 const axios = Axios.create({
-    baseURL: 'http://localhost:3020/tool',
+    baseURL: `${process.env.REACT_APP_API_BASE}/tool`,
     withCredentials: true,
     headers: { 'content-type': 'application/x-www-form-urlencoded' }
 });

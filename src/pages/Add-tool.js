@@ -3,6 +3,7 @@ import DefaultLayout from "../layouts/Default";
 import {UploadToolImg,createNewTool} from '../utils/toolQueries';
 import {getCatL0List, getCatL1List, getCatL2List} from '../utils/service'
 import {getUser} from '../utils/auth';
+import {Container,Row,Col,Media,Button} from 'react-bootstrap';
 
 class AddTool extends Component {
     constructor(props) {
