@@ -32,7 +32,8 @@ class Search extends Component {
             searchResults:undefined,
             showedResults:undefined,
             address: "",
-            flag:null
+            user:undefined,
+            flag:false
         }
     }
 
@@ -49,8 +50,17 @@ class Search extends Component {
         let theSearchData = this.state.searchData
         searchTools(theSearchData)
             .then((result)=>{
+                // let goodSearchResults = result.data
                 let tempsearchResults = result.data
-                let markers = tempsearchResults.map((tool)=>{
+                let goodSearchResults 
+                let temp_flag = false
+                if (tempsearchResults.length===0) {
+                    temp_flag=true
+                }
+                goodSearchResults = tempsearchResults.filter((item)=>{
+                    return item.owner[0].username !== this.state.user.username
+                })
+                let markers = goodSearchResults.map((tool)=>{
                     let latLng = {lat:tool.location.coordinates[1],lng:tool.location.coordinates[0]}
                     let title = tool.name
                     return {id:tool._id,position:latLng,title:title}
@@ -58,10 +68,10 @@ class Search extends Component {
                 console.log(markers)
 
                 this.setState({
-                    searchResults:result.data, 
-                    showedResults: result.data, 
+                    searchResults: goodSearchResults, 
+                    showedResults: goodSearchResults, 
                     markers:markers,
-                    flag:true
+                    flag:temp_flag
                 })
             })     
     }
@@ -82,7 +92,11 @@ class Search extends Component {
        let temp_searchData = {...this.state.searchData}
        temp_searchData.lat = lat;
        temp_searchData.lng = lng;
-       this.setState({userLocation:temp_location, searchData:temp_searchData})
+       this.setState({
+           userLocation:temp_location, 
+           searchData:temp_searchData,
+           user:temp_user
+        })
        
         
     }
@@ -108,23 +122,25 @@ class Search extends Component {
                         </div> 
                         }
                         <Container fluid id="search-form">
-                            <Row>
-                                <Col>
-                                    <Form onSubmit={this.handleSearch}>
-                                        <Form.Group controlId="formSearchWord">                                          
-                                            <Form.Control 
-                                                name="word" type="text" 
-                                                placeholder="Search" 
-                                                onChange={this.handleInputChange}/>
-                                            <Form.Text className="text-muted">
-                                                <p>this search is case-sensitive (Sorry!)</p> 
-                                            </Form.Text>
-                                        </Form.Group>
-                                        <Button variant="primary" type="submit" >
-                                            Search
-                                        </Button>
+                        
+                                    <Form onSubmit={this.handleSearch} className="search-form">
+                                        <Form.Row>
+                                            <Form.Group controlId="formSearchWord">                                          
+                                                <Form.Control 
+                                                    name="word" type="text" 
+                                                    placeholder="Search" 
+                                                    onChange={this.handleInputChange}/>
+                                                {/* <Form.Text className="text-muted">
+                                                    <p>this search is case-sensitive (Sorry!)</p> 
+                                                </Form.Text> */}
+                                            </Form.Group>
+                                            <Button variant="primary" type="submit" className="search-btn">
+                                                Search
+                                            </Button>
+                                        </Form.Row>
                                     </Form>
-                                </Col>
+                            <Row>
+                                <Col><h3>Previous Searches</h3></Col>
                             </Row>
                         </Container>              
                         
@@ -156,6 +172,7 @@ class Search extends Component {
                                                                 <h6>{tool.brand}</h6>
                                                                 <br/>
                                                                 <p>{tool.description}</p>
+                                                                <p>{tool.owner[0].displayname}</p>
                                                             </Col>
                                                             <Col sm={2}> 
                                                                 <p>{Math.round(tool.distanceFrom/1000)}</p>
@@ -197,50 +214,53 @@ class Search extends Component {
                     </div>
 
                     <Container>
+                    <Row>
+                        <Col><h3>Previous Searches</h3></Col>
+                    </Row>
                         <Row>
                             <Col sm={3}>
-                                <Card style={{ width: '18rem' }}>
+                                <Card /* style={{ width: '18rem' }} */>
                                     <Card.Img variant="top" src="https://res.cloudinary.com/persia/image/upload/v1586649334/toolshare/Layout/find_a_tool_xb9v0q.jpg" alt="previuos search"/>
                                     <Card.Body>
-                                        <Card.Title>Card Title</Card.Title>
+                                        <Card.Title>Search Term</Card.Title>
                                         <Card.Text>
-                                        Search Term
+                                        Date
                                         </Card.Text>
                                         <Button variant="primary">Search Again</Button>
                                     </Card.Body>
                                 </Card>
                             </Col>
                             <Col sm={3}>
-                                <Card style={{ width: '18rem' }}>
+                                <Card /* style={{ width: '18rem' }} */>
                                     <Card.Img variant="top" src="https://res.cloudinary.com/persia/image/upload/v1586649334/toolshare/Layout/find_a_tool_xb9v0q.jpg" alt="previuos search"/>
                                     <Card.Body>
-                                        <Card.Title>Card Title</Card.Title>
+                                        <Card.Title>Search Term</Card.Title>
                                         <Card.Text>
-                                        Search Term
+                                        Date
                                         </Card.Text>
                                         <Button variant="primary">Search Again</Button>
                                     </Card.Body>
                                 </Card>
                             </Col>
                             <Col sm={3}>
-                                <Card style={{ width: '18rem' }}>
+                                <Card /* style={{ width: '18rem' }} */>
                                     <Card.Img variant="top" src="https://res.cloudinary.com/persia/image/upload/v1586649334/toolshare/Layout/find_a_tool_xb9v0q.jpg" alt="previuos search"/>
                                     <Card.Body>
-                                        <Card.Title>Card Title</Card.Title>
+                                        <Card.Title>Search Term</Card.Title>
                                         <Card.Text>
-                                        Search Term
+                                        Date
                                         </Card.Text>
                                         <Button variant="primary">Search Again</Button>
                                     </Card.Body>
                                 </Card>
                             </Col>
                             <Col sm={3}>
-                                <Card style={{ width: '18rem' }}>
+                                <Card /* style={{ width: '18rem' }} */>
                                     <Card.Img variant="top" src="https://res.cloudinary.com/persia/image/upload/v1586649334/toolshare/Layout/find_a_tool_xb9v0q.jpg" alt="previuos search"/>
                                     <Card.Body>
-                                        <Card.Title>Card Title</Card.Title>
+                                        <Card.Title>Search Term</Card.Title>
                                         <Card.Text>
-                                        Search Term
+                                        Date
                                         </Card.Text>
                                         <Button variant="primary">Search Again</Button>
                                     </Card.Body>
@@ -248,9 +268,9 @@ class Search extends Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col sm>sm=true</Col>
-                            <Col sm>sm=true</Col>
-                            <Col sm>sm=true</Col>
+                            <Col sm></Col>
+                            <Col sm></Col>
+                            <Col sm></Col>
                         </Row>
                     </Container>
                </div> 

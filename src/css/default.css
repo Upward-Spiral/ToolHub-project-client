@@ -7,10 +7,10 @@
 .main-area {
 
     position: absolute;
-    right: 0;
+    left:25vw;
     top: 30px;
-    width: 70vw;
-
+    width: 60vw;
+    /* height: 90vh; */
 }
 
 
@@ -24,4 +24,5 @@
 #side-panel {
     width: 25vw;
     height: 100vh; 
+    z-index: 50;
 }

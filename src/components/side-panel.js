@@ -37,7 +37,7 @@ class SidePanel extends Component {
                             <Card.Img variant="top" src={this.state.tempImgUrl} />
                             <Card.Body>
                                 <Card.Title>{this.state.user.displayname}</Card.Title> 
-                                {/* <Button variant="primary">Go somewhere</Button> */}
+
                             </Card.Body>
                             <ListGroup className="list-group-flush">
                                 <ListGroup.Item className="sidebar-list-item"><Link to="/user/home">Dashboard</Link></ListGroup.Item>

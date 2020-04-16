@@ -10,9 +10,9 @@ function intro() {
 
             
 
-            <div class="container is-tablet">
-                <div class="notification">
-                <figure class="image is-128x128">
+            <div className="container is-tablet">
+                <div className="notification">
+                <figure className="image is-128x128">
                     <img src="https://bulma.io/images/placeholders/256x256.png" alt=""/>
                 </figure>
                     This container is <strong>fullwidth</strong> <em>until</em> the <code>tablet</code> breakpoint.

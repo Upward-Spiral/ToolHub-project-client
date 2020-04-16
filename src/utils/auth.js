@@ -47,7 +47,7 @@ export const login = (user) => {
         if (response.status===201) 
             setUser(response.data);
         return (response)
-        // return "something";   // if I wanted to get something out of this to the component
+        
     })
 }
 

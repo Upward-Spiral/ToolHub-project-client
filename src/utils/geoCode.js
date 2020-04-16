@@ -1,7 +1,5 @@
 
 import Axios from "axios";
-// import qs from "qs";
-// import {setUser} from "../utils/auth";
 
 const axios = Axios.create({
     baseURL: 'https://maps.googleapis.com/maps/api/geocode/json',
