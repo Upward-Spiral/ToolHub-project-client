@@ -3,16 +3,46 @@ import qs from "qs";
 // import {setUser} from "../utils/auth";
 
 const axios = Axios.create({
-    baseURL: 'http://localhost:3020/tool/',
+    baseURL: 'http://localhost:3020/tool',
     withCredentials: true,
     headers: { 'content-type': 'application/x-www-form-urlencoded' }
 });
+
+export const getToolList = () => {
+    // debugger
+    return axios({
+        method: "GET",
+        url: "/toolshed"
+    })
+    .then((response)=>{
+        if (response.status===200){
+            console.log(response)
+            response = response.data.data
+        }     
+        return (response)
+    })
+}
+
+export const getToolDetails = (toolId) => {
+    // debugger
+    return axios({
+        method: "GET",
+        url: `/detail/${toolId}` 
+    })
+    .then((response)=>{
+        if (response.status===200){
+            console.log(response)
+            response = response.data.data
+        }     
+        return (response)
+    })
+}
 
 export const UploadToolImg = (theFile)=> {
     // debugger
     return axios({
             method: "POST",
-            url: "upload-image",
+            url: "/upload-image",
             data: theFile    
         })
         .then((response)=>{
@@ -29,7 +59,7 @@ export const createNewTool = (newTool)=> {
     debugger
     return axios({
         method: "POST",
-        url: "create",
+        url: "/create",
         data: qs.stringify(newTool)    
     })
     .then((response)=>{
@@ -47,7 +77,7 @@ export const searchTools = (searchData) => {
     debugger
     return axios({
         method: "POST",
-        url: "search",
+        url: "/search",
         data: qs.stringify(searchData)    
     })
     .then((response)=>{
@@ -97,7 +127,7 @@ export const unshareTool = (toolId) => {
 }
 
 
-export const borrowTool = (toolId) => {
+export const BorrowTool = (toolId) => {
     debugger
     return axios({
             method: "GET",

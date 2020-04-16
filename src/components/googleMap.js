@@ -1,14 +1,14 @@
 import React from 'react';
-import {GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow} from 'react-google-maps';
+import {GoogleMap, withScriptjs ,withGoogleMap, Marker, InfoWindow} from 'react-google-maps';
 
 
-export const InitialMap = withGoogleMap(props=>{
+export const WrappedMap = withScriptjs( withGoogleMap((props)=>{
     return(
         <GoogleMap
 
             defaultZoom={10} 
-            defaultCenter={props.userLocation}
-            // onClick={props.onMapClick}
+            center = {props.center}
+            
             >
 
             {props.markers.map((marker,index)=>(
@@ -21,19 +21,7 @@ export const InitialMap = withGoogleMap(props=>{
         </GoogleMap>
     )   
 })
+)
 
 
 
-
-// onClick={()=> props.onMarkerClick(marker)}
-
-                    // {...marker.showInfo && (
-                    //     <InfoWindow onCloseClick={()=>props.onMarkerClose(marker)}>
-                    //         {
-                    //             marker.imageUrl 
-                    //             ?  <div id="infowindow"><img src={marker.imageUrl}/></div> 
-                    //             :  <div id="infowindow">image</div>
-
-                    //         }
-                    //     </InfoWindow>
-                    // )}

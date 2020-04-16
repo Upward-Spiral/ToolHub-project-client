@@ -19,7 +19,7 @@ class home extends Component {
                         <Row>
                             {/* <Col sm={5}>                                */}
                                 <Card className="home-page-card" style={{ width: '18rem' }}>
-                                    <Card.Img variant="top" fluid src="https://res.cloudinary.com/persia/image/upload/v1586649334/toolshare/Layout/find_a_tool_xb9v0q.jpg" />
+                                    <Card.Img variant="top" /* fluid */ src="https://res.cloudinary.com/persia/image/upload/v1586649334/toolshare/Layout/find_a_tool_xb9v0q.jpg" />
                                     <Card.Body>
                                         <Link to="/tool/search"><Card.Title className="home-page-card-title">Find a tool</Card.Title></Link>
                                     </Card.Body>
@@ -27,7 +27,7 @@ class home extends Component {
                             {/* </Col> */}
                             {/* <Col sm={5}> */}
                                 <Card className="home-page-card" style={{ width: '18rem' }}>
-                                    <Card.Img variant="top" fluid src="https://res.cloudinary.com/persia/image/upload/v1586651915/toolshare/Layout/toolbox_kl52cu.jpg" />
+                                    <Card.Img variant="top" /* fluid */ src="https://res.cloudinary.com/persia/image/upload/v1586651915/toolshare/Layout/toolbox_kl52cu.jpg" />
                                     <Card.Body>
                                         <Link to="/tool/add"><Card.Title className="home-page-card-title">Add a tool</Card.Title></Link>
                                     </Card.Body>
@@ -37,7 +37,7 @@ class home extends Component {
                         <Row>
                             {/* <Col sm={5}> */}
                                 <Card className="home-page-card" style={{ width: '18rem' }}>
-                                    <Card.Img variant="top" fluid src="https://res.cloudinary.com/persia/image/upload/v1586652210/toolshare/Layout/laptop-level-tool_ly0yj6.jpg" />
+                                    <Card.Img variant="top" /* fluid */ src="https://res.cloudinary.com/persia/image/upload/v1586652210/toolshare/Layout/laptop-level-tool_ly0yj6.jpg" />
                                     <Card.Body>
                                         <Link to="/project/add"><Card.Title className="home-page-card-title">Start a project</Card.Title></Link> 
                                     </Card.Body>
@@ -45,7 +45,7 @@ class home extends Component {
                             {/* </Col> */}
                             {/* <Col sm={5}> */}
                                 <Card className="home-page-card" style={{ width: '18rem' }}>
-                                    <Card.Img variant="top" fluid src="https://res.cloudinary.com/persia/image/upload/v1586652702/toolshare/Layout/inspiration_j3kb3y.jpg" />
+                                    <Card.Img variant="top" /* fluid */ src="https://res.cloudinary.com/persia/image/upload/v1586652702/toolshare/Layout/inspiration_j3kb3y.jpg" />
                                     <Card.Body>
                                         <Link to="/project/list"><Card.Title className="home-page-card-title">Get inspired</Card.Title></Link>
                                     </Card.Body>

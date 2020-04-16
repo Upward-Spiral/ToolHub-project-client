@@ -17,7 +17,7 @@ export const getGeoCode = (address) => {
         params:{
             address: address,
             // qs.stringify(address),
-            key: "AIzaSyBTM6vT7ygkZ9wufF1ptGOTMzf8fQ6a2Hw"
+            key: process.env.REACT_APP_GOOGLE_KEY
         }
     })
     .then((res) => {

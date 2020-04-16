@@ -22,18 +22,5 @@ export const logout = ()=> {
         })
 }
 
-export const getToolList = () => {
-    // debugger
-    return axios({
-        method: "GET",
-        url: "/toolshed"
-    })
-    .then((response)=>{
-        if (response.status===200){
-            console.log(response)
-            response = response.data.data
-        }     
-        return (response)
-    })
-}
+
 

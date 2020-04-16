@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DefaultLayout from "../layouts/Default";
-import {getToolList} from '../utils/userQueries';
+import {getToolList} from '../utils/toolQueries';
 import {shareTool, unshareTool} from '../utils/toolQueries';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
@@ -12,13 +12,23 @@ class toolshed extends Component {
 
         this.handleShareButton = this.handleShareButton.bind(this)
         this.handleUnshareButton = this.handleUnshareButton.bind(this)
+        this.fetchToolList = this.fetchToolList.bind(this);
+        this.handleDetailButton = this.handleDetailButton.bind(this)
 
         this.state = {
             toolList:[] ,
             showedToolList:[],  // must add filtering feature later  
             shareUpdated: 0
         }
-        this.fetchToolList = this.fetchToolList.bind(this);
+        
+
+    }
+
+    handleDetailButton (e) {
+        window.localStorage.setItem("visitedToolId", e.target.name);
+        this.props.history.push({
+            pathname:'/tool/detail'
+        })
     }
 
     handleShareButton (e) {
@@ -113,6 +123,15 @@ class toolshed extends Component {
                                                             Offer it!
                                                         </Button>
                                                 }
+                                                
+                                                <Button 
+                                                    className="tool-detail-btn" 
+                                                    variant="primary"
+                                                    name= {tool._id}
+                                                    onClick={this.handleDetailButton}>
+                                                        Detail
+                                                </Button>
+                                                
                                             </Col>                                                     
                                         </Row>      
                                     </Media.Body>

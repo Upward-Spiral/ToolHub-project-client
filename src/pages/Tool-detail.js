@@ -10,6 +10,11 @@ class toolDetail extends Component {
         }
     }
 
+    componentDidMount () {
+       let toolID = window.localStorage.getItem("visitedToolId")
+        
+    }
+
     render() {
         return (
             <DefaultLayout>
