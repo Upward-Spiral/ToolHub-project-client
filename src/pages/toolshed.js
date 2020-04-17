@@ -87,11 +87,7 @@ class toolshed extends Component {
     render() {
         return (
             <DefaultLayout>
-                <Container fluid>
-                    <Row>
-                        <Col><h1>Toolshed</h1></Col>
-                    </Row>
-                </Container>
+
                 
                 <section id="toolshed">
                     {this.state.showedToolList.length > 0 ?
@@ -113,7 +109,7 @@ class toolshed extends Component {
                                     />
                                     <Media.Body>
                                         <Row>
-                                            <Col sm={10}>
+                                            <Col sm={7}>
                                                 <h4>{tool.name}</h4>
                                                 <h6>{tool.brand}</h6>
                                                 <p>{tool.description}</p>
@@ -125,7 +121,7 @@ class toolshed extends Component {
                                                         <>
                                                     <p>requested by:{requester.displayname}</p>
                                                     <Button 
-                                                    className="acceptRequest" 
+                                                    className="signup-btn" 
                                                     variant="primary"
                                                     name= {requester._id}
                                                     id={tool._id}
@@ -144,7 +140,7 @@ class toolshed extends Component {
                                                 tool.shared  
                                                 &&                               
                                                     <Button 
-                                                        className="offer-it-btn" 
+                                                        className="signup-btn" 
                                                         variant="primary"
                                                         name= {tool._id}
                                                         onClick={this.handleUnshareButton}>
@@ -155,7 +151,7 @@ class toolshed extends Component {
                                                  { tool.shared
                                                     ||
                                                     <Button 
-                                                        className="offer-it-btn" 
+                                                        className="signup-btn" 
                                                         variant="primary"
                                                         name= {tool._id}
                                                         onClick={this.handleShareButton}>
@@ -172,7 +168,7 @@ class toolshed extends Component {
 
                                                 }}>
                                                     <Button 
-                                                    className="tool-detail-btn" 
+                                                    className="login-btn" 
                                                     variant="primary"
                                                     >
                                                         Detail

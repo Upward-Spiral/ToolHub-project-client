@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import DefaultLayout from "../layouts/Default";
 import {Container,Row,Col,Card,Button,Form,Media} from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {getUser} from '../utils/auth';
 import {searchTools} from '../utils/toolQueries';
 import {WrappedMap} from '../components/googleMap';
@@ -107,31 +106,11 @@ class Search extends Component {
         return (
             <DefaultLayout>
                 <div className="search-page">
-                    <div className="search-page-upper-part">
-                        <h1>search page</h1>
-                        <h6>lat: {this.state.userLocation.lat}</h6>
-                        <h6>lng: {this.state.userLocation.lng}</h6>
-                        {this.state.showedResults && this.state.showedResults.length > 0  && 
-                        <div style={{width:"40vw", height:'40vh'}}>
-                            <WrappedMap googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
-                            loadingElement={<div style={{height:"100%"}}/>}
-                            containerElement={<div style={{height:"100%"}}/>}
-                            mapElement={<div style={{height:"100%"}}/>}
-                            markers={this.state.markers}
-                            center={this.state.userLocation}
-                           
-                            />
-                        </div> 
-                        }
+                    
                         <Container fluid id="search-form">
                             <Row>
                                 <Col>
-                                </Col>
-                                <Col>
-                                </Col>
-                            </Row>
-                        
-                                    <Form onSubmit={this.handleSearch} className="search-form">
+                                <Form onSubmit={this.handleSearch} className="search-form">
                                         <Form.Row>
                                             <Form.Group controlId="formSearchWord">                                          
                                                 <Form.Control 
@@ -145,14 +124,32 @@ class Search extends Component {
                                             </Button>
                                         </Form.Row>
                                     </Form>
+                                </Col>
+                                
+                            </Row>     
+                        </Container> 
+                        <Container className="map">
                             <Row>
-                                <Col><h3>Previous Searches</h3></Col>
-                            </Row>
+
+                           
+                        {this.state.showedResults && this.state.showedResults.length > 0  && 
+                        <div style={{width:"40vw", height:'40vh', 'border-radius': '10px' }}>
+                            <WrappedMap googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
+                            loadingElement={<div style={{height:"100%"}}/>}
+                            containerElement={<div style={{height:"100%"}}/>}
+                            mapElement={<div style={{height:"100%"}}/>}
+                            markers={this.state.markers}
+                            center={this.state.userLocation}
+                           
+                            />
+                        </div> 
+                        }     
+                         </Row>     
                         </Container>              
                         
                         <Container>
                             <Row>
-                                <Col sm={6}>
+                                <Col>
                                     {this.state.showedResults
                                        ?
                                     this.state.showedResults.map((tool)=>{
@@ -172,10 +169,10 @@ class Search extends Component {
                                                     />
                                                     <Media.Body>
                                                         <Row>
-                                                            <Col sm={10}>
-                                                                <h4>{tool.name}</h4>
-                                                                <h5>{tool.category[0]}</h5>
-                                                                <h6>{tool.brand}</h6>
+                                                            <Col sm={8}>
+                                                                <h4>Name: {tool.name}</h4>
+                                                                <h5>Category:{tool.category[0]}</h5>
+                                                                <h6>Brand:{tool.brand}</h6>
                                                                 <br/>
                                                                 <p>{tool.description}</p>
                                                                 <p>{tool.owner[0].displayname}</p>
@@ -199,8 +196,7 @@ class Search extends Component {
                                                                             Detail
                                                                         </Button> 
                                                                     </Link>
-                                                                                                  
-                                                                
+ 
                                                             </Col>                                                     
                                                         </Row>      
                                                     </Media.Body>
@@ -218,22 +214,20 @@ class Search extends Component {
                                     }
                                     
                                 </Col>
-                                <Col sm={6}>
-                                                                 
-                                </Col>
+                                
                             </Row>
                         </Container>
                             
                                                      
-                    </div>
+            
 
                     <Container>
                     <Row>
-                        <Col><h3>Previous Searches</h3></Col>
+                        <Col className="previous-search"><h4>Previous Searches</h4></Col>
                     </Row>
                         <Row>
                             <Col sm={3}>
-                                <Card /* style={{ width: '18rem' }} */>
+                                <Card className="previous-search-card"/* style={{ width: '18rem' }} */>
                                     <Card.Img variant="top" src="https://res.cloudinary.com/persia/image/upload/v1586649334/toolshare/Layout/find_a_tool_xb9v0q.jpg" alt="previuos search"/>
                                     <Card.Body>
                                         <Card.Title>Search Term</Card.Title>
@@ -245,7 +239,7 @@ class Search extends Component {
                                 </Card>
                             </Col>
                             <Col sm={3}>
-                                <Card /* style={{ width: '18rem' }} */>
+                                <Card className="previous-search-card"/* style={{ width: '18rem' }} */>
                                     <Card.Img variant="top" src="https://res.cloudinary.com/persia/image/upload/v1586649334/toolshare/Layout/find_a_tool_xb9v0q.jpg" alt="previuos search"/>
                                     <Card.Body>
                                         <Card.Title>Search Term</Card.Title>
@@ -257,7 +251,7 @@ class Search extends Component {
                                 </Card>
                             </Col>
                             <Col sm={3}>
-                                <Card /* style={{ width: '18rem' }} */>
+                                <Card className="previous-search-card"/* style={{ width: '18rem' }} */>
                                     <Card.Img variant="top" src="https://res.cloudinary.com/persia/image/upload/v1586649334/toolshare/Layout/find_a_tool_xb9v0q.jpg" alt="previuos search"/>
                                     <Card.Body>
                                         <Card.Title>Search Term</Card.Title>
@@ -269,7 +263,7 @@ class Search extends Component {
                                 </Card>
                             </Col>
                             <Col sm={3}>
-                                <Card /* style={{ width: '18rem' }} */>
+                                <Card className="previous-search-card"/* style={{ width: '18rem' }} */>
                                     <Card.Img variant="top" src="https://res.cloudinary.com/persia/image/upload/v1586649334/toolshare/Layout/find_a_tool_xb9v0q.jpg" alt="previuos search"/>
                                     <Card.Body>
                                         <Card.Title>Search Term</Card.Title>

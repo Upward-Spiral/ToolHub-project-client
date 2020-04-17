@@ -1,11 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import {Container,Row,Col,Card,Button,Jumbotron,Media} from 'react-bootstrap';
 
 function SignupConfirm() {
     return (
         <div>
-            <h1>Signup successful!</h1>
-            <Link to="/login">Login</Link>
+            <Container>
+                <Jumbotron>
+                <h1>Congratulations!</h1>
+                <p>
+                    You are signed up! 
+                </p>
+                <p>Login to got to your homepage.</p>
+                <p>
+                    <Link to="/login"><Button variant="primary">Login</Button></Link>
+                </p>
+            </Jumbotron>
+
+            </Container>
+            
+            
         </div>
     )
 }

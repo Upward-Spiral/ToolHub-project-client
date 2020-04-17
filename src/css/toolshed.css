@@ -7,10 +7,11 @@
 }
 
 .toolshed-element {
-    border: 2px solid rgb(133, 213, 213);
+    border: 2px solidrgba(245, 238, 188, 0.5);
     border-radius: 10px;
     margin: 5px 0px;
-    background-color: rgb(133, 213, 213);
+    background-color: rgba(245, 238, 188, 0.5);
+    width: 55vw;
 }
 
 .toolshed-element img {
@@ -25,3 +26,4 @@
 #add-tool-btn {
     margin: 20px;
 }
+
