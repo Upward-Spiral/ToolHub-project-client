@@ -3,7 +3,7 @@ import categories from '../categories.json';
 // import React from 'react';
 
 export const getCatL0List = ()=> {
-    let catList = [];
+    var catList = [];
     categories.forEach((category)=>{
         catList.push(category.name)
     })

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import DefaultLayout from "../layouts/Default";
 import {Container,Row,Col,Card,Button,Form,Media} from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {getUser} from '../utils/auth';
-import {searchTools,BorrowTool,reserveTool} from '../utils/toolQueries';
+import {searchTools} from '../utils/toolQueries';
 import {WrappedMap} from '../components/googleMap';
 
 
@@ -14,7 +14,7 @@ class Search extends Component {
 
         this.handleSearch = this.handleSearch.bind(this)
         this.handleInputChange = this.handleInputChange.bind(this)       
-        this.handleDetailButton = this.handleDetailButton.bind(this)
+        // this.handleDetailButton = this.handleDetailButton.bind(this)
 
         this.state = {
             userLocation:{
@@ -77,12 +77,13 @@ class Search extends Component {
             })     
     }
 
-    handleDetailButton (e) {
-        window.localStorage.setItem("visitedTool", e.target.name);
-        this.props.history.push({
-            pathname:'/tool/detail'
-        })
-    }
+    // handleDetailButton (e) {
+    //     window.localStorage.setItem("visitedTool", e.target.name);
+    //     this.props.history.push({
+    //         pathname:'/tool/detail',
+    //         state : { toolId:e.target.name}
+    //     })
+    // }
 
     componentDidMount () {
        debugger
@@ -137,9 +138,7 @@ class Search extends Component {
                                                     name="word" type="text" 
                                                     placeholder="Search" 
                                                     onChange={this.handleInputChange}/>
-                                                {/* <Form.Text className="text-muted">
-                                                    <p>this search is case-sensitive (Sorry!)</p> 
-                                                </Form.Text> */}
+               
                                             </Form.Group>
                                             <Button variant="primary" type="submit" className="search-btn">
                                                 Search
@@ -186,13 +185,21 @@ class Search extends Component {
                                                                     <p><small>Km away</small></p>
                                                                     <p>{tool.available ? <small>available</small> : <small>unavailable</small> }</p>  
 
-                                                                    <Button 
+                                                                    <Link 
+                                                                        to={{pathname:'/tool/detail',
+                                                                        state : { toolId:tool._id}
+
+                                                                    }}>
+                                                                        <Button 
                                                                         className="tool-detail-btn" 
                                                                         variant="primary"
-                                                                        name= {tool._id}
-                                                                        onClick={this.handleDetailButton}>
+                                                                        // name= {tool._id}
+                                                                        // onClick={this.handleDetailButton}
+                                                                        >
                                                                             Detail
-                                                                    </Button>                               
+                                                                        </Button> 
+                                                                    </Link>
+                                                                                                  
                                                                 
                                                             </Col>                                                     
                                                         </Row>      

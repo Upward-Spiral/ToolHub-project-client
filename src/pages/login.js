@@ -70,7 +70,7 @@ class Login extends Component {
                         <Row className="login-frame-row">
                             
                             <Col  sm={4}>
-                                <h1 class="title is-1 page-title">Login</h1> 
+                                <h1 className="title is-1 page-title">Login</h1> 
                                 <Form className="login-form" onSubmit={this.handleFormSubmit}>
                                     <Form.Group controlId="formBasicUsername">
                                         <Form.Label className="form-field-label">Username:</Form.Label>

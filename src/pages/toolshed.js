@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DefaultLayout from "../layouts/Default";
 import {getToolList} from '../utils/toolQueries';
-import {shareTool, unshareTool} from '../utils/toolQueries';
+import {shareTool, unshareTool,lendTool} from '../utils/toolQueries';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import {Container,Row,Col,Media,Button} from 'react-bootstrap';
@@ -13,7 +13,8 @@ class toolshed extends Component {
         this.handleShareButton = this.handleShareButton.bind(this)
         this.handleUnshareButton = this.handleUnshareButton.bind(this)
         this.fetchToolList = this.fetchToolList.bind(this);
-        this.handleDetailButton = this.handleDetailButton.bind(this)
+        this.handleAcceptButton = this.handleAcceptButton.bind(this)
+        // this.handleDetailButton = this.handleDetailButton.bind(this)
 
         this.state = {
             toolList:[] ,
@@ -24,12 +25,12 @@ class toolshed extends Component {
 
     }
 
-    handleDetailButton (e) {
-        window.localStorage.setItem("visitedToolId", e.target.name);
-        this.props.history.push({
-            pathname:'/tool/detail'
-        })
-    }
+    // handleDetailButton (e) {
+    //     window.localStorage.setItem("visitedToolId", e.target.name);
+    //     this.props.history.push({
+    //         pathname:'/tool/detail'
+    //     })
+    // }
 
     handleShareButton (e) {
         debugger
@@ -51,6 +52,18 @@ class toolshed extends Component {
             .catch ((err) => {
                 console.log(err)
             })    
+    }
+
+    handleAcceptButton(e) {
+        let requesterId = e.target.name
+        let toolId = e.target.id
+        lendTool(requesterId,toolId)
+        .then((response)=>{
+            this.fetchToolList()     
+        })
+        .catch ((err) => {
+            console.log(err)
+        })
     }
 
 
@@ -105,8 +118,31 @@ class toolshed extends Component {
                                                 <h6>{tool.brand}</h6>
                                                 <p>{tool.description}</p>
                                             </Col>
-                                            <Col sm={2}>                                  
-                                                {tool.shared ? 
+                                            <Col>
+                                            {tool.requested_by.length >0 &&
+                                                tool.requested_by.map((requester)=>{
+                                                    return (
+                                                        <>
+                                                    <p>requested by:{requester.displayname}</p>
+                                                    <Button 
+                                                    className="acceptRequest" 
+                                                    variant="primary"
+                                                    name= {requester._id}
+                                                    id={tool._id}
+                                                    onClick={this.handleAcceptButton}>
+                                                        Lend!
+                                                    </Button> 
+                                                    </>
+                                                    )
+                                                })
+                                            
+                                            }
+                                            </Col>
+                                            <Col sm={2}> 
+                                            { tool.lended_to.length ===0 
+                                                && 
+                                                tool.shared  
+                                                &&                               
                                                     <Button 
                                                         className="offer-it-btn" 
                                                         variant="primary"
@@ -114,7 +150,10 @@ class toolshed extends Component {
                                                         onClick={this.handleUnshareButton}>
                                                             Shelf it!
                                                         </Button> 
-                                                    : 
+                                                 }  
+
+                                                 { tool.shared
+                                                    ||
                                                     <Button 
                                                         className="offer-it-btn" 
                                                         variant="primary"
@@ -122,15 +161,31 @@ class toolshed extends Component {
                                                         onClick={this.handleShareButton}>
                                                             Offer it!
                                                         </Button>
-                                                }
+                                                       
+                                                        
+                                                 }
+                                               
                                                 
-                                                <Button 
+                                                <Link 
+                                                    to={{pathname:'/tool/detail',
+                                                    state : { toolId:tool._id}
+
+                                                }}>
+                                                    <Button 
+                                                    className="tool-detail-btn" 
+                                                    variant="primary"
+                                                    >
+                                                        Detail
+                                                    </Button> 
+                                                </Link>
+
+                                                {/* <Button 
                                                     className="tool-detail-btn" 
                                                     variant="primary"
                                                     name= {tool._id}
                                                     onClick={this.handleDetailButton}>
                                                         Detail
-                                                </Button>
+                                                </Button> */}
                                                 
                                             </Col>                                                     
                                         </Row>      

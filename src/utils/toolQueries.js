@@ -8,8 +8,9 @@ const axios = Axios.create({
     headers: { 'content-type': 'application/x-www-form-urlencoded' }
 });
 
+
 export const getToolList = () => {
-    // debugger
+    debugger
     return axios({
         method: "GET",
         url: "/toolshed"
@@ -21,10 +22,13 @@ export const getToolList = () => {
         }     
         return (response)
     })
+    .catch ((err) => {
+        console.log(err)
+    })
 }
 
 export const getToolDetails = (toolId) => {
-    // debugger
+    debugger
     return axios({
         method: "GET",
         url: `/detail/${toolId}` 
@@ -32,30 +36,35 @@ export const getToolDetails = (toolId) => {
     .then((response)=>{
         if (response.status===200){
             console.log(response)
-            response = response.data.data
+            response = response.data
         }     
         return (response)
+    })
+    .catch ((err) => {
+        console.log(err)
     })
 }
 
 export const UploadToolImg = (theFile)=> {
-    // debugger
+    debugger
     return axios({
             method: "POST",
             url: "/upload-image",
             data: theFile    
         })
         .then((response)=>{
-            if (response.status===200){
+            if (response.status===200)
+            {
                 console.log(response);
                 response=response.data
             }
                 
             return (response)
         })
+        .catch ((err) => {
+            console.log(err)
+        })
 }
-
-
 
 export const createNewTool = (newTool)=> {
     debugger
@@ -72,6 +81,9 @@ export const createNewTool = (newTool)=> {
             
         return (response)
     })
+    .catch ((err) => {
+        console.log(err)
+    })
 
 }
 
@@ -83,12 +95,16 @@ export const updateTool = (updatedTool)=> {
         data: qs.stringify(updatedTool)    
     })
     .then((response)=>{
-        if (response.status!==200){
+        if (response.status!==200)
+        {
             console.log(response);
             response=response.data
         }
             
         return (response)
+    })
+    .catch ((err) => {
+        console.log(err)
     })
 
 }
@@ -107,6 +123,9 @@ export const updateToolImage = (newToolImage) => {
         }
             
         return (response)
+    })
+    .catch ((err) => {
+        console.log(err)
     })
   
 }
@@ -146,6 +165,9 @@ export const shareTool = (toolId) => {
                 
             return (response)
         })
+        .catch ((err) => {
+            console.log(err)
+        })
 }
 
 export const unshareTool = (toolId) => {
@@ -162,8 +184,10 @@ export const unshareTool = (toolId) => {
                 
             return (response)
         })
+        .catch ((err) => {
+            console.log(err)
+        })
 }
-
 
 export const BorrowTool = (toolId) => {
     debugger
@@ -178,6 +202,9 @@ export const BorrowTool = (toolId) => {
             }
                 
             return (response)
+        })
+        .catch ((err) => {
+            console.log(err)
         })
 }
 
@@ -195,4 +222,49 @@ export const reserveTool = (toolId) => {
                 
             return (response)
         })
+        .catch ((err) => {
+            console.log(err)
+        })
 }
+
+export const lendTool = (req,tool)=> {
+    debugger
+    let req_tool = {requester:req, tool:tool}
+    return axios({
+        method: "POST",
+        url: "/lend",
+        data: qs.stringify(req_tool)    
+    })
+    .then((response)=>{
+        if (response.status!==200){
+            console.log(response);
+            response=response.data
+        }
+            
+        return (response)
+    })
+    .catch ((err) => {
+        console.log(err)
+    })
+
+}
+
+
+export const deleteTool = (toolId) => {
+    debugger
+    return axios({
+        method: "GET",
+        url: `/delete/${toolId}` 
+    })
+    .then((response)=>{
+        if (response.status===200){
+            console.log(response)
+            response = response.data
+        }     
+        return (response)
+    })
+    .catch ((err) => {
+        console.log(err)
+    })
+}
+

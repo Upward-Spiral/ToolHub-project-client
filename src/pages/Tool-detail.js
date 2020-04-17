@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DefaultLayout from "../layouts/Default";
 import {Container,Row,Col,Media,Button,Card,Form} from 'react-bootstrap';
-import {getToolDetails,UploadToolImg,updateToolImage,updateTool} from '../utils/toolQueries';
+import {getToolDetails,UploadToolImg,updateToolImage,updateTool,deleteTool} from '../utils/toolQueries';
 import {getCatL0List, getCatL1List, getCatL2List} from '../utils/service';
 import {getUser} from '../utils/auth';
 
@@ -9,13 +9,14 @@ class toolDetail extends Component {
     constructor(props) {
         super(props)
 
-        this.updateToolDetails = this.updateToolDetails.bind(this)
+        this.loadToolDetails = this.loadToolDetails.bind(this)
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleFileUpload = this.handleFileUpload.bind(this);
         this.handleCatL0Select = this.handleCatL0Select.bind(this);
         this.handleCatL1Select = this.handleCatL1Select.bind(this);
         this.handleCatL2Select = this.handleCatL2Select.bind(this);
+        this.handleDeleteButton = this.handleDeleteButton.bind(this)
 
         this.state = {
             
@@ -33,7 +34,8 @@ class toolDetail extends Component {
                 modelNo: "",
                 category:[],
                 description: "",
-                images: []
+                images: [],
+                id:""
                 
             }, 
             error:null ,
@@ -89,11 +91,20 @@ class toolDetail extends Component {
         
     } 
     
-    updateToolDetails (toolDetails) {
+    loadToolDetails (toolDetails) {
+        debugger
         let temp_cat0_list = getCatL0List();
-        let{name,brand,modelNo,description,category,images}  = toolDetails
-            let temp_tool = {name,brand,modelNo,description,category,images} 
-            
+        
+            let temp_tool = {}
+            temp_tool.name = toolDetails.toolData.name
+            temp_tool.brand = toolDetails.toolData.brand
+            temp_tool.category = toolDetails.toolData.category
+            temp_tool.description = toolDetails.toolData.description
+            temp_tool.images = toolDetails.toolData.images
+            temp_tool.modelNo = toolDetails.toolData.modelNo
+            temp_tool.owner = toolDetails.toolData.owner
+            temp_tool.id = toolDetails.toolData._id
+
             let temp_cat0,temp_cat1, temp_cat2,temp_showedImg,temp_cat2_list
              temp_cat0 = temp_tool.category[0]
             if (temp_tool.category[1]) {
@@ -165,15 +176,25 @@ class toolDetail extends Component {
         this.setState({selectedCatL2: selected_cat2, ToolInfo:temp_tool})
     }
 
+    handleDeleteButton(e) {
+        let tempToolId = e.target.name
+        deleteTool(tempToolId)
+            .then((response)=>{
+                this.props.history.push({
+                    pathname:`/tool/shed`
+                })
+            })
+    }
+
     componentDidMount () {
         debugger
        
         let current_user = getUser()
         
-        let toolID = window.localStorage.getItem("visitedToolId")
+        let toolID = this.props.location.state.toolId
         getToolDetails(toolID)
         .then((response)=>{
-            this.updateToolDetails(response)
+            this.loadToolDetails(response)
 
         })
     }
@@ -184,7 +205,7 @@ class toolDetail extends Component {
                 <h1>tool detail page</h1>
 
                 <div className= "add-form update-form">                  
-                    <form onSubmit={this.handleFormSubmit}>
+                    
 
                         <Form onSubmit={this.handleFormSubmit} className="update-tool-detail-form">
                             
@@ -318,12 +339,18 @@ class toolDetail extends Component {
                                 />
                             </Form.Group>
 
-                            
-                            
+                            <Button variant="primary" type="submit">Submit</Button>
+                                                        
                         </Form>
 
-                        <input className="button is-link" type="submit" value="Add" />
-                    </form>
+                        
+                        <Button 
+                            className="delete-tool" 
+                            variant="danger"
+                            name= {this.state.ToolInfo.id}
+                            onClick={this.handleDeleteButton}>
+                                Delete
+                        </Button>
                         
                 </div>
             </DefaultLayout>
