@@ -1,16 +1,11 @@
 
-.card-board {
-    /* height: 35vh; */
-    /* display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start; */
-}
+
 
 .home-page-card {
     margin: 20px;
     height: 40vh;
-    background-color: #85d5d5 ;
+    background-color:rgb(250, 215, 0) ;
+    
    
 }
 
@@ -22,34 +17,8 @@
      color: white;
 }
 
-/* 
-    
-    margin: 50px 40px;
-    
-} */
-
-/* .card-content {
-    background-color: rgb(133, 213, 213);
-} */
-/* 
-.home-card {
-    margin-left: 2vw;
-    
-} */
- /* .has-border-radius-5 {
-     border-radius: 5px;
- } */
-
- /* .a {
-     font-size: larger;
-     color: black !important;
- } */
-
-/* .home-card-img{
-    height: 50%;
-} */
-
-/* .card-image figure {
-    height: 70%;
-} */
+.home-page-card-title {
+    color: rgb(53, 50, 38);
+    text-align: center;
+}
 

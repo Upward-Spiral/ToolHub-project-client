@@ -32,21 +32,21 @@ class SidePanel extends Component {
             <Container className="side-panel-contents">
                 <Row>
                     <Col>
-                        <Card style={{ width: '18rem' }}>
-                            <Card.Header>Today's date</Card.Header>
+                        <Card className="side-panel-card" style={{ width: '18rem' }}>
+                            <Card.Header className="side-panel-header">Today's date</Card.Header>
                             <Card.Img variant="top" src={this.state.tempImgUrl} />
                             <Card.Body>
                                 <Card.Title>{this.state.user.displayname}</Card.Title> 
 
                             </Card.Body>
-                            <ListGroup className="list-group-flush">
+                            <ListGroup className="side-panel-flush">
                                 <ListGroup.Item className="sidebar-list-item"><Link to="/user/home">Dashboard</Link></ListGroup.Item>
                                 <ListGroup.Item className="sidebar-list-item"><Link to="/tool/shed">Toolshed</Link></ListGroup.Item>
                                 <ListGroup.Item className="sidebar-list-item"><Link to="/user/feed">Fellow Craftsmen</Link></ListGroup.Item>
                                 <ListGroup.Item className="sidebar-list-item"><Link to="/user/requests">Requests</Link></ListGroup.Item>
                                 <ListGroup.Item className="sidebar-list-item"><Link to="/user/profile">Profile</Link></ListGroup.Item>
                                 <ListGroup.Item className="sidebar-list-item"><Link to="/user/settings">Settings</Link></ListGroup.Item>
-                                <ListGroup.Item className="sidebar-list-item"><Link to="/">Intro</Link></ListGroup.Item>
+                                {/* <ListGroup.Item className="sidebar-list-item"><Link to="/">Intro</Link></ListGroup.Item> */}
                                 <ListGroup.Item>
                                     <Link to="/logout"><Button variant="secondary bottom" size="lg" block>Logout</Button></Link>
                                 </ListGroup.Item>    

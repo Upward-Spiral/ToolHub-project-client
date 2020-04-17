@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {login} from "../utils/auth";
 import { Link } from 'react-router-dom';
-import {Button,Form,} from 'react-bootstrap';
+import {Button,Form,Container,Row,Col,Image} from 'react-bootstrap';
 
 class Login extends Component {
     constructor() {
@@ -57,7 +57,7 @@ class Login extends Component {
 
     render() {
             return (          
-                <div>
+                <>
                     {this.state.error ?
                         <div>
                             <h6>Something went wrong!</h6>
@@ -65,77 +65,50 @@ class Login extends Component {
                         </div>:
                         ""     
                     } 
+
+                    <Container className="login-frame" fluid>
+                        <Row className="login-frame-row">
+                            
+                            <Col  sm={4}>
+                                <h1 class="title is-1 page-title">Login</h1> 
+                                <Form className="login-form" onSubmit={this.handleFormSubmit}>
+                                    <Form.Group controlId="formBasicUsername">
+                                        <Form.Label className="form-field-label">Username:</Form.Label>
+                                        <Form.Control 
+                                            type="text" 
+                                            placeholder="Enter username"
+                                            name="username" 
+                                            required
+                                            value={this.state.loginData.username} 
+                                            onChange={this.handleInputChange} />
+                                    </Form.Group>
+
+                                    <Form.Group controlId="formBasicPassword">
+                                        <Form.Label className="form-field-label">Password</Form.Label>
+                                        <Form.Control 
+                                            type="password" 
+                                            placeholder="Password"
+                                            name="password" 
+                                            required
+                                            value={this.state.loginData.password} 
+                                            onChange={this.handleInputChange} />   {/* the handler gets the event object by default */}
+                                    </Form.Group>
+
+                                    <Button className="login-btn login-page-btn" variant="primary" type="submit">Login</Button>
+                                    <Button className="back-btn" variant="secondary"><Link to="/">Back</Link></Button>
+                                </Form>
+                            </Col>
+                            <Col sm={8}>
+                                <Image className="login-page-image" src="https://res.cloudinary.com/persia/image/upload/v1587090720/toolshare/Layout/jewellery-classes-kids_orig_k9hkxv.jpg" fluid />
+                            </Col>
+                        </Row>
                     
-                    <h1 class="title is-1 page-title">Login</h1>
-                    <div className= "login-form">  
-                    <Form onSubmit={this.handleFormSubmit}>
-                        <Form.Group controlId="formBasicUsername">
-                            <Form.Label>Username:</Form.Label>
-                            <Form.Control 
-                                type="text" 
-                                placeholder="Enter username"
-                                name="username" 
-                                required
-                                value={this.state.loginData.username} 
-                                onChange={this.handleInputChange} />
-                        </Form.Group>
-
-                        <Form.Group controlId="formBasicPassword">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control 
-                                type="password" 
-                                placeholder="Password"
-                                name="password" 
-                                required
-                                value={this.state.loginData.password} 
-                                onChange={this.handleInputChange} />   {/* the handler gets the event object by default */}
-                        </Form.Group>
-
-                        <Button variant="primary" type="submit">Login</Button>
-                        <Button variant="secondary"><Link to="/">Back</Link></Button>{' '}
-                    </Form>
-
-
-
-
-                      
-                                 
-                        {/* <form onSubmit={this.handleFormSubmit}>
-
-                            <div className="field">
-                                <label className="label"></label>
-                                <div className="control">
-                                    <input
-                                        className="input" 
-                                        type="text" 
-                                        name="username" 
-                                        required
-                                        value={this.state.loginData.username} 
-                                        onChange={this.handleInputChange}/>  
-                                </div>
-                            </div>
-
-                            <div className="field">
-                                <label className="label">Password:</label>
-                                <div className="control">
-                                    <input
-                                        className="input" 
-                                        type="password" 
-                                        name="password" 
-                                        required
-                                        value={this.state.loginData.password} 
-                                        onChange={this.handleInputChange}/>
-                                </div>
-                            </div>
-
-                            <input className="button is-link" type="submit" value="Login" />
-                            <Link to="/"><button class="button is-light back-btn">Back</button></Link>
-                        </form> */}
-                        
-                    </div>
-                </div>
+                    </Container>
+      
+                   
+              </> 
             )
-        // }
+
         
   
     }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {signup} from "../utils/auth";
 import { Link } from 'react-router-dom';
+import {Button,Form,Container,Row,Col,Image} from 'react-bootstrap';
 
 class Signup extends Component {
     constructor() {
@@ -57,80 +58,99 @@ class Signup extends Component {
 
     render() {
             return (          
-                <div>
+                
                    
-                    <div className= "signup-form"> 
-                    <h1 class="title is-1 page-title">Signup</h1>  
-                    <h4 class="title is-4">Page 1 of 2</h4>               
-                        <form onSubmit={this.handleFormSubmit}>
-                            <div className="field">
-                                <label className="label">Username:</label>
-                                <div className="control">
-                                    <input
-                                        className="input" 
-                                        type="text" 
-                                        name="username" 
-                                        value={this.state.tempUser.username} 
-                                        onChange={this.handleInputChange}/>   {/* the handler gets the event object by default */}
-                                </div>
-                            </div>
-                            
-                            
-                            <div className="field">
-                                <label className="label">Displayname:</label>
-                                <div className="control">
-                                    <input
-                                        className="input" 
-                                        type="text" 
-                                        name="displayname" 
-                                        value={this.state.tempUser.displayname} 
-                                        onChange={this.handleInputChange}/>
-                                </div>
-                            </div>
-                            
-                            <div className="field">
-                                <label className="label">Email:</label>
-                                <div className="control">
-                                    <input
-                                        className="input" 
-                                        type="email" 
-                                        name="email" 
-                                        value={this.state.tempUser.email} 
-                                        onChange={this.handleInputChange}/>
-                                </div>
-                            </div>
+                <div className= "signup-form"> 
+                    
 
-                            <div className="field">
-                                <label className="label">Password:</label>
-                                <div className="control">
-                                    <input
-                                        className="input" 
-                                        type="password" 
-                                        name="password" 
-                                        value={this.state.tempUser.password} 
-                                        onChange={this.handleInputChange}/>
-                                </div>
-                            </div>
+                    <Container className="signup-frame" fluid>
+                        <Row className="signup-frame-row">                           
+                            <Col  sm={4}>
+                                <h1 class="title page-title">Signup <span>Page 1 of 2</span></h1>  
+                                 
+                                <Form className="signup-form" onSubmit={this.handleFormSubmit}>
+                                    <Row>
+                                        <Col>
+                                    <Form.Group controlId="formBasicEmail">
+                                        <Form.Label className="form-field-label">Username:</Form.Label>
+                                        <Form.Control 
+                                            type="text"                                
+                                            name="username" 
+                                            value={this.state.tempUser.username} 
+                                            onChange={this.handleInputChange} 
+                                        />                           
+                                    </Form.Group>
+                                    </Col>
+                                    <Col>
+                                    <Form.Group controlId="formBasicEmail">
+                                        <Form.Label className="form-field-label">Displayname:</Form.Label>
+                                        <Form.Control 
+                                            type="text"                                
+                                            name="displayname" 
+                                                    value={this.state.tempUser.displayname} 
+                                                    onChange={this.handleInputChange}
+                                        />
+                                        
+                                    </Form.Group>
+                                    </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                    <Form.Group controlId="formBasicEmail">
+                                        <Form.Label className="form-field-label">Email address</Form.Label>
+                                        <Form.Control 
+                                            type="email"                             
+                                            name="email" 
+                                            value={this.state.tempUser.email} 
+                                            onChange={this.handleInputChange}
+                                        />
+                                        
+                                    </Form.Group>
+                                    </Col>
+                                    </Row>
+                                    <Row>
+                                    <Col>
+                                    <Form.Group controlId="formBasicPassword">
+                                        <Form.Label className="form-field-label">Password</Form.Label>
+                                        <Form.Control 
+                                            type="password"                               
+                                            name="password" 
+                                            value={this.state.tempUser.password} 
+                                            onChange={this.handleInputChange}
+                                        />
+                                    </Form.Group>
+                                    </Col>
+                                    <Col>
+                                    <Form.Group controlId="formBasicPassword">
+                                        <Form.Label className="form-field-label">Repeat Password</Form.Label>
+                                        <Form.Control 
+                                            type="password"                               
+                                            name="password_check" 
+                                            value={this.state.tempUser.password_check} 
+                                            onChange={this.handleInputChange}
+                                        />
+                                    </Form.Group>
+                                    </Col>
+                                    </Row>
+                                    <Row>
+                                        <Col>
+                                        <Button className="login-btn" variant="primary" type="submit">Next</Button>
+                                        <Button className="back-btn" variant="secondary"><Link to="/">Back</Link></Button>
+                                        </Col>
+                                    </Row>
+                                    
+                                </Form>
+                            </Col>
+                    <Col sm={8}>
+                        <Image className="signup-page-image" src="https://res.cloudinary.com/persia/image/upload/v1587090720/toolshare/Layout/jewellery-classes-kids_orig_k9hkxv.jpg" fluid />
+                    </Col>
+                </Row>
+            </Container>
 
-                            <div className="field">
-                                <label className="label">Repeat Password:</label>
-                                <div className="control">
-                                    <input
-                                        className="input" 
-                                        type="password" 
-                                        name="password_check" 
-                                        value={this.state.tempUser.password_check} 
-                                        onChange={this.handleInputChange}/>
-                                </div>
-                            </div>
-                            <div className="btn-group">
-                                <input className="button is-link" type="submit" value="Next" />
-                                <button class="button is-light back-btn"><Link to="/">Back</Link></button>
-                            </div>
-                            
-                        </form>
+
                         
-                    </div>
+                        
+                    
                 </div>
             )
         // }

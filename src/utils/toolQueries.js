@@ -55,6 +55,8 @@ export const UploadToolImg = (theFile)=> {
         })
 }
 
+
+
 export const createNewTool = (newTool)=> {
     debugger
     return axios({
@@ -71,6 +73,42 @@ export const createNewTool = (newTool)=> {
         return (response)
     })
 
+}
+
+export const updateTool = (updatedTool)=> {
+    debugger
+    return axios({
+        method: "POST",
+        url: "/update",
+        data: qs.stringify(updatedTool)    
+    })
+    .then((response)=>{
+        if (response.status!==200){
+            console.log(response);
+            response=response.data
+        }
+            
+        return (response)
+    })
+
+}
+
+export const updateToolImage = (newToolImage) => {
+    debugger
+    return axios({
+        method: "POST",
+        url: "/update-img",
+        data: qs.stringify(newToolImage)    
+    })
+    .then((response)=>{
+        if (response.status!==200){
+            console.log(response);
+            response=response.data
+        }
+            
+        return (response)
+    })
+  
 }
 
 export const searchTools = (searchData) => {

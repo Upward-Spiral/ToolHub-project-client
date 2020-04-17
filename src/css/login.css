@@ -1,19 +1,28 @@
 
 
-/* .signup-form, .login-form {
-    width: 30vw;
-    margin: 30vh auto;
+.login-frame {
+    height: 80vh;
+    margin: 15vh;
+    width: 100vw;
+}
+
+.login-frame-row {
+    height: 100%;
+}
+
+.login-page-image {
+    height:  70vh;
+    border-radius: 10px;
+
+}
+
+.login-form {
+    width: 300px;
+}
+
+/* .login-page-btn {
 
 } */
 
-/* .page-title {
-    margin: 100px auto;
-} */
 
-/* .back-btn {
-    margin-left: 20px;
-} */
 
-/* .btn-group {
-    margin-top: 20px;
-} */

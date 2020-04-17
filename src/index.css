@@ -1,3 +1,6 @@
+
+
+
 @import './App.css';
 @import './css/login.css';
 @import './css/home.css';
@@ -6,18 +9,23 @@
 @import './css/default.css';
 @import './css/search.css';
 @import './css/tool-detail.css';
+@import './css/intro.css';
+@import './css/signup.css';
 
 @import './custom.scss';
 
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family:     Acme,
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(229, 229, 229);
+  background-color: rgb(53, 50, 38);
+}
+
+.back-btn {
+  background-color: rgb(163, 163, 159);
 }
 
 
@@ -29,6 +37,20 @@ code {
 
 a:hover {
   text-decoration: none;
+  color: rgb(53, 50, 38);
+}
+
+a {
+  color: rgb(53, 50, 38);
+}
+
+.title {
+  color: rgb(250, 215, 0);
+}
+
+.form-field-label {
+  color: rgb(229, 229, 229);
+  margin-top: 10px;
 }
 
 

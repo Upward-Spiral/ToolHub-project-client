@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import {signupSecond} from "../utils/auth";
 import {getTempUserId} from "../utils/auth";
 import {getGeoCode} from '../utils/geoCode';
+import {Button,Form,Container,Row,Col,Image} from 'react-bootstrap';
 
 
 class SignupSecond extends Component {
@@ -81,126 +83,119 @@ class SignupSecond extends Component {
     }
 
     render() {
-            return (          
-                <div>
+        return (          
+            <div>
+                <Container className="signup-frame" fluid >
+                    <Row>
+                        <Col sm={7}>
+                            <Form className="signup-form" onSubmit={this.handleFormSubmit}>
+                                <Form.Row>
+                                    <Form.Group as={Col} >
+                                        <Form.Label className="form-field-label">Firstname</Form.Label>
+                                        <Form.Control 
+                                            type="text" 
+                                            name="firstname" 
+                                            value={this.state.tempUserInfo.firstname} 
+                                            onChange={this.handleInputChange}
+                                            />
+                                    </Form.Group>
+                                    <Form.Group as={Col} >
+                                        <Form.Label className="form-field-label">Lastname</Form.Label>
+                                        <Form.Control 
+                                            type="text" 
+                                            name="lastname" 
+                                            value={this.state.tempUserInfo.lastname} 
+                                            onChange={this.handleInputChange}
+                                            />
+                                    </Form.Group>
+                                    
+                                </Form.Row>
 
-                    <div className= "add-form">                  
-                        <form onSubmit={this.handleFormSubmit}>
-                            <div className="field">
-                                <label className="label">Firstname:</label>
-                                <div className="control">
-                                    <input
-                                        className="input" 
-                                        type="text" 
-                                        name="firstname" 
-                                        value={this.state.tempUserInfo.firstname} 
-                                        onChange={this.handleInputChange}/>   {/* the handler gets the event object by default */}
-                                </div>
-                            </div>
-                            
-                            
-                            <div className="field">
-                                <label className="label">Lastname:</label>
-                                <div className="control">
-                                    <input
-                                        className="input" 
-                                        type="text" 
-                                        name="lastname" 
-                                        value={this.state.tempUserInfo.lastname} 
-                                        onChange={this.handleInputChange}/>
-                                </div>
-                            </div>
+                                <Form.Row>
+                                    <Form.Group as={Col} sm={9} >
+                                        <Form.Label className="form-field-label">Address Line 1</Form.Label>
+                                        <Form.Control 
+                                            type="text"
+                                            name="street1" 
+                                            value={this.state.tempUserInfo.street1}
+                                            onChange={this.handleInputChange} />
+                                    </Form.Group>
+                                    <Form.Group as={Col} sm={3} >
+                                        <Form.Label className="form-field-label">Buildin No</Form.Label>
+                                        <Form.Control 
+                                            type="text" 
+                                            name="lotNo" 
+                                            value={this.state.tempUserInfo.lotNo} 
+                                            onChange={this.handleInputChange}
+                                            />
+                                    </Form.Group>
+                                </Form.Row>
 
-                            <div className="field">
-                                <label className="label">Phone number:</label>
-                                <div className="control">
-                                    <input
-                                        className="input" 
-                                        type="text" 
-                                        name="phone" 
-                                        value={this.state.tempUserInfo.phone} 
-                                        onChange={this.handleInputChange}/>
-                                </div>
-                            </div>
+                                <Form.Row>
+                                    <Form.Group as={Col} sm={9} >
+                                        <Form.Label className="form-field-label">Address Line 2</Form.Label>
+                                        <Form.Control 
+                                            type="text" 
+                                            name="street2" 
+                                            value={this.state.tempUserInfo.street2} 
+                                            onChange={this.handleInputChange}
+                                            />
+                                    </Form.Group>
+                                
+                                    <Form.Group as={Col} sm={3} >
+                                        <Form.Label className="form-field-label">Apartment No</Form.Label>
+                                        <Form.Control 
+                                            type="text" 
+                                            name="unitNo" 
+                                            value={this.state.tempUserInfo.unitNo} 
+                                            onChange={this.handleInputChange}
+                                            />
+                                    </Form.Group>
+                                </Form.Row>
 
-                            <div className="field">
-                                <label className="label">Street (Address line 1):</label>
-                                <div className="control">
-                                    <input
-                                        className="input" 
-                                        type="text" 
-                                        name="street1" 
-                                        value={this.state.tempUserInfo.street1} 
-                                        onChange={this.handleInputChange}/>
-                                </div>
-                            </div>
-
-                            <div className="field">
-                                <label className="label">Buildin/House number:</label>
-                                <div className="control">
-                                    <input
-                                        className="input" 
-                                        type="text" 
-                                        name="lotNo" 
-                                        value={this.state.tempUserInfo.lotNo} 
-                                        onChange={this.handleInputChange}/>
-                                </div>
-                            </div>
-
-                            <div className="field">
-                                <label className="label">Street (Address line 2):</label>
-                                <div className="control">
-                                    <input
-                                        className="input" 
-                                        type="text" 
-                                        name="street2" 
-                                        value={this.state.tempUserInfo.street2} 
-                                        onChange={this.handleInputChange}/>
-                                </div>
-                            </div>
-
-                            <div className="field">
-                                <label className="label">Unit/Apartment number:</label>
-                                <div className="control">
-                                    <input
-                                        className="input" 
-                                        type="text" 
-                                        name="unitNo" 
-                                        value={this.state.tempUserInfo.unitNo} 
-                                        onChange={this.handleInputChange}/>
-                                </div>
-                            </div>
-
-                            <div className="field">
-                                <label className="label">pcode:</label>
-                                <div className="control">
-                                    <input
-                                        className="input" 
+                                <Form.Row>
+                                    <Form.Group as={Col} controlId="formGridZip">
+                                    <Form.Label className="form-field-label">Postal Code</Form.Label>
+                                    <Form.Control 
                                         type="text" 
                                         name="pcode" 
                                         value={this.state.tempUserInfo.pcode} 
-                                        onChange={this.handleInputChange}/>
-                                </div>
-                            </div>
+                                        onChange={this.handleInputChange}
+                                    />
+                                    </Form.Group>
 
-                            <div className="field">
-                                <label className="label">City:</label>
-                                <div className="control">
-                                    <input
-                                        className="input" 
+                                    <Form.Group as={Col} controlId="formGridCity">
+                                    <Form.Label className="form-field-label">City</Form.Label>
+                                    <Form.Control
                                         type="text" 
                                         name="city" 
                                         value={this.state.tempUserInfo.city} 
-                                        onChange={this.handleInputChange}/>
-                                </div>
-                            </div>
+                                        onChange={this.handleInputChange}
+                                    />
+                                    </Form.Group>
+                                    <Form.Group as={Col} >
+                                        <Form.Label className="form-field-label">Phone number</Form.Label>
+                                        <Form.Control 
+                                            type="text" 
+                                            name="phone" 
+                                            value={this.state.tempUserInfo.phone}  
+                                            onChange={this.handleInputChange}
+                                            />
+                                    </Form.Group>
+                                    
+                                </Form.Row> 
+                                <Button className="signup-btn" variant="primary" type="submit">Signup</Button> 
+                                <Button className="back-btn" variant="secondary"><Link to="/">Cancel</Link></Button> 
+                            </Form>
+                        </Col>
+                        <Col sm={5}>
+                            <Image className="signup-page-image" src="https://res.cloudinary.com/persia/image/upload/v1587102386/toolshare/Layout/81g5v0vTkaL._AC_SY879__q8fnyo.jpg" fluid />
+                        </Col>
+                    </Row>
+                </Container>
 
-                        
-
-                            <input className="button is-link" type="submit" value="Signup" />
-                        </form>
-                        
-                    </div>
+      
+                    
                 </div>
             )
         // }

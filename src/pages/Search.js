@@ -57,8 +57,9 @@ class Search extends Component {
                 if (tempsearchResults.length===0) {
                     temp_flag=true
                 }
+                var temp_user = getUser()
                 goodSearchResults = tempsearchResults.filter((item)=>{
-                    return item.owner[0].username !== this.state.user.username
+                    return item.owner[0].username !== temp_user.username
                 })
                 let markers = goodSearchResults.map((tool)=>{
                     let latLng = {lat:tool.location.coordinates[1],lng:tool.location.coordinates[0]}
@@ -110,7 +111,7 @@ class Search extends Component {
                         <h6>lat: {this.state.userLocation.lat}</h6>
                         <h6>lng: {this.state.userLocation.lng}</h6>
                         {this.state.showedResults && this.state.showedResults.length > 0  && 
-                        <div style={{width:"50vw", height:'50vh'}}>
+                        <div style={{width:"40vw", height:'40vh'}}>
                             <WrappedMap googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
                             loadingElement={<div style={{height:"100%"}}/>}
                             containerElement={<div style={{height:"100%"}}/>}
@@ -122,6 +123,12 @@ class Search extends Component {
                         </div> 
                         }
                         <Container fluid id="search-form">
+                            <Row>
+                                <Col>
+                                </Col>
+                                <Col>
+                                </Col>
+                            </Row>
                         
                                     <Form onSubmit={this.handleSearch} className="search-form">
                                         <Form.Row>

@@ -1,0 +1,29 @@
+
+.signup-frame {
+    height: 80vh;
+    margin: 12vh 8vw 10vh 10vw;
+    width: 100vw;
+}
+
+.signup-frame-row {
+    height: 100%;
+}
+/* 
+.signup-form {
+    width: 500px;
+} */
+
+.page-title span {
+    font-size: 14px;
+}
+
+.signup-page-image {
+    height:  60vh;
+    border-radius: 10px;
+    margin-left: 50px;
+
+}
+
+.signup-btn {
+    color: rgb(53, 50, 38);
+}

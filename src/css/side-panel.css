@@ -10,10 +10,27 @@
    height: 98%;
 } */
 
-/* .side-panel-contents{
+.side-panel-contents{
     margin-top: 2vh;
     height: 100%;
-} */
+    
+}
+
+.side-panel-card {
+    background-color:  rgb(229, 229, 229);
+}
+
+.side-panel-flush, .sidebar-list-item {
+    background-color:  rgb(229, 229, 229);
+}
+
+.side-panel-header {
+    background-color:   rgb(245, 238, 188);
+}
+
+.sidebar-list-item a {
+    color: rgb(53, 50, 38);
+}
 
 /* .logout-btn {
     position: absolute;

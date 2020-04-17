@@ -7,8 +7,8 @@
 .main-area {
 
     position: absolute;
-    left:25vw;
-    top: 30px;
+    left:45vw;
+    top: 45px;
     width: 60vw;
     /* height: 90vh; */
 }
@@ -19,10 +19,35 @@
     position: fixed;
     left: 0px;
     top: 0px;
-    width: 25vw;
+    width: 40vw;
 }
 #side-panel {
     width: 25vw;
     height: 100vh; 
     z-index: 50;
 }
+
+@media screen and (max-width: 700px) {
+    #side-panel {
+        display: none;
+    }
+    .main-area {
+
+        position: absolute;
+        left:25vw;
+        top: 45px;
+        width: 60vw;
+        /* height: 90vh; */
+    }
+  }
+
+  @media screen and (min-width: 850px) {
+    .main-area {
+
+        position: absolute;
+        left:35vw;
+        top: 45px;
+        width: 60vw;
+        /* height: 90vh; */
+    }
+  }
