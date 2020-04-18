@@ -1,4 +1,4 @@
-Repository for the final project' client - Ironhack web development bootcamp (Feb 2020)
+Repository for the final project (client) - Ironhack web development bootcamp (Feb 2020)
 
 
 
