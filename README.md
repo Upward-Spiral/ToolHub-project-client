@@ -2,7 +2,7 @@ Repository for the final project' client - Ironhack web development bootcamp (Fe
 
 
 
-# ToolHub (Front-end)
+# ToolHub (front-end)
 
 ToolHub is a hub for searching, finding, and borrowing/lending tools. People can offer the tools they don't use at the moment to be borrowed by others who need them for a project. They can also search trough the tools that others have offered, find the right one, and request to borrow (or reserve, based on the availability). 
 
