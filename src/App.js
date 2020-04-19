@@ -19,6 +19,7 @@ import Search from './pages/Search';
 import AddTool from './pages/Add-tool';
 import AddProject from './pages/Add-project';
 import AllProjects from './pages/Projects-list';
+import PublicPage from './pages/PublicPage';
 
 
 
@@ -50,6 +51,7 @@ class App extends Component {
           <Route path="/project/list" component={AllProjects}/>
           <Route path="/user/feed" component={Feed}/>
           <Route path="/user/profile" component={Profile}/>
+          <Route path="/user/public-page" component={PublicPage}/>
           <Route path="/user/settings" component={Settings}/>
           <Route path="/user/requests" component={Requests}/>
           <Route path="/logout" component={Logout}/>

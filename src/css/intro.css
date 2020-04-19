@@ -8,37 +8,6 @@
     color: rgb(250, 215, 0);
 }
 
-.signup-btn {
-    background-color: rgb(250, 215, 0); 
-    border-color: rgb(250, 215, 0); 
-    margin-right: 20px;
-}
-
-.login-btn {
-    background-color: rgb(245, 238, 188);
-    border-color: rgb(245, 238, 188 );
-    color: rgb(53, 50, 38);
-    margin-right: 20px;
-}
-
-.signup-btn a {
-    color: rgb(53, 50, 38);
-}
-
-.login-btn a{
-    color: rgb(53, 50, 38);
-    
-}
-
-.login-btn:hover {
-    background-color: rgb(250, 215, 0);
-    border-color: rgbrgb(250, 215, 0);
-    color: rgb(53, 50, 38);
-}
-
-.signup-btn:hover {
-    color: rgb(53, 50, 38);
-}
 
 
 /* .intro-btn {

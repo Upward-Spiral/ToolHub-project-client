@@ -9,11 +9,11 @@ const axios = Axios.create({
 });
 
 
-export const getToolList = () => {
+export const getToolList = (userId) => {
     debugger
     return axios({
         method: "GET",
-        url: "/toolshed"
+        url: `/toolshed/${userId}`
     })
     .then((response)=>{
         if (response.status===200){

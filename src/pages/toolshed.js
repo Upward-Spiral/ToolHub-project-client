@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DefaultLayout from "../layouts/Default";
 import {getToolList} from '../utils/toolQueries';
+import {getUser} from '../utils/auth';
 import {shareTool, unshareTool,lendTool} from '../utils/toolQueries';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
@@ -69,7 +70,8 @@ class toolshed extends Component {
 
     fetchToolList(){
         var temp_tool_list= []
-        getToolList()
+        let userId = getUser()._id
+        getToolList(userId)
         .then((response)=>{
             console.log(response)
             temp_tool_list = response ;
@@ -87,112 +89,120 @@ class toolshed extends Component {
     render() {
         return (
             <DefaultLayout>
-
                 
                 <section id="toolshed">
+                    <Link to="/tool/add"><Button id="add-tool-btn"  variant="primary">Add a tool</Button></Link>
                     {this.state.showedToolList.length > 0 ?
                     this.state.showedToolList.map((tool)=>{
                         return (
 
-                            <Container  key={tool._id}>
-                                <Media className="toolshed-element" >
-                                    <img
-                                        width={64}
-                                        height={64}
-                                        className="mr-3"
-                                        src={tool.images[0] 
-                                            ?
-                                             tool.images[0].imgPath 
-                                            : 
-                                            "https://res.cloudinary.com/persia/image/upload/v1586933354/toolshare/Layout/tools-avatar_rbb7hn.jpg"}
-                                        alt="Generic tool icon"
-                                    />
-                                    <Media.Body>
-                                        <Row>
-                                            <Col sm={7}>
-                                                <h4>{tool.name}</h4>
-                                                <h6>{tool.brand}</h6>
-                                                <p>{tool.description}</p>
-                                            </Col>
-                                            <Col>
-                                            {tool.requested_by.length >0 &&
-                                                tool.requested_by.map((requester)=>{
-                                                    return (
-                                                        <>
-                                                    <p>requested by:{requester.displayname}</p>
-                                                    <Button 
-                                                    className="signup-btn" 
-                                                    variant="primary"
-                                                    name= {requester._id}
-                                                    id={tool._id}
-                                                    onClick={this.handleAcceptButton}>
-                                                        Lend!
-                                                    </Button> 
-                                                    </>
-                                                    )
-                                                })
-                                            
-                                            }
-                                            </Col>
-                                            <Col sm={2}> 
-                                            { tool.lended_to.length ===0 
+                            <Container key={tool._id}>                                                                
+                                     <Row className="toolshed-element">
+                                        <Col sm={2}>
+                                            <img
+                                                width={64}
+                                                height={64}
+                                                className="mr-3"
+                                                src={tool.images[0] 
+                                                    ?
+                                                    tool.images[0].imgPath 
+                                                    : 
+                                                    "https://res.cloudinary.com/persia/image/upload/v1586933354/toolshare/Layout/tools-avatar_rbb7hn.jpg"}
+                                                alt="Generic tool icon"
+                                            />
+                                        </Col>
+                                        <Col className="deatil-col" sm={5}>
+                                            <h4>{tool.name}</h4>
+                                            <h6>{tool.brand}</h6>
+                                            <p>{tool.description}</p>
+                                        </Col>
+                                        <Col sm={3} >
+                                        {tool.requested_by.length >0 &&
+                                            tool.requested_by.map((requester)=>{
+                                                return (
+                                                    <>
+                                                <p>requested by:{requester.displayname}</p>
+                                                <Button 
+                                                className="signup-btn" 
+                                                variant="primary"
+                                                name= {requester._id}
+                                                id={tool._id}
+                                                onClick={this.handleAcceptButton}>
+                                                    Lend!
+                                                </Button> 
+                                                </>
+                                                )
+                                            })
+                                        
+                                        }
+                                        </Col>
+                                        <Col className="button-col" sm={2}> 
+                                            <Row>
+                                                <Col>
+                                                { 
+                                                !tool.lended_to 
                                                 && 
                                                 tool.shared  
                                                 &&                               
                                                     <Button 
-                                                        className="signup-btn" 
+                                                        className="signup-btn sharing-btn" 
                                                         variant="primary"
                                                         name= {tool._id}
                                                         onClick={this.handleUnshareButton}>
                                                             Shelf it!
                                                         </Button> 
-                                                 }  
+                                                }  
 
-                                                 { tool.shared
+                                                { tool.shared
                                                     ||
                                                     <Button 
-                                                        className="signup-btn" 
+                                                        className="signup-btn sharing-btn" 
                                                         variant="primary"
                                                         name= {tool._id}
                                                         onClick={this.handleShareButton}>
                                                             Offer it!
-                                                        </Button>
-                                                       
-                                                        
-                                                 }
-                                               
+                                                        </Button>                                                                                                              
+                                                }
+                                                {tool.lended_to &&
+                                                    <div className="lended-to">
+                                                        <h6>Lended to:</h6>
+
+                                                        <Link 
+                                                        to={{pathname:'/user/public-page',
+                                                        state : { lender:tool.lended_to._id}
+
+                                                        }}>
+                                                            { tool.lended_to.displayname}
+                                                        </Link>
+                                                    </div>
+                                                }
+                                                </Col>
                                                 
+                                            </Row>
+                                            <Row> 
                                                 <Link 
                                                     to={{pathname:'/tool/detail',
                                                     state : { toolId:tool._id}
 
                                                 }}>
                                                     <Button 
-                                                    className="login-btn" 
+                                                    className="login-btn  detail-btn" 
                                                     variant="primary"
                                                     >
                                                         Detail
                                                     </Button> 
                                                 </Link>
-
-                                                {/* <Button 
-                                                    className="tool-detail-btn" 
-                                                    variant="primary"
-                                                    name= {tool._id}
-                                                    onClick={this.handleDetailButton}>
-                                                        Detail
-                                                </Button> */}
-                                                
-                                            </Col>                                                     
-                                        </Row>      
-                                    </Media.Body>
-                                </Media>
+                                            </Row>   
+                                        </Col>                                                     
+                                    </Row>      
+                                
+                               
                             </Container>
 
                         )
                     })
                     :
-                    <h6></h6>
+                    <h6>No Tools to show.</h6>
                 }
                     <Link to="/tool/add"><Button id="add-tool-btn"  variant="primary">Add a tool</Button></Link>
 

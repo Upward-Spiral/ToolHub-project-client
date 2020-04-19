@@ -3,27 +3,59 @@
 
     width: 65vw;
     margin-right: 5vw;
-    margin-top: 5vh;
+    margin-top: 3vh;
 }
 
 .toolshed-element {
     border: 2px solidrgba(245, 238, 188, 0.5);
     border-radius: 10px;
-    margin: 5px 0px;
+    margin: 10px 0px;
     background-color: rgba(245, 238, 188, 0.5);
     width: 55vw;
 }
 
 .toolshed-element img {
-    margin: 15px;
+    margin: 20px;
     border-radius: 5px;
 }
 
-.offer-it-btn {
-    margin-top: 20px;
-}
+/* .offer-it-btn {
+    margin-top: 5px;
+} */
 
 #add-tool-btn {
     margin: 20px;
+    background-color: rgb(245, 238, 188);
+    color: rgb(53, 50, 38);
+    border: 1px solid rgb(245, 238, 188);
 }
 
+.deatil-col {
+    padding: 15px 20px;
+}
+
+.button-col {
+    padding: 10px 15px;
+    position: relative;
+}
+
+.sharing-btn {
+    position: absolute;
+    top: 5px;
+    right: 15px;
+}
+
+.detail-btn {
+    position: absolute;
+    top: 65px;
+    right: 15px;
+}
+
+.lended-to {
+    text-align: center;
+    background-color: rgb(229, 229, 229);
+    padding: 10px 0;
+    line-height: 8px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}

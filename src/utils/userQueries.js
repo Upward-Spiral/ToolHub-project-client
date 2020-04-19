@@ -8,6 +8,24 @@ const axios = Axios.create({
     headers: { 'content-type': 'application/x-www-form-urlencoded' }
 });
 
+export const getProfile = (userId) => {
+    return axios ({
+            method: "GET",
+            url: `/profile/${userId}`,
+        })
+        .then((response)=>{
+            if (response.status!==200){
+                console.log(response);
+                response=response.data
+            }
+                
+            return (response)
+        })
+        .catch ((err) => {
+            console.log(err)
+        })
+}
+
 export const logout = ()=> {
     // debugger
     return axios({
