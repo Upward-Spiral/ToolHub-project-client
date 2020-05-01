@@ -53,13 +53,11 @@ class AddTool extends Component {
 
         const uploadData = new FormData();
         // imageUrl => this name has to be the same as in the model since we pass
-        // req.body to .create() method when creating a new thing in '/api/things/create' POST route
         uploadData.append("tool-img", e.target.files[0]);
         
         UploadToolImg(uploadData)
         .then(response => {
             console.log('response is: ', response);
-            // after the console.log we can see that response carries 'secure_url' which we can use to update the state 
             let temp_Tool = {...this.state.tempToolInfo};
             temp_Tool.images.push(response);
             this.setState({ tempToolInfo:temp_Tool });

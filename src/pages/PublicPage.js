@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import DefaultLayout from "../layouts/Default";
 import {Container,Row,Col,Media,Button,Card} from 'react-bootstrap';
 import {getProfile} from '../utils/userQueries';
-import moduleName from '../utils/toolQueries';
+import {getToolList} from '../utils/toolQueries';
 
 class PublicPage extends Component {
     constructor(props) {
@@ -72,6 +72,7 @@ class PublicPage extends Component {
                 <Row>
                     {this.state.toolList.length > 0 &&
                         this.state.showedToolList.map((tool)=>{
+                            return (
                             <Col xs={12} sm={6} md={3}>
                                 <Card style={{ width: '10rem' }}>
                                     <Card.Img variant="top" src={tool.images[0].imgPath} />
@@ -85,6 +86,7 @@ class PublicPage extends Component {
                                     </Card.Body>
                                     </Card>
                             </Col>
+                            )
                         })
                     }
                     

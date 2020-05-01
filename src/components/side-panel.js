@@ -34,8 +34,8 @@ class SidePanel extends Component {
                     <Col>
                         <Card className="side-panel-card" style={{ width: '18rem' }}>
                             <Card.Header className="side-panel-header">Today's date</Card.Header>
-                            <Card.Img variant="top" src={this.state.tempImgUrl} />
-                            <Card.Body>
+                            <Card.Img className="side-panel-img" variant="top" src={this.state.tempImgUrl} />
+                            <Card.Body className="side-panel-card-body">
                                 <Card.Title>{this.state.user.displayname}</Card.Title> 
 
                             </Card.Body>

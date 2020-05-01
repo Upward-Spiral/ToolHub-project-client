@@ -26,6 +26,48 @@ export const getProfile = (userId) => {
         })
 }
 
+export const uploadUserImg = (theFile)=> {
+    debugger
+    return axios({
+            method: "POST",
+            url: "/upload-image",
+            data: theFile    
+        })
+        .then((response)=>{
+            if (response.status===200)
+            {
+                console.log(response);
+                response=response.data
+            }
+                
+            return (response)
+        })
+        .catch ((err) => {
+            console.log(err)
+        })
+}
+
+export const updateProfile = (userInfo) => {
+    debugger
+    return axios({
+        method: "POST",
+        url: "/update",
+        data: userInfo
+    })
+    .then((response)=>{
+        if (response.status===200)
+        {
+            console.log(response);
+            response=response.data
+        }
+            
+        return (response)
+    })
+    .catch ((err) => {
+        console.log(err)
+    })
+}
+
 export const logout = ()=> {
     // debugger
     return axios({

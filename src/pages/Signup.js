@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import {signup} from "../utils/auth";
 import { Link } from 'react-router-dom';
+import {signup} from "../utils/auth";
+import {hasNumber,hasMixed,hasSpecial,strengthColor,lengthIndicator } from '../utils/passwordStrength';
+import errorMessage from '../components/errorMessage';
 import {Button,Form,Container,Row,Col,Image} from 'react-bootstrap';
 
 class Signup extends Component {
@@ -9,6 +11,8 @@ class Signup extends Component {
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
+        this.checkUserPass = this.checkUserPass.bind(this);
+        this.handlePasswordInput = this.handlePasswordInput.bind(this);
 
         this.state = {
             response: 0 ,
@@ -20,15 +24,62 @@ class Signup extends Component {
                 password_check : "",
                 
             }, 
+            passControlMessage: null,
             error:null   
         }
+    }
+
+    handlePasswordInput (event) {
+        let value = event.target.value;
+        var errorsArr = []
+        // let $passCheckErrorList = document.getElementById('passCheckError');
+        // $passCheckErrorList.innerHTML = "";
+        if (value.length < 8 ) {
+            let tooShortErr = "Password too short!(must have at least 8 characters)";
+            errorsArr.push(tooShortErr);
+        }
+        if (!hasNumber(value)) {           
+            // let $passCheckErroritem = document.createElement('li');
+            // $passCheckErroritem.innerHTML = "Password should include at least 1 number.";
+            // $passCheckErrorList.appendChild($passCheckErroritem);
+            let hasNumErr = "Password should include at least 1 number.";
+            errorsArr.push (hasNumErr);
+        };
+        if (!hasMixed(value)) {
+            // let $passCheckErroritem = document.createElement('li');
+            // $passCheckErroritem.innerHTML = "Password should include both uppercase and lowercase letters.";
+            // $passCheckErrorList.appendChild($passCheckErroritem);
+            let hasMixErr = "Password should include both uppercase and lowercase letters.";
+            errorsArr.push(hasMixErr);
+        };
+        if (!hasSpecial(value)) {
+            // let $passCheckErroritem = document.createElement('li');
+            // $passCheckErroritem.innerHTML = "Password should include at least 1 special character (!,#,@,$,%,^,&,*,),(,+,=,.,_,-).";
+            // $passCheckErrorList.appendChild($passCheckErroritem);
+            let hasSpecErr = "Password should include at least 1 special character (!,#,@,$,%,^,&,*,),(,+,=,.,_,-).";
+            errorsArr.push(hasSpecErr);
+        };
+
+
     }
 
     handleInputChange (event) {
         // debugger
         let temp_user = {...this.state.tempUser};
+        
         temp_user[event.target.name] = event.target.value;
         this.setState({tempUser:temp_user})
+    }
+
+    checkUserPass (event) {
+        debugger
+        let temp_user = {...this.state.tempUser};
+        let tempPass = event.target.value
+        if (tempPass===this.state.tempUser.username) {
+            event.target.focus();
+            let $passControlMessage = document.getElementById('passControlMessage');
+            $passControlMessage.innerHTML = "Password can not be the same as username!"
+        }
     }
 
     handleFormSubmit(event) {
@@ -116,9 +167,16 @@ class Signup extends Component {
                                             type="password"                               
                                             name="password" 
                                             value={this.state.tempUser.password} 
-                                            onChange={this.handleInputChange}
+                                            onChange={this.handlePasswordInput}
+                                            onBlur={this.checkUserPass}
                                         />
                                     </Form.Group>
+                                    <errorMessage
+                                        errorsArray=
+                                    />
+                                        <div id="passCheckError">
+
+                                        </div>
                                     </Col>
                                     <Col>
                                     <Form.Group controlId="formBasicPassword">
