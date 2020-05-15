@@ -1,7 +1,7 @@
 import React from 'react';
 import IntroNav from '../components/intro-nav';
 import IntroFooter from '../components/intro-footer';
-import {Container,Carousel,Jumbotron,Row,Col,Media,Button} from 'react-bootstrap';
+import {Carousel} from 'react-bootstrap';
 
 
 function intro() {

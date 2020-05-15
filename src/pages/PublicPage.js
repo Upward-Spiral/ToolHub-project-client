@@ -64,7 +64,7 @@ class PublicPage extends Component {
                                 height={256}
                                 className="ml-3"
                                 src={this.state.user.images[0].imgPath}
-                                alt="user picture"
+                                alt="user"
                             />
                     </Media>    
             </Container>

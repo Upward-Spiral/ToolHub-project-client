@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import DefaultLayout from "../layouts/Default";
-import {Container,Row,Col,Card} from 'react-bootstrap';
+import {Container,Row,Card} from 'react-bootstrap';
 
 
 class home extends Component {

@@ -5,7 +5,7 @@ import {getUser} from '../utils/auth';
 import {shareTool, unshareTool,lendTool} from '../utils/toolQueries';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
-import {Container,Row,Col,Media,Button} from 'react-bootstrap';
+import {Container,Row,Col,Button} from 'react-bootstrap';
 
 class toolshed extends Component {
     constructor(props) {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DefaultLayout from "../layouts/Default";
-import {Container,Row,Col,Media,Button,Card,Form} from 'react-bootstrap';
+import {Container,Row,Col,Button,Card,Form} from 'react-bootstrap';
 import {getUser} from "../utils/auth";
 import {uploadUserImg,updateProfile} from '../utils/userQueries';
 
@@ -191,7 +191,7 @@ class profile extends Component {
                                         onChange={this.handleInputChange}
                                     />
                                 </Form.Group>
-                                {this.state.userInfo.address.street2.length==0 && 
+                                {this.state.userInfo.address.street2.length===0 && 
                                     this.state.userInfo.address.unitNo.length>0 &&
                                         <Form.Group as={Col} md="2" controlId="formGridUnitNo">
                                             <Form.Label className="form-field-label">Apartment/Unit No</Form.Label>

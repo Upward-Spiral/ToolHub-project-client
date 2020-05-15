@@ -27,3 +27,7 @@
 .signup-btn {
     color: rgb(53, 50, 38);
 }
+
+#passControlMessage {
+    color: red;
+}

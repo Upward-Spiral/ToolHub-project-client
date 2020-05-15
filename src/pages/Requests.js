@@ -155,7 +155,7 @@ class Requests extends Component {
                         )
                     })
                     :
-                    <h6></h6>
+                    <h6>No requests to show!</h6>
                 }
                     <Link to="/tool/add"><Button id="add-tool-btn"  variant="primary">Add a tool</Button></Link>
 

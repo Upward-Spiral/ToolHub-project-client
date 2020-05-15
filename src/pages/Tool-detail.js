@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import DefaultLayout from "../layouts/Default";
-import {Container,Row,Col,Media,Button,Card,Form} from 'react-bootstrap';
+import {Col,Button,Card,Form} from 'react-bootstrap';
 import {getToolDetails,UploadToolImg,updateToolImage,updateTool,deleteTool} from '../utils/toolQueries';
 import {getCatL0List, getCatL1List, getCatL2List} from '../utils/service';
-import {getUser} from '../utils/auth';
+// import {getUser} from '../utils/auth';
 
 class toolDetail extends Component {
     constructor(props) {
@@ -188,9 +188,7 @@ class toolDetail extends Component {
 
     componentDidMount () {
         debugger
-       
-        let current_user = getUser()
-        
+        // let current_user = getUser()
         let toolID = this.props.location.state.toolId
         getToolDetails(toolID)
         .then((response)=>{
