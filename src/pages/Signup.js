@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import {signup} from "../utils/auth";
+import {signup,checkUsername} from "../utils/auth";
 import {hasNumber,hasMixed,hasSpecial/* ,strengthColor,lengthIndicator */ } from '../utils/passwordStrength';
 import ErrorMessage from '../components/errorMessage';
 import {Button,Form,Container,Row,Col,Image} from 'react-bootstrap';
@@ -13,9 +13,12 @@ class Signup extends Component {
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.checkUserPass = this.checkUserPass.bind(this);
         this.handlePasswordInput = this.handlePasswordInput.bind(this);
+        this.passDoubleCheck = this.passDoubleCheck.bind(this);
+        this.checkUsernameIsFree = this.checkUsernameIsFree.bind(this);
 
         this.passwordInput = React.createRef();
         this.passwordCheck = React.createRef();
+        this.usernameInput = React.createRef();
     
 
         this.state = {
@@ -33,39 +36,45 @@ class Signup extends Component {
         }
     }
 
+    //Check username for uniqueness
+    checkUsernameIsFree (event) {
+        debugger
+        let $usernameControlMessage = document.getElementById('usernameControlMessage');
+        checkUsername(this.state.tempUser.username)
+            .then((response)=>{
+                if (response.status === 204) {                   
+                    this.usernameInput.current.focus();           
+                    $usernameControlMessage.innerHTML = "This username is taken! Choose another one!"           
+                } else {
+                    $usernameControlMessage.innerHTML = ""
+                }
+            })
+    }
+
     // Checks password for complexity 
     handlePasswordInput (event) {
         let value = event.target.value;
         let $passControlMessage = document.getElementById('passControlMessage');
         $passControlMessage.innerHTML = "";
         var errorsArr = []
-        // let $passCheckErrorList = document.getElementById('passCheckError');
-        // $passCheckErrorList.innerHTML = "";
+
         if (value.length < 8 ) {
             let tooShortErr = "Password too short!(must have at least 8 characters)";
             errorsArr.push(tooShortErr);
         }
         if (!hasNumber(value)) {           
-            // let $passCheckErroritem = document.createElement('li');
-            // $passCheckErroritem.innerHTML = "Password should include at least 1 number.";
-            // $passCheckErrorList.appendChild($passCheckErroritem);
             let hasNumErr = "Password should include at least 1 number.";
             errorsArr.push (hasNumErr);
         };
         if (!hasMixed(value)) {
-            // let $passCheckErroritem = document.createElement('li');
-            // $passCheckErroritem.innerHTML = "Password should include both uppercase and lowercase letters.";
-            // $passCheckErrorList.appendChild($passCheckErroritem);
             let hasMixErr = "Password should include both uppercase and lowercase letters.";
             errorsArr.push(hasMixErr);
         };
         if (!hasSpecial(value)) {
-            // let $passCheckErroritem = document.createElement('li');
-            // $passCheckErroritem.innerHTML = "Password should include at least 1 special character (!,#,@,$,%,^,&,*,),(,+,=,.,_,-).";
-            // $passCheckErrorList.appendChild($passCheckErroritem);
             let hasSpecErr = "Password should include at least 1 special character (!,#,@,$,%,^,&,*,),(,+,=,.,_,-).";
             errorsArr.push(hasSpecErr);
         };
+
         let temp_user = {...this.state.tempUser};
         temp_user.password = event.target.value;
         this.setState({errors:errorsArr,tempUser:temp_user})
@@ -74,30 +83,42 @@ class Signup extends Component {
 
     // Checks if username is the same as password
     checkUserPass (event) {
-        debugger
-        // let temp_user = {...this.state.tempUser};
-        // let tempPass = event.target.value
-        let $passControlMessage = document.getElementById('passControlMessage');
-        $passControlMessage.innerHTML = ""
+        // debugger
+
+        let $userPassControlMessage = document.getElementById('userPassControlMessage');
+        $userPassControlMessage.innerHTML = ""
         if (this.state.tempUser.password===this.state.tempUser.username) {
             this.passwordInput.current.focus();           
-            $passControlMessage.innerHTML = "Password can not be the same as username!"
+            $userPassControlMessage.innerHTML = "Password can not be the same as username!"
         }
     }
 
     passDoubleCheck (event) {
-        if (this.state.tempUser.password === this.state.tempUser.password_check) {
-            this.passwordCheck.current.focus();
-            let $passControlMessage = document.getElementById('passControlMessage');
-            $passControlMessage.innerHTML = "Passwords do not match!"
+        let temp_user = {...this.state.tempUser};       
+        temp_user.password_check = event.target.value;
+        let $passCheckMessage = document.getElementById('passCheckMessage');
+        $passCheckMessage.innerHTML = "";
+        if (this.state.tempUser.password !== temp_user.password_check) {          
+            $passCheckMessage.innerHTML = "Passwords do not match!"
         }
+        this.setState({tempUser:temp_user})
     }
 
     handleInputChange (event) {
         // debugger
         let temp_user = {...this.state.tempUser};       
         temp_user[event.target.name] = event.target.value;
+        if (event.target.name === "username") {
+            let $usernameControlMessage = document.getElementById('usernameControlMessage');
+            $usernameControlMessage.innerHTML = ""
+        }
         this.setState({tempUser:temp_user})
+    }
+
+    allGood() {
+        if (this.state.errors.length > 0 || this.state.btnDisabled) {
+            return true
+        } else { return false}
     }
 
     handleFormSubmit(event) {
@@ -140,42 +161,45 @@ class Signup extends Component {
                                 <Form className="signup-form" onSubmit={this.handleFormSubmit}>
                                     <Row>
                                         <Col>
-                                    <Form.Group controlId="username">
-                                        <Form.Label className="form-field-label">Username:</Form.Label>
-                                        <Form.Control 
-                                            type="text"                                
-                                            name="username" 
-                                            value={this.state.tempUser.username} 
-                                            onChange={this.handleInputChange} 
-                                        />                           
-                                    </Form.Group>
-                                    </Col>
-                                    <Col>
-                                    <Form.Group controlId="displayname">
-                                        <Form.Label className="form-field-label">Displayname:</Form.Label>
-                                        <Form.Control 
-                                            type="text"                                
-                                            name="displayname" 
-                                                    value={this.state.tempUser.displayname} 
+                                            <Form.Group controlId="username">
+                                                <Form.Label className="form-field-label">Username:</Form.Label>
+                                                <Form.Control 
+                                                    type="text"                                
+                                                    name="username" 
+                                                    ref={this.usernameInput}
+                                                    value={this.state.tempUser.username} 
                                                     onChange={this.handleInputChange}
-                                        />
-                                        
-                                    </Form.Group>
-                                    </Col>
+                                                    onBlur={this.checkUsernameIsFree} 
+                                                />                           
+                                            </Form.Group>
+                                            <div><p className="errorMessage" id="usernameControlMessage"></p></div>
+                                        </Col>
+                                        <Col>
+                                            <Form.Group controlId="displayname">
+                                                <Form.Label className="form-field-label">Displayname:</Form.Label>
+                                                <Form.Control 
+                                                    type="text"                                
+                                                    name="displayname" 
+                                                            value={this.state.tempUser.displayname} 
+                                                            onChange={this.handleInputChange}
+                                                />
+                                                
+                                            </Form.Group>
+                                        </Col>
                                     </Row>
                                     <Row>
                                         <Col>
-                                    <Form.Group controlId="formBasicEmail">
-                                        <Form.Label className="form-field-label">Email address</Form.Label>
-                                        <Form.Control 
-                                            type="email"                             
-                                            name="email" 
-                                            value={this.state.tempUser.email} 
-                                            onChange={this.handleInputChange}
-                                        />
-                                        
-                                    </Form.Group>
-                                    </Col>
+                                            <Form.Group controlId="formBasicEmail">
+                                                <Form.Label className="form-field-label">Email address</Form.Label>
+                                                <Form.Control 
+                                                    type="email"                             
+                                                    name="email" 
+                                                    value={this.state.tempUser.email} 
+                                                    onChange={this.handleInputChange}
+                                                />
+                                                
+                                            </Form.Group>
+                                        </Col>
                                     </Row>
                                     <Row>
                                         <Col>
@@ -194,19 +218,20 @@ class Signup extends Component {
                                                 errorsArray={this.state.errors}
                                                 
                                             />
-                                            <div ><p id="passControlMessage"></p></div>
+                                            <div><p className="errorMessage" id="userPassControlMessage"></p></div>
                                         </Col>
                                     <Col>
-                                    <Form.Group controlId="password_check">
-                                        <Form.Label className="form-field-label">Repeat Password</Form.Label>
-                                        <Form.Control 
-                                            type="password"                               
-                                            name="password_check" 
-                                            ref={this.passwordCheck}
-                                            value={this.state.tempUser.password_check} 
-                                            onChange={this.handleInputChange}
-                                        />
-                                    </Form.Group>
+                                        <Form.Group controlId="password_check">
+                                            <Form.Label className="form-field-label">Repeat Password</Form.Label>
+                                            <Form.Control 
+                                                type="password"                               
+                                                name="password_check" 
+                                                ref={this.passwordCheck}
+                                                value={this.state.tempUser.password_check} 
+                                                onChange={this.passDoubleCheck}
+                                            />
+                                        </Form.Group>
+                                        <div><p className="errorMessage" id="passCheckMessage"></p></div>
                                     </Col>
                                     </Row>
                                     <Row>

@@ -7,6 +7,20 @@ const axios = Axios.create({
     headers: { 'content-type': 'application/x-www-form-urlencoded' }
 });
 
+export const checkUsername = (username) => {
+    debugger
+    return axios ({
+        method: "GET",
+        url: `/signup_usernamecheck/${username}`,
+    })
+    .then((response)=> {
+        // if (response.status===401) {
+        //     setTempUserId(response.data);
+        // }       
+        return (response)
+    })
+}
+
 export const signup = (user)=>{
     // debugger
     return axios({

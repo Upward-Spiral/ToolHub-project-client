@@ -28,6 +28,6 @@
     color: rgb(53, 50, 38);
 }
 
-#passControlMessage {
+.errorMessage {
     color: red;
 }
