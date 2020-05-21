@@ -31,3 +31,7 @@
 .errorMessage {
     color: red;
 }
+
+#formBasicCheckbox a {
+    color: lightblue;
+}

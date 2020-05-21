@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import {signup,checkUsername} from "../utils/auth";
+import {signup,checkUsername,checkEmailUniqueness} from "../utils/auth";
 import {hasNumber,hasMixed,hasSpecial/* ,strengthColor,lengthIndicator */ } from '../utils/passwordStrength';
+import {hasAtSign} from '../utils/emailFormat';
 import ErrorMessage from '../components/errorMessage';
 import {Button,Form,Container,Row,Col,Image} from 'react-bootstrap';
 
@@ -15,10 +16,13 @@ class Signup extends Component {
         this.handlePasswordInput = this.handlePasswordInput.bind(this);
         this.passDoubleCheck = this.passDoubleCheck.bind(this);
         this.checkUsernameIsFree = this.checkUsernameIsFree.bind(this);
+        this.checkEmail = this.checkEmail.bind(this);
+        this.allGoodWithPassword = this.allGoodWithPassword.bind(this);
 
         this.passwordInput = React.createRef();
         this.passwordCheck = React.createRef();
         this.usernameInput = React.createRef();
+        this.emailInput = React.createRef();
     
 
         this.state = {
@@ -51,11 +55,32 @@ class Signup extends Component {
             })
     }
 
+    checkEmail (event) {
+        debugger
+        let value = event.target.value;
+        let $emailControlMessage = document.getElementById('emailControlMessage');
+        if (!hasAtSign(value)) {
+            this.emailInput.current.focus();               
+            $emailControlMessage.innerHTML = "Password should include @.";
+        } else {
+            checkEmailUniqueness (value)
+                .then(response => {
+                    if (response.status === 204) {
+                        this.emailInput.current.focus();
+                        $emailControlMessage.innerHTML = "This email is already sscoiated with an account! Choose another one!";       
+                    } else {
+                        $emailControlMessage.innerHTML = "";
+                    }
+                })
+                .catch(err => {
+                    console.log( `Error, email uniqueness check failed because: ${err}`)
+                })
+        }
+    }
+
     // Checks password for complexity 
     handlePasswordInput (event) {
         let value = event.target.value;
-        let $passControlMessage = document.getElementById('passControlMessage');
-        $passControlMessage.innerHTML = "";
         var errorsArr = []
 
         if (value.length < 8 ) {
@@ -100,25 +125,36 @@ class Signup extends Component {
         $passCheckMessage.innerHTML = "";
         if (this.state.tempUser.password !== temp_user.password_check) {          
             $passCheckMessage.innerHTML = "Passwords do not match!"
+        } else {
+            this.allGoodWithPassword();
         }
         this.setState({tempUser:temp_user})
     }
 
+    
+
     handleInputChange (event) {
         // debugger
-        let temp_user = {...this.state.tempUser};       
+        var errorsArr = [];
+        let temp_user = {...this.state.tempUser};      
         temp_user[event.target.name] = event.target.value;
         if (event.target.name === "username") {
             let $usernameControlMessage = document.getElementById('usernameControlMessage');
             $usernameControlMessage.innerHTML = ""
         }
-        this.setState({tempUser:temp_user})
+        if (event.target.name === "email") {
+            let $emailControlMessage = document.getElementById('emailControlMessage');
+            $emailControlMessage.innerHTML = ""
+        }
+        this.setState({errors:errorsArr,tempUser:temp_user})
     }
 
-    allGood() {
-        if (this.state.errors.length > 0 || this.state.btnDisabled) {
-            return true
-        } else { return false}
+    allGoodWithPassword() {
+        if (this.state.errors.length === 0) {
+            this.setState({btnDisabled:false})
+        } else{
+            this.passwordCheck.current.focus();
+        }
     }
 
     handleFormSubmit(event) {
@@ -147,17 +183,12 @@ class Signup extends Component {
 
 
     render() {
-            return (          
-                
-                   
-                <div className= "signup-form"> 
-                    
-
+            return (                                          
+                <div className= "signup-form">                  
                     <Container className="signup-frame" fluid>
                         <Row className="signup-frame-row">                           
                             <Col  sm={4}>
-                                <h1 className="title page-title">Signup <span>Page 1 of 2</span></h1>  
-                                 
+                                <h1 className="title page-title">Signup <span>Page 1 of 2</span></h1>                                  
                                 <Form className="signup-form" onSubmit={this.handleFormSubmit}>
                                     <Row>
                                         <Col>
@@ -193,12 +224,15 @@ class Signup extends Component {
                                                 <Form.Label className="form-field-label">Email address</Form.Label>
                                                 <Form.Control 
                                                     type="email"                             
-                                                    name="email" 
+                                                    name="email"
+                                                    ref={this.emailInput} 
                                                     value={this.state.tempUser.email} 
                                                     onChange={this.handleInputChange}
+                                                    onBlur={this.checkEmail}
                                                 />
                                                 
                                             </Form.Group>
+                                            <div><p className="errorMessage" id="emailControlMessage"></p></div>
                                         </Col>
                                     </Row>
                                     <Row>
@@ -234,6 +268,14 @@ class Signup extends Component {
                                         <div><p className="errorMessage" id="passCheckMessage"></p></div>
                                     </Col>
                                     </Row>
+                                    {/* <Row>
+                                        <Col>
+                                            <Form.Group controlId="formBasicCheckbox">
+                                                <Form.Check type="checkbox" label="I have read and agreed with " className="form-field-label"/>
+                                                <a href="#">terms and conditions</a>
+                                            </Form.Group>
+                                        </Col>
+                                    </Row> */}
                                     <Row>
                                         <Col>
                                         <Button className="login-btn" variant="primary" type="submit" disabled={this.state.btnDisabled}>Next</Button>

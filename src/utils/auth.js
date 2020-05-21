@@ -13,11 +13,25 @@ export const checkUsername = (username) => {
         method: "GET",
         url: `/signup_usernamecheck/${username}`,
     })
-    .then((response)=> {
-        // if (response.status===401) {
-        //     setTempUserId(response.data);
-        // }       
+    .then((response)=> {      
         return (response)
+    })
+    .catch(err => {
+        console.log( `Error: ${err}`)
+    })
+}
+
+export const checkEmailUniqueness = (email) => {
+    debugger
+    return axios ({
+        method: "GET",
+        url: `/signup_emailcheck/${email}`,
+    })
+    .then((response)=> {      
+        return (response)
+    })
+    .catch(err => {
+        console.log( `Error: ${err}`)
     })
 }
 
@@ -34,6 +48,9 @@ export const signup = (user)=>{
         }       
         return (response)
     })
+    .catch(err => {
+        console.log( `Error: ${err}`)
+    })
 }
 
 export const signupSecond = (user)=>{
@@ -48,6 +65,9 @@ export const signupSecond = (user)=>{
             setUser(response.data);
         return (response)
     })
+    .catch(err => {
+        console.log( `Error: ${err}`)
+    })
 }
 
 export const login = (user) => {
@@ -60,8 +80,10 @@ export const login = (user) => {
     .then((response)=>{
         if (response.status===201) 
             setUser(response.data);
-        return (response)
-        
+        return (response)       
+    })
+    .catch(err => {
+        console.log( `Error: ${err}`)
     })
 }
 
