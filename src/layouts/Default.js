@@ -3,7 +3,7 @@ import SidePanel from '../components/side-panel';
 
 function Default(props) {
     return (
-        <div>
+
             <div className="home-page">
                 <div id="side-panel">
                     <SidePanel/>
@@ -14,7 +14,6 @@ function Default(props) {
                 </div>
             </div>
             
-        </div>
     )
 }
 

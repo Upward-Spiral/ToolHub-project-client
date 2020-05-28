@@ -34,7 +34,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <>
         <Switch>
           <Route exact path="/" component={Intro}/>
           <Route path="/about" component={About}/>
@@ -57,7 +57,7 @@ class App extends Component {
           <Route path="/logout" component={Logout}/>
         </Switch> 
         
-      </div>
+      </>
     )
   }
 }

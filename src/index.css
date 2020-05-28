@@ -11,6 +11,7 @@
 @import './css/tool-detail.css';
 @import './css/intro.css';
 @import './css/signup.css';
+@import './css/private-profile.css';
 
 @import './custom.scss';
 
@@ -28,7 +29,10 @@ body {
   background-color: rgb(163, 163, 159);
 }
 
-
+#root {
+  width: 100vw;
+  height: 100vh;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

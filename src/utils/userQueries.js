@@ -1,5 +1,5 @@
 import Axios from "axios";
-// import qs from "qs";
+import qs from "qs";
 // import {setUser} from "../utils/auth";
 
 const axios = Axios.create({
@@ -32,6 +32,27 @@ export const uploadUserImg = (theFile)=> {
             method: "POST",
             url: "/upload-image",
             data: theFile    
+        })
+        .then((response)=>{
+            if (response.status===200)
+            {
+                console.log(response);
+                response=response.data
+            }
+                
+            return (response)
+        })
+        .catch ((err) => {
+            console.log(err)
+        })
+}
+
+export const updateUserImg = (theImage)=> {
+    debugger
+    return axios({
+            method: "POST",
+            url: "/update-image",
+            data: qs.stringify(theImage)    
         })
         .then((response)=>{
             if (response.status===200)

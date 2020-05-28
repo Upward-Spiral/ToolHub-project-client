@@ -6,14 +6,9 @@
 
 .main-area {
 
-    position: fixed;
-    /* left:45vw;
-    top: 45px;
-    width: 60vw; */
+    position: absolute;
+
 }
-
-
-
 
 
 /* Smartphones -----------------------------------------------------------------*/
@@ -226,7 +221,11 @@
   and (max-device-width: 1024px) 
   and (orientation: portrait) 
   and (-webkit-min-device-pixel-ratio: 1) {
-
+    .main-area {
+      right:7vw;
+      top: 45px;
+      width: 80vw;
+  }
 }
 
 /* Landscape */
@@ -236,8 +235,6 @@
   and (orientation: landscape) 
   and (-webkit-min-device-pixel-ratio: 1) {
     .main-area {
-
-    
         right:7vw;
         top: 45px;
         width: 60vw;
@@ -252,7 +249,10 @@
   and (min-device-width: 768px) 
   and (max-device-width: 1024px) 
   and (-webkit-min-device-pixel-ratio: 2) {
-
+    .main-area { 
+      right:7vw;
+      top: 100px;
+  }
 }
 
 /* Portrait */
@@ -261,7 +261,10 @@
   and (max-device-width: 1024px) 
   and (orientation: portrait) 
   and (-webkit-min-device-pixel-ratio: 2) {
-
+    .main-area {
+      right:8vw;
+      width: 85vw;
+  }
 }
 
 /* Landscape */
@@ -271,10 +274,7 @@
   and (orientation: landscape) 
   and (-webkit-min-device-pixel-ratio: 2) {
     .main-area {
-
-    
         right:7vw;
-        top: 45px;
         width: 60vw;
     }
 
@@ -287,7 +287,10 @@
   and (min-device-width: 834px) 
   and (max-device-width: 1112px)
   and (-webkit-min-device-pixel-ratio: 2) {
-
+    .main-area {
+      right:3vw;
+      top: 100px;
+  }
 }
 
 /* Portrait */
@@ -297,7 +300,10 @@
   and (max-device-width: 834px) 
   and (orientation: portrait) 
   and (-webkit-min-device-pixel-ratio: 2) {
-
+    .main-area {
+      right:8vw;
+      width: 85vw;
+  }
 }
 
 /* Landscape */
@@ -307,12 +313,8 @@
   and (max-device-width: 1112px) 
   and (orientation: landscape) 
   and (-webkit-min-device-pixel-ratio: 2) {
-    .main-area {
-
-    
-        right:7vw;
-        top: 45px;
-        width: 60vw;
+    .main-area {    
+        right:5vw;
     }
 
 }
@@ -324,7 +326,11 @@
   and (min-device-width: 1024px) 
   and (max-device-width: 1366px)
   and (-webkit-min-device-pixel-ratio: 2) {
-
+    .main-area {   
+      right:7vw;
+      top: 45px;
+      width: 60vw;
+  }
 }
 
 /* Portrait */
@@ -344,9 +350,7 @@
   and (max-device-width: 1366px) 
   and (orientation: landscape) 
   and (-webkit-min-device-pixel-ratio: 2) {
-    .main-area {
-
-    
+    .main-area {   
         right:7vw;
         top: 45px;
         width: 60vw;
@@ -406,7 +410,7 @@
     background-color: rgb(245, 238, 188);
     border-color: rgb(245, 238, 188 );
     color: rgb(53, 50, 38);
-    margin: 10px 20px;
+    margin: 10px 20px 10px 0px;
     width: 80px;
 }
 

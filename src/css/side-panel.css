@@ -159,7 +159,9 @@
   and (min-device-width: 768px) 
   and (max-device-width: 1024px) 
   and (-webkit-min-device-pixel-ratio: 1) {
-
+    #side-panel {
+      display: none;
+  }
 }
 /* Portrait */
 @media only screen 
@@ -171,6 +173,9 @@ and (-webkit-min-device-pixel-ratio: 1) {
         width: 96vw;
         height: 25vh;
     }
+    #side-panel {
+      display: none;
+  }
 }
 /* Landscape */
 @media only screen 
@@ -197,14 +202,14 @@ and (-webkit-min-device-pixel-ratio: 1) {
 /* Portrait and Landscape */
 @media only screen 
   and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
+  and (max-device-width: 834px) 
   and (-webkit-min-device-pixel-ratio: 2) {
 
 }
 /* Portrait */
 @media only screen 
   and (min-device-width: 768px) 
-  and (max-device-width: 1024px) 
+  and (max-device-width: 834px) 
   and (orientation: portrait) 
   and (-webkit-min-device-pixel-ratio: 2) {
 
@@ -225,7 +230,7 @@ and (-webkit-min-device-pixel-ratio: 1) {
   and (min-device-width: 834px) 
   and (max-device-width: 1112px)
   and (-webkit-min-device-pixel-ratio: 2) {
-
+    
 }
 /* Portrait */
 /* Declare the same value for min- and max-width to avoid colliding with desktops */
@@ -234,7 +239,9 @@ and (-webkit-min-device-pixel-ratio: 1) {
   and (max-device-width: 834px) 
   and (orientation: portrait) 
   and (-webkit-min-device-pixel-ratio: 2) {
-
+    #side-panel {
+      display: none;
+  }
 }
 /* Landscape */
 /* Declare the same value for min- and max-width to avoid colliding with desktops */
@@ -253,7 +260,19 @@ and (-webkit-min-device-pixel-ratio: 1) {
   and (min-device-width: 1024px) 
   and (max-device-width: 1366px)
   and (-webkit-min-device-pixel-ratio: 2) {
-
+    #side-panel {
+      width: 25vw;
+      height: 100vh; 
+      z-index: 50;
+  }
+  .side-panel-contents{
+      margin-top: 2vh;
+      height: 100%;
+      position: fixed;
+      left: 0px;
+      top: 0px;
+      width: 40vw;
+  }
 }
 /* Portrait */
 /* Declare the same value for min- and max-width to avoid colliding with desktops */
@@ -271,7 +290,19 @@ and (-webkit-min-device-pixel-ratio: 1) {
   and (max-device-width: 1366px) 
   and (orientation: landscape) 
   and (-webkit-min-device-pixel-ratio: 2) {
-
+    #side-panel {
+      width: 25vw;
+      height: 100vh; 
+      z-index: 50;
+  }
+  .side-panel-contents{
+      margin-top: 2vh;
+      height: 100%;
+      position: fixed;
+      left: 0px;
+      top: 0px;
+      width: 40vw;
+  }
 }
 
 /* Laptops and other screens ------------------------------------------------------*/

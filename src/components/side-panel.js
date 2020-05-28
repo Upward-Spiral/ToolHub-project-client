@@ -7,12 +7,22 @@ class SidePanel extends Component {
     constructor() {
         super()
 
+        this.setToday = this.setToday.bind(this)
+
         this.state = {
             user:{},
-            tempImgUrl: ""
+            tempImgUrl: "",
+            today: null
         }
                  
-        }
+    }
+
+    setToday () {
+        let tempDate = new Date();
+        let today = tempDate.toDateString()
+        return today
+
+    }
 
     componentDidMount () {
         let temp_user = getUser();
@@ -21,9 +31,11 @@ class SidePanel extends Component {
             this.setState({tempImgUrl: image })
         } else {
             this.setState({tempImgUrl:temp_user.images[0].imgPath})
-        }    
-        this.setState({user:temp_user});
-        console.log(temp_user);
+        }
+        let today = this.setToday()
+        console.log(temp_user);    
+        this.setState({user:temp_user, today:today});
+        
 
     }
 
@@ -33,10 +45,10 @@ class SidePanel extends Component {
                 <Row>
                     <Col>
                         <Card className="side-panel-card" style={{ width: '18rem' }}>
-                            <Card.Header className="side-panel-header">Today's date</Card.Header>
+        <Card.Header className="side-panel-header">Hello {this.state.user.displayname}</Card.Header>
                             <Card.Img className="side-panel-img" variant="top" src={this.state.tempImgUrl} />
                             <Card.Body className="side-panel-card-body">
-                                <Card.Title>{this.state.user.displayname}</Card.Title> 
+                                <Card.Title>{this.state.today}</Card.Title> 
 
                             </Card.Body>
                             <ListGroup className="side-panel-flush">

@@ -35,3 +35,46 @@
 #formBasicCheckbox a {
     color: lightblue;
 }
+
+.confirmation {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#confirmation {
+    width: 50vw;
+}
+
+#confirmation-col1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 30px;
+}
+
+#confirmation-col2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding-right: 30px;
+}
+
+#confirmation-col1 h1 {
+    margin-bottom: 40px;
+}
+
+
+#confirmation-col2 img{
+    border-radius: 10px;
+    
+}
+
+#special-btn {
+    border: 2px solid rgb(212, 176, 31);;
+}
