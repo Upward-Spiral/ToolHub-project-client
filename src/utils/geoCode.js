@@ -22,12 +22,12 @@ export const getGeoCode = (address) => {
         console.log(res)
         const latitude = res.data.results[0].geometry.location.lat;
         const longitude = res.data.results[0].geometry.location.lng;
-        console.log({lat:latitude,lon:longitude})
-        return({lat:latitude,lon:longitude})
+        console.log({lat:latitude,lng:longitude})
+        return({lat:latitude,lng:longitude})
         
     }).catch((err) => {
         console.log(err)
-        return ({lat:0,lon:0})
+        return ({lat:0,lng:0})
     });
 }
 

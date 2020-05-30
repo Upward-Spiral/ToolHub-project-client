@@ -73,16 +73,18 @@ export const updateProfile = (userInfo) => {
     return axios({
         method: "POST",
         url: "/update",
-        data: userInfo
+        data: qs.stringify(userInfo)
     })
     .then((response)=>{
         if (response.status===200)
         {
             console.log(response);
-            response=response.data
+            return (response)
+        } else {
+            return ('error in updating profile!')
         }
             
-        return (response)
+        
     })
     .catch ((err) => {
         console.log(err)

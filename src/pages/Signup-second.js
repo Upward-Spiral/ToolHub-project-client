@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import {signupSecond} from "../utils/auth";
-import {getTempUserId} from "../utils/auth";
+import {getTempUser} from "../utils/auth";
 import {getGeoCode} from '../utils/geoCode';
 import {Button,Form,Container,Row,Col,Image} from 'react-bootstrap';
 
@@ -15,21 +15,26 @@ class SignupSecond extends Component {
 
         this.state = {
             response: 0 ,
-            tempUserInfo: {
+            tempUserInfo: { 
+                displayname: "",
                 firstname: "",
                 lastname: "",
                 phone: "",
+                address: [],
+                email: "",
+                locationType:"Point",
+                locationLatt:0,
+                locationLong:0,
+                _id : ""
+            },
+            tempAddress: {
                 street1:"",
                 street2: "",
                 lotNo: "",
                 unitNo: "",
                 city: "",
-                pcode: "",
-                locationType:"Point",
-                locationLatt:0,
-                locationLong:0,
-                _id : ""
-            }, 
+                pcode: ""
+            },
             error:null   
         }
     }
@@ -37,21 +42,39 @@ class SignupSecond extends Component {
     handleInputChange (event) {
         // debugger
         let temp_user = {...this.state.tempUserInfo};
-        temp_user[event.target.name] = event.target.value;
-        this.setState({tempUserInfo:temp_user})
+        let temp_Address = {...this.state.tempAddress}
+        let addressFields = ['street1','street2','lotNo','pcode','unitNo','city']
+        if (addressFields.indexOf(event.target.name) !== -1) {
+            temp_Address[event.target.name] = event.target.value;
+        } else {
+            temp_user[event.target.name] = event.target.value;
+        }  
+        this.setState({
+            userInfo:temp_user, 
+            tempAddress:temp_Address
+        })
     }
 
     handleFormSubmit(event) {
         debugger
         event.preventDefault();
         let temp_user = {...this.state.tempUserInfo};
-        let address = `${temp_user.street1} ${temp_user.street2} ${temp_user.lotNo} ${temp_user.unitNo}, ${temp_user.pcode} ${temp_user.city}`
+        let address = `${this.state.street1} ${this.state.street2} ${this.state.lotNo} ${this.state.unitNo}, ${this.state.pcode} ${this.state.city}`
         getGeoCode(address)
             .then((geoLoc)=>{
                 console.log(geoLoc)
                 temp_user.locationLatt = geoLoc.lat;
-                temp_user.locationLong = geoLoc.lon;
-                // this.setState({tempUserInfo:temp_user})
+                temp_user.locationLong = geoLoc.lng;
+
+                let goodAddress = {
+                    street1: this.state.tempAddress.street1,
+                    street2: this.state.tempAddress.street2,
+                    lotNo: this.state.tempAddress.lotNo,
+                    unitNo: this.state.tempAddress.unitNo,
+                    pcode: this.state.tempAddress.pcode, 
+                    city: this.state.tempAddress.city
+                }
+                temp_user.address.push(goodAddress);
                 signupSecond(temp_user)
                     .then((response) => {
                         if (response.status===200) {
@@ -78,7 +101,10 @@ class SignupSecond extends Component {
     componentDidMount () {
         // debugger
         let temp_user_info = {...this.state.tempUserInfo};
-        temp_user_info._id = getTempUserId() ;
+        let tempUser = getTempUser() ;
+        temp_user_info.displayname = tempUser.displayname;
+        temp_user_info.email = tempUser.email;
+        temp_user_info._id = tempUser._id;
         this.setState({tempUserInfo:temp_user_info})
     }
 
@@ -117,7 +143,7 @@ class SignupSecond extends Component {
                                         <Form.Control 
                                             type="text"
                                             name="street1" 
-                                            value={this.state.tempUserInfo.street1}
+                                            value={this.state.tempAddress.street1}
                                             onChange={this.handleInputChange} />
                                     </Form.Group>
                                     <Form.Group as={Col} sm={3} >
@@ -125,7 +151,7 @@ class SignupSecond extends Component {
                                         <Form.Control 
                                             type="text" 
                                             name="lotNo" 
-                                            value={this.state.tempUserInfo.lotNo} 
+                                            value={this.state.tempAddress.lotNo} 
                                             onChange={this.handleInputChange}
                                             />
                                     </Form.Group>
@@ -137,7 +163,7 @@ class SignupSecond extends Component {
                                         <Form.Control 
                                             type="text" 
                                             name="street2" 
-                                            value={this.state.tempUserInfo.street2} 
+                                            value={this.state.tempAddress.street2} 
                                             onChange={this.handleInputChange}
                                             />
                                     </Form.Group>
@@ -147,7 +173,7 @@ class SignupSecond extends Component {
                                         <Form.Control 
                                             type="text" 
                                             name="unitNo" 
-                                            value={this.state.tempUserInfo.unitNo} 
+                                            value={this.state.tempAddress.unitNo} 
                                             onChange={this.handleInputChange}
                                             />
                                     </Form.Group>
@@ -159,7 +185,7 @@ class SignupSecond extends Component {
                                     <Form.Control 
                                         type="text" 
                                         name="pcode" 
-                                        value={this.state.tempUserInfo.pcode} 
+                                        value={this.state.tempAddress.pcode} 
                                         onChange={this.handleInputChange}
                                     />
                                     </Form.Group>
@@ -169,7 +195,7 @@ class SignupSecond extends Component {
                                     <Form.Control
                                         type="text" 
                                         name="city" 
-                                        value={this.state.tempUserInfo.city} 
+                                        value={this.state.tempAddress.city} 
                                         onChange={this.handleInputChange}
                                     />
                                     </Form.Group>

@@ -44,7 +44,7 @@ export const signup = (user)=>{
     })
     .then((response)=> {
         if (response.status===200) {
-            setTempUserId(response.data);
+            setTempUser(response.data);
         }       
         return (response)
     })
@@ -92,14 +92,14 @@ export const setUser = (user)=> {
     window.localStorage.setItem("user", JSON.stringify(user));
 }
 
-export const setTempUserId = (user)=> {
-    window.localStorage.setItem("tempUserID", user._id);
+export const setTempUser = (user)=> {
+    window.localStorage.setItem("tempUser", user);
 }
 
 export const getUser = ()=> {
     return JSON.parse(window.localStorage.getItem("user"));
 }
 
-export const getTempUserId = ()=> {
-    return window.localStorage.getItem("tempUserID");
+export const getTempUser = ()=> {
+    return window.localStorage.getItem("tempUser");
 }
