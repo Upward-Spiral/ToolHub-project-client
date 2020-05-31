@@ -102,12 +102,14 @@ class profile extends Component {
         e.preventDefault();
         debugger
         var temp_user = {...this.state.userInfo};
+        var temp_Address = {...this.state.tempAddress};
         if (this.state.addressChange) {           
-            let address = `${temp_user.address.street1} ${temp_user.address.street2} ${temp_user.address.lotNo} ${temp_user.address.unitNo}, ${temp_user.address.pcode} ${temp_user.address.city}`;
+            let address = `${temp_Address.street1} ${temp_Address.street2} ${temp_Address.lotNo} ${temp_Address.unitNo}, ${temp_Address.pcode} ${temp_Address.city}`;
             getGeoCode(address)
                 .then((geoLoc) => {
                     temp_user.locationLatt = geoLoc.lat;
                     temp_user.locationLong = geoLoc.lng;
+                    temp_user.address.splice(0,1,temp_Address);
                     updateProfile(temp_user)
                         .then(resp => {
                             if (resp.status===200){
