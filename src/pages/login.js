@@ -78,6 +78,7 @@ class Login extends Component {
                                             type="text" 
                                             placeholder="Enter username"
                                             name="username" 
+                                            autoComplete="username"
                                             required
                                             value={this.state.loginData.username} 
                                             onChange={this.handleInputChange} />
@@ -89,6 +90,7 @@ class Login extends Component {
                                             type="password" 
                                             placeholder="Password"
                                             name="password" 
+                                            autoComplete="current-password"
                                             required
                                             value={this.state.loginData.password} 
                                             onChange={this.handleInputChange} />   {/* the handler gets the event object by default */}

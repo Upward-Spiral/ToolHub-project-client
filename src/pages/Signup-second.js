@@ -40,7 +40,7 @@ class SignupSecond extends Component {
     }
 
     handleInputChange (event) {
-        // debugger
+        debugger
         let temp_user = {...this.state.tempUserInfo};
         let temp_Address = {...this.state.tempAddress}
         let addressFields = ['street1','street2','lotNo','pcode','unitNo','city']
@@ -50,7 +50,7 @@ class SignupSecond extends Component {
             temp_user[event.target.name] = event.target.value;
         }  
         this.setState({
-            userInfo:temp_user, 
+            tempUserInfo:temp_user, 
             tempAddress:temp_Address
         })
     }
@@ -59,7 +59,7 @@ class SignupSecond extends Component {
         debugger
         event.preventDefault();
         let temp_user = {...this.state.tempUserInfo};
-        let address = `${this.state.street1} ${this.state.street2} ${this.state.lotNo} ${this.state.unitNo}, ${this.state.pcode} ${this.state.city}`
+        let address = `${this.state.tempAddress.street1} ${this.state.tempAddress.street2} ${this.state.tempAddress.lotNo} ${this.state.tempAddress.unitNo}, ${this.state.tempAddress.pcode} ${this.state.tempAddress.city}`
         getGeoCode(address)
             .then((geoLoc)=>{
                 console.log(geoLoc)
@@ -99,7 +99,7 @@ class SignupSecond extends Component {
     }
 
     componentDidMount () {
-        // debugger
+        debugger
         let temp_user_info = {...this.state.tempUserInfo};
         let tempUser = getTempUser() ;
         temp_user_info.displayname = tempUser.displayname;

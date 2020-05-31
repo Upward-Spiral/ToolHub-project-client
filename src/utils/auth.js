@@ -36,7 +36,7 @@ export const checkEmailUniqueness = (email) => {
 }
 
 export const signup = (user)=>{
-    // debugger
+    debugger
     return axios({
         method: "POST",
         url: "/signup",
@@ -44,6 +44,7 @@ export const signup = (user)=>{
     })
     .then((response)=> {
         if (response.status===200) {
+            console.log(response.data)
             setTempUser(response.data);
         }       
         return (response)
@@ -93,7 +94,7 @@ export const setUser = (user)=> {
 }
 
 export const setTempUser = (user)=> {
-    window.localStorage.setItem("tempUser", user);
+    window.localStorage.setItem("tempUser", JSON.stringify(user));
 }
 
 export const getUser = ()=> {
@@ -101,5 +102,5 @@ export const getUser = ()=> {
 }
 
 export const getTempUser = ()=> {
-    return window.localStorage.getItem("tempUser");
+    return JSON.parse(window.localStorage.getItem("tempUser"));
 }

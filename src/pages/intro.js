@@ -30,7 +30,7 @@ function intro() {
 
                     <Carousel.Caption className="carousel-caption">
                     <h3>Right Person</h3>
-                    <p>Share your projects make new friends, and save money!</p>
+                    <p>Share your projects, make new friends, and save money!</p>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>

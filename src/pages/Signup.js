@@ -197,6 +197,7 @@ class Signup extends Component {
                                                 <Form.Control 
                                                     type="text"                                
                                                     name="username" 
+                                                    autoComplete="username"
                                                     ref={this.usernameInput}
                                                     value={this.state.tempUser.username} 
                                                     onChange={this.handleInputChange}
@@ -242,6 +243,7 @@ class Signup extends Component {
                                                 <Form.Control 
                                                     type="password"                               
                                                     name="password" 
+                                                    autoComplete="new-password"
                                                     ref={this.passwordInput}
                                                     value={this.state.tempUser.password} 
                                                     onChange={this.handlePasswordInput}
@@ -260,6 +262,7 @@ class Signup extends Component {
                                             <Form.Control 
                                                 type="password"                               
                                                 name="password_check" 
+                                                autoComplete="new-password"
                                                 ref={this.passwordCheck}
                                                 value={this.state.tempUser.password_check} 
                                                 onChange={this.passDoubleCheck}
