@@ -27,6 +27,8 @@ body {
 
 .back-btn {
   background-color: rgb(163, 163, 159);
+  margin:10px 20px;
+  width: 80px;
 }
 
 #root {

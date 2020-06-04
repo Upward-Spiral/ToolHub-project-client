@@ -3,9 +3,8 @@ import DefaultLayout from "../layouts/Default";
 import {getToolList} from '../utils/toolQueries';
 import {getUser} from '../utils/auth';
 import {shareTool, unshareTool,lendTool} from '../utils/toolQueries';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
-import {Container,Row,Col,Button} from 'react-bootstrap';
+import {Container,Row,Col,Button, Alert} from 'react-bootstrap';
 
 class toolshed extends Component {
     constructor(props) {
@@ -202,7 +201,7 @@ class toolshed extends Component {
                         )
                     })
                     :
-                    <h6>No Tools to show.</h6>
+                    <Alert variant="primary" className="no-data-alert">No Tools to show.</Alert>
                 }
                     <Link to="/tool/add"><Button id="add-tool-btn"  variant="primary">Add a tool</Button></Link>
 

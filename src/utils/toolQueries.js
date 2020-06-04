@@ -18,7 +18,7 @@ export const getToolList = (userId) => {
     .then((response)=>{
         if (response.status===200){
             console.log(response)
-            response = response.data.data
+            response = response.data
         }     
         return (response)
     })

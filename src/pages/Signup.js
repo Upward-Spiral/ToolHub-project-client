@@ -292,17 +292,9 @@ class Signup extends Component {
                         <Image className="signup-page-image" src="https://res.cloudinary.com/persia/image/upload/v1587090720/toolshare/Layout/jewellery-classes-kids_orig_k9hkxv.jpg" fluid />
                     </Col>
                 </Row>
-            </Container>
-
-
-                        
-                        
-                    
+                    </Container>                   
                 </div>
             )
-        // }
-        
-  
     }
 }
 
