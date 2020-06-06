@@ -402,16 +402,18 @@
   .signup-btn {
     background-color: rgb(250, 215, 0); 
     border-color: rgb(250, 215, 0); 
+    border-width: 2px;
     margin:10px 20px;
-    width: 80px;
+    width: 85px;
 }
 
 .login-btn {
     background-color: rgb(245, 238, 188);
     border-color: rgb(245, 238, 188 );
+    border-width: 2px;
     color: rgb(53, 50, 38);
     margin: 10px 20px 10px 0px;
-    width: 80px;
+    width: 85px;
 }
 
 .signup-btn a {
@@ -424,11 +426,23 @@
 }
 
 .login-btn:hover {
-    background-color: rgb(250, 215, 0);
-    border-color: rgbrgb(250, 215, 0);
+    background-color: rgb(245, 238, 188);
+    border-color: rgb(168, 103, 6);
     color: rgb(53, 50, 38);
 }
 
 .signup-btn:hover {
+    background-color: rgb(250, 215, 0);
+    border-color: rgb(168, 103, 6);
     color: rgb(53, 50, 38);
+}
+
+.signup-btn:disabled {
+    background-color: grey;
+    border-color: grey;
+    color: rgb(53, 50, 38);
+}
+
+#custom-file {
+  margin: 12px 20px 10px 0px;
 }

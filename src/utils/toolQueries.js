@@ -74,7 +74,7 @@ export const createNewTool = (newTool)=> {
         data: qs.stringify(newTool)    
     })
     .then((response)=>{
-        if (response.status!==200){
+        if (response.status === 200){
             console.log(response);
             response=response.data
         }

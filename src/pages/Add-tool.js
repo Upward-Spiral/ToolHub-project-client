@@ -160,16 +160,14 @@ class AddTool extends Component {
     resetForm (e) {
         debugger
         let Temp_Tool_Info = {...this.state.tempToolInfo}
-        Temp_Tool_Info = {
-            name: "",
-            brand: "",
-            modelNo: "",
-            category:[],
-            description: "",
-            locationType:"Point",
-            locationLatt:0,
-            locationLong:0
-        }
+        Temp_Tool_Info.name = "";
+        Temp_Tool_Info.brand = "";
+        Temp_Tool_Info.modelNo = "";
+        Temp_Tool_Info.category = [];
+        Temp_Tool_Info.description = "";
+        Temp_Tool_Info.images = [];
+
+
         this.setState({
             tempToolInfo:Temp_Tool_Info,
             catL0List:[],
@@ -242,7 +240,6 @@ class AddTool extends Component {
                                         value={this.state.tempToolInfo.name}
                                         onChange={this.handleInputChange} 
                                     />
-                                    {/* <Form.Control.Feedback>Looks good!</Form.Control.Feedback> */}
                                 </Form.Group>
                                 <Form.Group controlId="FormGridBrand">
                                     <Form.Label className="form-field-label">Brand:</Form.Label>
@@ -254,7 +251,6 @@ class AddTool extends Component {
                                         value={this.state.tempToolInfo.brand}
                                         onChange={this.handleInputChange} 
                                     />
-                                    {/* <Form.Control.Feedback>Looks good!</Form.Control.Feedback> */}
                                 </Form.Group>
                                 <Form.Group controlId="FormGridModelNo">
                                     <Form.Label className="form-field-label">Model No.:</Form.Label>
@@ -265,24 +261,19 @@ class AddTool extends Component {
                                         value={this.state.tempToolInfo.modelNo}
                                         onChange={this.handleInputChange} 
                                     />
-                                    {/* <Form.Control.Feedback>Looks good!</Form.Control.Feedback> */}
                                 </Form.Group>
                                 <Form.Group controlId="addToolForm.ControlSelectL0">
                                     <Form.Label className="form-field-label">Main Category:</Form.Label>
                                     <Form.Control as="select"
                                         name="category" 
-                                        // id="category-select"
                                         placeholder="Choose a category ..." 
                                         value={this.state.selectedCatL0}
                                         onChange={this.handleCatL0Select}
                                     >
                                         {this.state.catL0List.map((catName)=>{
                                                 return (
-                                                    <option
-                                                        key={catName} 
-                                                        value={catName} 
-                                                        // selected={catName===this.state.selectedCatL0} 
-                                                        >{catName}
+                                                    <option key={catName} value={catName}>
+                                                        {catName}
                                                     </option>
                                                 )
                                             })}    
@@ -292,7 +283,6 @@ class AddTool extends Component {
                                     <Form.Label className="form-field-label">Subcategory 1:</Form.Label>
                                     <Form.Control as="select"
                                         name="subcategory1" 
-                                        // id="subcategory1-select" 
                                         value={this.state.selectedCatL1}
                                         onChange={this.handleCatL1Select}
                                         disabled={this.state.selectedCatL0===""}
@@ -300,12 +290,8 @@ class AddTool extends Component {
                                         {this.state.selectedCatL0!=="" &&
                                             this.state.catL1List.map((catName)=>{
                                                 return (
-                                                    <option 
-                                                        key= {catName}
-                                                        value={catName} 
-                                                        // selected={catName===this.state.selectedCatL1} 
-                                                        >
-                                                            {catName}
+                                                    <option key= {catName} value={catName}>
+                                                        {catName}
                                                     </option>
                                                 )
                                             })}    
@@ -315,7 +301,6 @@ class AddTool extends Component {
                                     <Form.Label className="form-field-label">Subcategory 2:</Form.Label>
                                     <Form.Control as="select"
                                         name="subcategory2" 
-                                        // id="subcategory2-select"
                                         defaultValue={this.state.selectedCatL2}
                                         onChange={this.handleCatL2Select} 
                                         disabled={this.state.catL2List.length === 0}
@@ -323,12 +308,8 @@ class AddTool extends Component {
                                         {this.state.catL2List.length > 0 &&
                                             this.state.catL2List.map((catName)=>{
                                                 return (
-                                                    <option
-                                                        key= {catName}
-                                                        value={catName} 
-                                                        // selected={catName===this.state.selectedCatL2} 
-                                                        >
-                                                            {catName}
+                                                    <option key= {catName} value={catName}>
+                                                        {catName}
                                                     </option>
                                                 )
                                             })}    
@@ -344,15 +325,21 @@ class AddTool extends Component {
                                         <Card.Img variant="top" src={"https://res.cloudinary.com/persia/image/upload/v1586933354/toolshare/Layout/tools-avatar_rbb7hn.jpg"}/>
                                     }
                                     <Card.Body>
-                                        <Card.Title>Upload a picture</Card.Title>
-                                        <Card.Text></Card.Text>
-                                        <Form.File 
-                                            id="custom-file"
-                                            label="Choose image:"
-                                            custom
-                                            name="tool-img" 
-                                            onChange={this.handleFileUpload}
-                                        />
+                                        <Card.Title className="flex-row-center">Upload a picture</Card.Title>
+                                        <Row>
+                                            <Col sm="8" md="8">
+                                                <Form.File id="custom-file" name="tool-img"/>
+                                            </Col>
+                                            <Col sm="4" md="4">
+                                                <Button 
+                                                    variant="primary" 
+                                                    className="signup-btn"
+                                                    onClick={this.handleFileUpload}>
+                                                        Upload
+                                                </Button>
+                                            </Col>
+                                        </Row>
+                                        
                                     </Card.Body>
                                 </Card>
                             </Col>
@@ -372,11 +359,25 @@ class AddTool extends Component {
                         </Row>
                         <Row>
                             <Col sm="9" md="10">
-                                <Button className="signup-btn" variant="primary" type="submit">Add</Button>            
-                                <Button className="back-btn" variant="secondary" onClick={this.resetForm}>Reset</Button>
+                                <Button 
+                                    className="signup-btn" 
+                                    variant="primary" 
+                                    type="submit">
+                                        Add
+                                </Button>            
+                                <Button 
+                                    className="back-btn" 
+                                    variant="secondary" 
+                                    onClick={this.resetForm}>
+                                        Reset
+                                </Button>
                             </Col>
                             <Col sm="9" md="2">
-                               <Button className="back-btn" variant="secondary"><Link to="/tool/shed">Cancel</Link></Button> 
+                               <Button 
+                                    className="back-btn" 
+                                    variant="secondary">
+                                        <Link to="/tool/shed">Cancel</Link>
+                                </Button> 
                             </Col>
                         </Row>
                         

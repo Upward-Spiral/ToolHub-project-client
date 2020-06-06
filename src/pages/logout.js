@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import {logout} from "../utils/userQueries";
+import { Container, Alert } from 'react-bootstrap';
 
 class Logout extends Component {
     constructor() {
@@ -35,8 +36,9 @@ class Logout extends Component {
     render() {
         return (
             <div>
-
-               <h1>Logging out ...</h1> 
+                <Container fluid>
+                    <Alert variant="primary" className="logout-alert">Logging out ...</Alert>
+                </Container>
             </div>
         )
     }
