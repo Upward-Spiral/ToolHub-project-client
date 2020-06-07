@@ -4,30 +4,25 @@
     width: 65vw;
     margin-right: 5vw;
     margin-top: 3vh;
+    .item {
+        border: 2px solid $halfOpaqueLightYellow;
+        border-radius: 10px;
+        margin: 10px 0px;
+        background-color: $halfOpaqueLightYellow;
+        width: 55vw;
+        img {
+            margin: 20px;
+            border-radius: 5px;
+        }
+    }
 }
 
-.toolshed-element {
-    border: 2px solidrgba(245, 238, 188, 0.5);
-    border-radius: 10px;
-    margin: 10px 0px;
-    background-color: rgba(245, 238, 188, 0.5);
-    width: 55vw;
-}
-
-.toolshed-element img {
-    margin: 20px;
-    border-radius: 5px;
-}
-
-/* .offer-it-btn {
-    margin-top: 5px;
-} */
 
 #add-tool-btn {
     margin: 20px;
-    background-color: rgb(245, 238, 188);
-    color: rgb(53, 50, 38);
-    border: 1px solid rgb(245, 238, 188);
+    background-color: $secondary-btn-bg-color;
+    color: $darkBrown;
+    border: 2px solid $secondary-border-color;
 }
 
 .deatil-col {
@@ -53,7 +48,7 @@
 
 .lended-to {
     text-align: center;
-    background-color: rgb(229, 229, 229);
+    background-color: $white;
     padding: 10px 0;
     line-height: 8px;
     box-sizing: border-box;
@@ -61,8 +56,8 @@
 }
 
 .no-data-alert {
-    background-color: rgb(250, 215, 0);
-    border-color: rgb(250, 215, 0);
+    background-color: $alert-bg-color;
+    border-color: $alert-bg-color;
     color: maroon;
     width: 80%;
 }

@@ -329,7 +329,7 @@ class toolDetail extends Component {
                                                 <Col sm="4" md="4">
                                                     <Button 
                                                         variant="primary" 
-                                                        className="signup-btn"
+                                                        className="primary-btn"
                                                         disabled={this.state.tempImgFile === null}
                                                         onClick={this.handleFileUpload}>
                                                             Upload
@@ -360,14 +360,14 @@ class toolDetail extends Component {
                             <Row>    
                                 <Col sm="9" md="10">
                                     <Button 
-                                        className="signup-btn"
+                                        className="primary-btn"
                                         variant="primary"
                                         name={this.state.ToolInfo.id} 
                                         type="submit">
                                             Update
                                     </Button>
                                     <Button 
-                                        className="back-btn" 
+                                        className="delete-btn" 
                                         variant="secondary"
                                         name= {this.state.ToolInfo.id}
                                         onClick={this.handleDeleteButton}>

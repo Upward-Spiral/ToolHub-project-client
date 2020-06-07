@@ -96,7 +96,7 @@ class Login extends Component {
                                             onChange={this.handleInputChange} />   {/* the handler gets the event object by default */}
                                     </Form.Group>
 
-                                    <Button className="login-btn login-page-btn" variant="primary" type="submit">Login</Button>
+                                    <Button className="secondary-btn login-page-btn" variant="primary" type="submit">Login</Button>
                                     <Button className="back-btn" variant="secondary"><Link to="/">Back</Link></Button>
                                 </Form>
                             </Col>

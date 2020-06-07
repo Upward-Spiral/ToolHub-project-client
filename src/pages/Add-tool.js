@@ -333,7 +333,7 @@ class AddTool extends Component {
                                             <Col sm="4" md="4">
                                                 <Button 
                                                     variant="primary" 
-                                                    className="signup-btn"
+                                                    className="primary-btn"
                                                     onClick={this.handleFileUpload}>
                                                         Upload
                                                 </Button>
@@ -360,7 +360,7 @@ class AddTool extends Component {
                         <Row>
                             <Col sm="9" md="10">
                                 <Button 
-                                    className="signup-btn" 
+                                    className="primary-btn" 
                                     variant="primary" 
                                     type="submit">
                                         Add

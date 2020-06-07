@@ -281,7 +281,7 @@ class Signup extends Component {
                                     </Row> */}
                                     <Row>
                                         <Col>
-                                        <Button className="login-btn" variant="primary" type="submit" disabled={this.state.btnDisabled}>Next</Button>
+                                        <Button className="secondary-btn" variant="primary" type="submit" disabled={this.state.btnDisabled}>Next</Button>
                                         <Button className="back-btn" variant="secondary"><Link to="/">Back</Link></Button>
                                         </Col>
                                     </Row>

@@ -187,11 +187,15 @@ class profile extends Component {
             <DefaultLayout>
                 {/* <h1 className="title">Private Profile</h1> */}
                 <Container>
+                    <Row>
+                        <Col>
+                            <h1 className="title page-title">Private Profile<span></span></h1>
+                        </Col>
+                    </Row>
                     <Row>                        
                         {this.state.message && 
                             <h6>{this.state.message}</h6>
-                        }
-                        
+                        }                        
                     </Row>
                 </Container>
                 <Container>
@@ -211,13 +215,12 @@ class profile extends Component {
                                             name="user-img" 
                                             onChange={this.handleFileUpload}
                                         />
-                                        {/* <Button variant="primary">Go somewhere</Button> */}
                                     </Card.Body>
                                 </Card>
                             </Col>
                             <Col sm="5" md="6">
                                 <Form.Row id="first-row">
-                                    <Form.Group as={Col} sm="9" md="8" lg="6" controlId="formGridFirstname">
+                                    <Form.Group as={Col} sm="9" md="8" lg="12" controlId="formGridFirstname">
                                         <Form.Label className="form-field-label">Firstname</Form.Label>
                                         <Form.Control 
                                             name="firstname" 
@@ -226,7 +229,7 @@ class profile extends Component {
                                             onChange={this.handleInputChange}
                                         />
                                     </Form.Group>
-                                    <Form.Group as={Col} sm="9" md="8" lg="6" controlId="formGridLastname">
+                                    <Form.Group as={Col} sm="9" md="8" lg="12" controlId="formGridLastname">
                                         <Form.Label className="form-field-label">Lastname</Form.Label>
                                         <Form.Control 
                                             type="text" 
@@ -235,7 +238,7 @@ class profile extends Component {
                                             onChange={this.handleInputChange}
                                         />
                                     </Form.Group>
-                                    <Form.Group as={Col} sm="9" md="8" lg="6" controlId="formGridDisplayname">
+                                    <Form.Group as={Col} sm="9" md="8" lg="12" controlId="formGridDisplayname">
                                         <Form.Label className="form-field-label">Displayname</Form.Label>
                                         <Form.Control 
                                             type="text" 
@@ -359,7 +362,7 @@ class profile extends Component {
                                 />
                             </Form.Group>
                         </Form.Row>
-                        <Button className="login-btn" variant="primary" type="submit">Update</Button>
+                        <Button className="secondary-btn" variant="primary" type="submit">Update</Button>
                     </Form>
                 </Container>
                 

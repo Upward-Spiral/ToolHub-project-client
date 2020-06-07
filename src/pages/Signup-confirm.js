@@ -13,7 +13,7 @@ function SignupConfirm() {
                             <p>You are signed up!</p>
                             <p>Login to go to your homepage.</p>
                             <p>
-                                <Link to="/login"><Button variant="primary" className="login-btn" id="special-btn">Login</Button></Link>
+                                <Link to="/login"><Button variant="primary" className="secondary-btn" id="special-btn">Login</Button></Link>
                             </p> 
                         </Col>
                         <Col id="confirmation-col2">

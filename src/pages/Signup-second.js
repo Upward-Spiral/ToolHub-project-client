@@ -210,7 +210,7 @@ class SignupSecond extends Component {
                                     </Form.Group>
                                     
                                 </Form.Row> 
-                                <Button className="signup-btn" variant="primary" type="submit">Signup</Button> 
+                                <Button className="primary-btn" variant="primary" type="submit">Signup</Button> 
                                 <Button className="back-btn" variant="secondary"><Link to="/">Cancel</Link></Button> 
                             </Form>
                         </Col>

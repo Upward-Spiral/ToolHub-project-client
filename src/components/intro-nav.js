@@ -17,8 +17,8 @@ function introNav() {
                         <Nav.Link href="/about" style={{color: "#f5eebc"}}>About</Nav.Link>
                         <Nav.Link href="/contactUs" style={{color: "#f5eebc"}}>Contact Us</Nav.Link>
                     </Nav>
-                        <Button className="signup-btn intro-btn" variant="outline-success"><strong><Link to="/signup">Signup</Link></strong></Button>
-                        <Button className="login-btn intro-btn" variant="outline-success"><Link to="/login">Login</Link></Button>
+                        <Button className="primary-btn intro-btn" variant="outline-success"><strong><Link to="/signup">Signup</Link></strong></Button>
+                        <Button className="secondary-btn intro-btn" variant="outline-success"><Link to="/login">Login</Link></Button>
                 </Navbar.Collapse>
             </Navbar>
 

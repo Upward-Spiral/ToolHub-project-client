@@ -94,9 +94,8 @@ class toolshed extends Component {
                     {this.state.showedToolList.length > 0 ?
                     this.state.showedToolList.map((tool)=>{
                         return (
-
                             <Container key={tool._id}>                                                                
-                                     <Row className="toolshed-element">
+                                     <Row className="item">
                                         <Col sm={2}>
                                             <img
                                                 width={64}
@@ -122,7 +121,7 @@ class toolshed extends Component {
                                                     <>
                                                 <p>requested by:{requester.displayname}</p>
                                                 <Button 
-                                                className="signup-btn" 
+                                                className="primary-btn" 
                                                 variant="primary"
                                                 name= {requester._id}
                                                 id={tool._id}
@@ -144,7 +143,7 @@ class toolshed extends Component {
                                                 tool.shared  
                                                 &&                               
                                                     <Button 
-                                                        className="signup-btn sharing-btn" 
+                                                        className="primary-btn sharing-btn" 
                                                         variant="primary"
                                                         name= {tool._id}
                                                         onClick={this.handleUnshareButton}>
@@ -155,7 +154,7 @@ class toolshed extends Component {
                                                 { tool.shared
                                                     ||
                                                     <Button 
-                                                        className="signup-btn sharing-btn" 
+                                                        className="primary-btn sharing-btn" 
                                                         variant="primary"
                                                         name= {tool._id}
                                                         onClick={this.handleShareButton}>
@@ -185,7 +184,7 @@ class toolshed extends Component {
 
                                                 }}>
                                                     <Button 
-                                                    className="login-btn  detail-btn" 
+                                                    className="secondary-btn  detail-btn" 
                                                     variant="primary"
                                                     >
                                                         Detail

@@ -1,6 +1,6 @@
 
 .previous-search {
-    color: rgb(245, 238, 188);
+    color: $secondary-title-color;
     text-align: center;
     margin-bottom: 20px;
     
@@ -9,10 +9,11 @@
 .map {
     margin-left: 10vw;
     width: 40vw;
-    border: 3px solid rgb(245, 238, 188);
+    border: 3px solid $secondary-border-color;
+    
 }
 
-map div {
+.map div {
     margin: 0 auto;
 }
 

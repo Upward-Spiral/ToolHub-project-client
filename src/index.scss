@@ -1,4 +1,22 @@
 
+$sharpYellow: rgb(250, 215, 0);
+$lightYellow: rgb(245, 238, 188);
+$halfOpaqueLightYellow: rgba(245, 238, 188, 0.5);
+$darkBrown: rgb(53, 50, 38);
+$lightGrey: rgb(163, 163, 159);
+$white: rgb(229, 229, 229);
+
+$primary-title-color: $sharpYellow;
+$primary-btn-bg-color: $sharpYellow;
+
+$secondary-title-color: $lightYellow;
+$secondary-btn-bg-color: $lightYellow;
+$secondary-border-color: $lightYellow;
+
+$alert-bg-color: $sharpYellow;
+$card-bg-color: $sharpYellow;
+$label-color: $lightYellow;
+
 @import './App.scss';
 @import './styles/login.scss';
 @import './styles/home.scss';
@@ -13,21 +31,19 @@
 @import './styles/private-profile.scss';
 
 
+
+
+
 body {
   margin: 0;
   padding: 0;
-  font-family:     Acme,
-    sans-serif;
+  font-family:     Acme, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(53, 50, 38);
+  background-color: $darkBrown;
 }
 
-.back-btn {
-  background-color: rgb(163, 163, 159);
-  margin:10px 20px;
-  width: 80px;
-}
+
 
 #root {
   width: 100vw;
@@ -41,20 +57,19 @@ code {
 
 a:hover {
   text-decoration: none;
-  color: rgb(53, 50, 38);
+  color: $darkBrown;
 }
 
 a {
-  color: rgb(53, 50, 38);
+  color: $darkBrown;
 }
 
 .title {
-  color: rgb(250, 215, 0);
+  color: $primary-title-color;
 }
 
 .form-field-label {
-  color: rgb(245, 238, 188);
-  /* color: rgb(229, 229, 229); */
+  color: $secondary-title-color;
   margin-top: 10px;
 }
 

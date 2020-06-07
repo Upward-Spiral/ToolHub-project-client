@@ -4,7 +4,7 @@
 .home-page-card {
     margin: 20px;
     height: 40vh;
-    background-color:rgb(250, 215, 0) ;
+    background-color: $card-bg-color ;
     
    
 }
@@ -18,7 +18,7 @@
 }
 
 .home-page-card-title {
-    color: rgb(53, 50, 38);
+    color: $darkBrown;
     text-align: center;
 }
 

@@ -1,11 +1,11 @@
 
 .intro-nav {
-    background-color:  rgb(53, 50, 38);
+    background-color:  $darkBrown;
 
 }
 
 .logo-title {
-    color: rgb(250, 215, 0);
+    color: $primary-title-color;
 }
 
 
@@ -17,7 +17,7 @@
 
 .carousel-caption {
     margin-bottom: 25vh;
-    color: rgb(53, 50, 38);
+    color: $darkBrown;
     font-weight: 600;
     background-color: rgba(245, 238, 188, 0.5);
     border-radius: 10px;

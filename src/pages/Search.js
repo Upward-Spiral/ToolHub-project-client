@@ -234,7 +234,7 @@ class Search extends Component {
                                         <Card.Text>
                                         Date
                                         </Card.Text>
-                                        <Button variant="primary">Search Again</Button>
+                                        <Button variant="primary" className="secondary-btn">Search Again</Button>
                                     </Card.Body>
                                 </Card>
                             </Col>
@@ -246,7 +246,7 @@ class Search extends Component {
                                         <Card.Text>
                                         Date
                                         </Card.Text>
-                                        <Button variant="primary">Search Again</Button>
+                                        <Button variant="primary" className="secondary-btn">Search Again</Button>
                                     </Card.Body>
                                 </Card>
                             </Col>
@@ -258,7 +258,7 @@ class Search extends Component {
                                         <Card.Text>
                                         Date
                                         </Card.Text>
-                                        <Button variant="primary">Search Again</Button>
+                                        <Button variant="primary" className="secondary-btn">Search Again</Button>
                                     </Card.Body>
                                 </Card>
                             </Col>
@@ -270,7 +270,7 @@ class Search extends Component {
                                         <Card.Text>
                                         Date
                                         </Card.Text>
-                                        <Button variant="primary">Search Again</Button>
+                                        <Button variant="primary" className="secondary-btn">Search Again</Button>
                                     </Card.Body>
                                 </Card>
                             </Col>

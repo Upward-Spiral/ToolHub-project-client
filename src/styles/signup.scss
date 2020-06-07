@@ -24,8 +24,8 @@
 
 }
 
-.signup-btn {
-    color: rgb(53, 50, 38);
+.primary-btn {
+    color: $darkBrown;
 }
 
 .errorMessage {
@@ -75,6 +75,3 @@
     
 }
 
-#special-btn {
-    border: 2px solid rgb(212, 176, 31);;
-}

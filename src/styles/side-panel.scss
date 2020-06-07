@@ -370,7 +370,7 @@ and (-webkit-min-device-pixel-ratio: 1) {
 
 
 .side-panel-card {
-    background-color:  rgb(229, 229, 229);
+    background-color:  $white;
     height: 96vh;
     /* position: relative; */
 }
@@ -380,7 +380,7 @@ and (-webkit-min-device-pixel-ratio: 1) {
 } */
 
 .side-panel-flush, .sidebar-list-item {
-    background-color:  rgb(229, 229, 229);
+    background-color:  $white;
 }
 
 /* .side-panel-flush {
@@ -390,11 +390,11 @@ and (-webkit-min-device-pixel-ratio: 1) {
 } */
 
 .side-panel-header {
-    background-color:   rgb(245, 238, 188);
+    background-color:   $secondary-btn-bg-color;
 }
 
 .sidebar-list-item a {
-    color: rgb(53, 50, 38);
+    color: $darkBrown;
 }
 
 

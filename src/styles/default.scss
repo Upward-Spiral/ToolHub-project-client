@@ -10,6 +10,72 @@
 
 }
 
+.page-title {
+  margin: 20px 0px;
+}
+
+.primary-btn {
+  background-color: $primary-btn-bg-color; 
+  border-color: $primary-btn-bg-color; 
+  border-width: 2px;
+  margin:10px 20px;
+  width: 85px;
+  a {
+    color: $darkBrown;
+  }
+
+}
+
+.secondary-btn {
+  background-color: $secondary-btn-bg-color;
+  border-color: $secondary-border-color;
+  border-width: 2px;
+  color: $darkBrown;
+  margin: 10px 20px 10px 0px;
+  width: 85px;
+  a {
+    color: $darkBrown;
+  }
+}
+
+.delete-btn {
+  background-color: rgb(168, 103, 6);
+  border-color: rgb(168, 103, 6);
+  color: $darkBrown;
+  margin:10px 20px;
+  width: 80px;
+}
+
+.back-btn {
+  background-color: $lightGrey;
+  margin:10px 20px;
+  width: 80px;
+}
+
+
+.secondary-btn:hover {
+  background-color: $secondary-btn-bg-color;
+  border-color: rgb(168, 103, 6);
+  color: $darkBrown;
+}
+
+.primary-btn:hover {
+  background-color: $primary-btn-bg-color;
+  border-color: rgb(168, 103, 6);
+  color: $darkBrown;
+}
+
+.primary-btn:disabled {
+  background-color: grey;
+  border-color: grey;
+  color: $darkBrown;
+}
+
+#custom-file {
+margin: 12px 20px 10px 0px;
+}
+
+
 
 /* Smartphones -----------------------------------------------------------------*/
 
@@ -397,52 +463,3 @@
     top: 45px;
     width: 60vw;
 } */
-
-
-  .signup-btn {
-    background-color: rgb(250, 215, 0); 
-    border-color: rgb(250, 215, 0); 
-    border-width: 2px;
-    margin:10px 20px;
-    width: 85px;
-}
-
-.login-btn {
-    background-color: rgb(245, 238, 188);
-    border-color: rgb(245, 238, 188 );
-    border-width: 2px;
-    color: rgb(53, 50, 38);
-    margin: 10px 20px 10px 0px;
-    width: 85px;
-}
-
-.signup-btn a {
-    color: rgb(53, 50, 38);
-}
-
-.login-btn a{
-    color: rgb(53, 50, 38);
-    
-}
-
-.login-btn:hover {
-    background-color: rgb(245, 238, 188);
-    border-color: rgb(168, 103, 6);
-    color: rgb(53, 50, 38);
-}
-
-.signup-btn:hover {
-    background-color: rgb(250, 215, 0);
-    border-color: rgb(168, 103, 6);
-    color: rgb(53, 50, 38);
-}
-
-.signup-btn:disabled {
-    background-color: grey;
-    border-color: grey;
-    color: rgb(53, 50, 38);
-}
-
-#custom-file {
-  margin: 12px 20px 10px 0px;
-}
