@@ -16,8 +16,10 @@ class toolDetail extends Component {
         this.handleCatL0Select  = this.handleCatL0Select.bind(this);
         this.handleCatL1Select  = this.handleCatL1Select.bind(this);
         this.handleCatL2Select  = this.handleCatL2Select.bind(this);
-        this.handleDeleteButton = this.handleDeleteButton.bind(this)
-        this.handleImageSelect  = this.handleImageSelect.bind(this)
+        this.handleDeleteButton = this.handleDeleteButton.bind(this);
+        this.handleImageSelect  = this.handleImageSelect.bind(this);
+        this.showNextImage      = this.showNextImage.bind(this);
+        this.showPreviousImage  = this.showPreviousImage.bind(this);
 
         this.state = {
             
@@ -28,7 +30,7 @@ class toolDetail extends Component {
             selectedCatL1: "",
             catL2List:[],
             selectedCatL2: "",
-            showedImage: null,
+            showedImageIx: null,
             ToolInfo: {
                 name: "",
                 brand: "",
@@ -58,6 +60,20 @@ class toolDetail extends Component {
         this.setState({tempImgFile: image})
     }
 
+    showNextImage (e) {
+        let Ix = this.state.showedImageIx
+        if (Ix < this.state.ToolInfo.images.length-1) {
+            this.setState({showedImageIx: Ix+1})
+        }
+    }
+
+    showPreviousImage (e) {
+        let Ix = this.state.showedImageIx
+        if (Ix > 0) {
+            this.setState({showedImageIx: Ix-1})
+        }
+    }
+
     handleFileUpload = (e) => {
         debugger
         console.log("The file to be uploaded is: ", this.state.tempImgFile);
@@ -70,7 +86,8 @@ class toolDetail extends Component {
         UploadToolImg(uploadData)
         .then(response => {
             console.log('response is: ', response);
-            updateToolImage(response)
+            let newToolImg = {newImg:response,toolId:this.state.ToolInfo.id}
+            updateToolImage(newToolImg)
                 .then((res)=>{
                     console.log(res)
                     let temp_Tool = {...this.state.ToolInfo};
@@ -163,7 +180,7 @@ class toolDetail extends Component {
             temp_tool.owner = toolDetails.toolData.owner
             temp_tool.id = toolDetails.toolData._id
 
-            let temp_cat0,temp_cat1, temp_cat2,temp_showedImg,temp_cat2_list
+            let temp_cat0,temp_cat1, temp_cat2,temp_showedImgIx,temp_cat2_list
              temp_cat0 = temp_tool.category[0]
             if (temp_tool.category[1]) {
                 temp_cat1 = temp_tool.category[1]
@@ -180,7 +197,7 @@ class toolDetail extends Component {
             let temp_cat1_list = getCatL1List(temp_cat0);
             let numberOfImages = temp_tool.images.length
             if (numberOfImages > 0) {
-                temp_showedImg = temp_tool.images[numberOfImages-1].imgPath
+                temp_showedImgIx = numberOfImages-1
             }
             
             this.setState({ ToolInfo: temp_tool,
@@ -188,7 +205,7 @@ class toolDetail extends Component {
                             selectedCatL0: temp_cat0,
                             selectedCatL1: temp_cat1,
                             selectedCatL2: temp_cat2,
-                            showedImage: temp_showedImg,
+                            showedImageIx: temp_showedImgIx,
                             catL1List: temp_cat1_list,
                             catL2List: temp_cat2_list
                         })
@@ -302,19 +319,32 @@ class toolDetail extends Component {
                                         <Card.Img 
                                             variant="top" 
                                             id="tool-detail-img" 
-                                            src={this.state.showedImage 
+                                            src={this.state.showedImageIx !== null
                                                 ?
-                                                this.state.showedImage 
+                                                this.state.ToolInfo.images[this.state.showedImageIx].imgPath
                                                 : 
                                                 "https://res.cloudinary.com/persia/image/upload/v1586933354/toolshare/Layout/tools-avatar_rbb7hn.jpg"} 
                                         />
                                         <Card.Body> 
                                             <Row>
                                                 <Col className="flex-row-center">
-                                                    <Image src="https://res.cloudinary.com/persia/image/upload/v1591398282/toolshare/Layout/left-arrow_dpm7hk.png" roundedCircle className="image-navigation" />
+                                                    <Button className="image-nav"
+                                                            disabled={this.state.showedImageIx <= 0}
+                                                            onClick={this.showPreviousImage}
+                                                    >
+                                                        <Image src="https://res.cloudinary.com/persia/image/upload/v1591398282/toolshare/Layout/left-arrow_dpm7hk.png" roundedCircle className="image-navigation" alt="previous image"/>
+                                                    </Button>
+                                                    
                                                 </Col>
                                                 <Col className="flex-row-center">
-                                                    <Image src="https://res.cloudinary.com/persia/image/upload/v1591398282/toolshare/Layout/right-arrow_fvsw7s.png" roundedCircle className="image-navigation" />
+                                                    <Button className="image-nav"
+                                                            disabled={this.state.showedImageIx >= this.state.ToolInfo.images.length-1}
+                                                            onClick={this.showNextImage}
+                                                    >
+                                                        <Image src="https://res.cloudinary.com/persia/image/upload/v1591398282/toolshare/Layout/right-arrow_fvsw7s.png" roundedCircle className="image-navigation"
+                                                        alt="next image" />
+                                                    </Button>
+                                                    
                                                 </Col>
                                             </Row>
                                             <Card.Title className="flex-row-center">Upload a picture</Card.Title>
@@ -335,10 +365,7 @@ class toolDetail extends Component {
                                                             Upload
                                                     </Button>
                                                 </Col>
-                                            </Row>
-                                               
-                                          
-                                            
+                                            </Row>             
                                         </Card.Body>
                                     </Card>
                                 </Col>                              

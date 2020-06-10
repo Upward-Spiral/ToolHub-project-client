@@ -185,7 +185,6 @@ class profile extends Component {
     render() {
         return (
             <DefaultLayout>
-                {/* <h1 className="title">Private Profile</h1> */}
                 <Container>
                     <Row>
                         <Col>

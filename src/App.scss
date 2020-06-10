@@ -1,26 +1,33 @@
-// @import './css/home.scss';
-// @import './css/side-panel.css';
-// @import './css/toolshed.css';
-// @import './css/default.scss';
-// @import './css/search.css';
-// @import './css/tool-detail.css';
 
-/* $body-bg: #e5e5e5;
+@import 'styles/modules/variables.scss';
 
-
-@import "../node_modules/bootstrap/scss/bootstrap"; */
-
-/* .App {
-  text-align: center;
-  
-} */
-
-/* a {
-  color: rgb(17, 20, 34);
-} */
-
-/* a:hover {
-  color: blue;
-} */
+@import 'styles/login.scss';
+@import 'styles/home.scss';
+@import 'styles/side-panel.scss';
+@import 'styles/toolshed.scss';
+@import 'styles/default.scss';
+@import 'styles/search.scss';
+@import 'styles/tool-detail.scss';
+@import 'styles/add-tool.scss';
+@import 'styles/intro.scss';
+@import 'styles/signup.scss';
+@import 'styles/private-profile.scss';
 
 
+
+a {
+  color: $darkBrown;
+  &:hover {
+    text-decoration: none;
+    color: $darkBrown;
+  }
+}
+
+.title {
+  color: $primary-title-color;
+}
+
+.form-field-label {
+  color: $secondary-title-color;
+  margin-top: 10px;
+}
