@@ -30,3 +30,27 @@
     margin: 50px 20vw;
 }
 
+.image-nav {
+    background-color: white;
+    border-radius: 29px;
+    padding-top: 8px;
+    border-color: white;
+    &:disabled {
+        background-color: white;
+        color: $disabled-color; 
+        border-color: white;
+        &:hover {
+            background-color: white;
+            border-color: white;
+        }
+    }
+    &:hover {
+        background-color: $lightYellow;
+        border-color: $lightYellow;
+    }
+    &:visited {
+        background-color: white;
+        border-color: white;
+    }
+
+}

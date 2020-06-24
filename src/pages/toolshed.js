@@ -126,7 +126,7 @@ class toolshed extends Component {
                                                 name= {requester._id}
                                                 id={tool._id}
                                                 onClick={this.handleAcceptButton}>
-                                                    Lend!
+                                                    Lend
                                                 </Button> 
                                                 </>
                                                 )
@@ -144,21 +144,21 @@ class toolshed extends Component {
                                                 &&                               
                                                     <Button 
                                                         className="primary-btn sharing-btn" 
-                                                        variant="primary"
+                                                        // variant="primary"
                                                         name= {tool._id}
                                                         onClick={this.handleUnshareButton}>
-                                                            Shelf it!
+                                                            Shelf
                                                         </Button> 
                                                 }  
 
                                                 { tool.shared
                                                     ||
                                                     <Button 
-                                                        className="primary-btn sharing-btn" 
-                                                        variant="primary"
+                                                        className="secondary-btn share-btn toolshed-share-btn" 
+                                                        // variant="primary"
                                                         name= {tool._id}
                                                         onClick={this.handleShareButton}>
-                                                            Offer it!
+                                                            Offer
                                                         </Button>                                                                                                              
                                                 }
                                                 {tool.lended_to &&
@@ -184,8 +184,8 @@ class toolshed extends Component {
 
                                                 }}>
                                                     <Button 
-                                                    className="secondary-btn  detail-btn" 
-                                                    variant="primary"
+                                                    className="primary-btn  detail-btn" 
+                                                    // variant="primary"
                                                     >
                                                         Detail
                                                     </Button> 

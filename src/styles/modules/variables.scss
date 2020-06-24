@@ -3,6 +3,7 @@ $lightYellow: rgb(245, 238, 188);
 $halfOpaqueLightYellow: rgba(245, 238, 188, 0.5);
 $darkBrown: rgb(53, 50, 38);
 $lightGrey: rgb(163, 163, 159);
+$halfOpaqueLightGrey: rgba(163, 163, 159, 0.5);
 $white: rgb(229, 229, 229);
 
 $primary-title-color: $sharpYellow;
@@ -15,3 +16,5 @@ $secondary-border-color: $lightYellow;
 $alert-bg-color: $sharpYellow;
 $card-bg-color: $sharpYellow;
 $label-color: $lightYellow;
+
+$disabled-color: $halfOpaqueLightGrey;

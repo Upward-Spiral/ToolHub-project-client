@@ -18,6 +18,8 @@ class AddTool extends Component {
         this.handleCatL1Select   = this.handleCatL1Select.bind(this);
         this.handleCatL2Select   = this.handleCatL2Select.bind(this);
 
+        this.fileInput = React.createRef();
+
         this.state = {
             response: 0 ,
             catL0List:[],
@@ -51,11 +53,11 @@ class AddTool extends Component {
 
     handleFileUpload = (e) => {
         debugger
-        console.log("The file to be uploaded is: ", e.target.files[0]);
+        console.log("The file to be uploaded is: ", this.fileInput.current.files[0]);
 
         const uploadData = new FormData();
         // imageUrl => this name has to be the same as in the model since we pass
-        uploadData.append("tool-img", e.target.files[0]);
+        uploadData.append("tool-img", this.fileInput.current.files[0]);
         // uploadData.append("user-id", getUser()._id); for later work on uploading images to each user's folder
         
         UploadToolImg(uploadData)
@@ -190,14 +192,12 @@ class AddTool extends Component {
         debugger
         
         createNewTool(this.state.tempToolInfo)
-        .then(res => {
-            if (res.status===200){
-                console.log('added: ', res);
-                // let newToolId = res.data._id
-                this.props.history.push({
-                    pathname:`/tool/shed`
-                })
-            }
+        .then(res => {           
+            console.log('added: ', res);
+            // let newToolId = res.data._id
+            this.props.history.push({
+                pathname:`/tool/shed`
+            })
         })
         .catch(err => {
             console.log("Error while adding the thing: ", err);
@@ -328,7 +328,10 @@ class AddTool extends Component {
                                         <Card.Title className="flex-row-center">Upload a picture</Card.Title>
                                         <Row>
                                             <Col sm="8" md="8">
-                                                <Form.File id="custom-file" name="tool-img"/>
+                                                <Form.File 
+                                                    id="custom-file"
+                                                    ref={this.fileInput} 
+                                                    name="tool-img"/>
                                             </Col>
                                             <Col sm="4" md="4">
                                                 <Button 

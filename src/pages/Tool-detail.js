@@ -3,6 +3,7 @@ import DefaultLayout from "../layouts/Default";
 import {Col,Button,Card,Form,Container,Row, Image} from 'react-bootstrap';
 import {getToolDetails,UploadToolImg,updateToolImage,updateTool,deleteTool} from '../utils/toolQueries';
 import {getCatL0List, getCatL1List, getCatL2List} from '../utils/service';
+import {shareTool, unshareTool,lendTool} from '../utils/toolQueries';
 
 
 class toolDetail extends Component {
@@ -17,6 +18,7 @@ class toolDetail extends Component {
         this.handleCatL1Select  = this.handleCatL1Select.bind(this);
         this.handleCatL2Select  = this.handleCatL2Select.bind(this);
         this.handleDeleteButton = this.handleDeleteButton.bind(this);
+        this.handleShareButton  = this.handleShareButton.bind(this);
         this.handleImageSelect  = this.handleImageSelect.bind(this);
         this.showNextImage      = this.showNextImage.bind(this);
         this.showPreviousImage  = this.showPreviousImage.bind(this);
@@ -38,6 +40,11 @@ class toolDetail extends Component {
                 category:[],
                 description: "",
                 images: [],
+                shared:false,
+                requested_by:[],
+                reserved_by: [],
+                lended_to: {},
+                available: true,
                 id:""
                 
             }, 
@@ -151,6 +158,17 @@ class toolDetail extends Component {
             })
     }
 
+    handleShareButton (e) {
+        debugger
+        shareTool(e.target.name)
+            .then((response)=>{ 
+                this.fetchToolList()     
+            })
+            .catch ((err) => {
+                console.log(err)
+            })       
+    }
+
     handleFormSubmit = (e) => {
         e.preventDefault();
         debugger
@@ -170,45 +188,50 @@ class toolDetail extends Component {
         debugger
         let temp_cat0_list = getCatL0List();
         
-            let temp_tool = {}
-            temp_tool.name = toolDetails.toolData.name
-            temp_tool.brand = toolDetails.toolData.brand
-            temp_tool.category = toolDetails.toolData.category
-            temp_tool.description = toolDetails.toolData.description
-            temp_tool.images = toolDetails.toolData.images
-            temp_tool.modelNo = toolDetails.toolData.modelNo
-            temp_tool.owner = toolDetails.toolData.owner
-            temp_tool.id = toolDetails.toolData._id
+        let temp_tool = {}
+        temp_tool.name           = toolDetails.toolData.name
+        temp_tool.brand          = toolDetails.toolData.brand
+        temp_tool.category       = toolDetails.toolData.category
+        temp_tool.description    = toolDetails.toolData.description
+        temp_tool.images         = toolDetails.toolData.images
+        temp_tool.modelNo        = toolDetails.toolData.modelNo
+        temp_tool.owner          = toolDetails.toolData.owner
+        temp_tool.id             = toolDetails.toolData._id
+        temp_tool.requested_by   = toolDetails.requested_by
+        temp_tool.reserved_by    = toolDetails.reserved_by
+        temp_tool.shared         = toolDetails.shared
+        temp_tool.lended_to      = toolDetails.lended_to
+        temp_tool.available      = toolDetails.available 
 
-            let temp_cat0,temp_cat1, temp_cat2,temp_showedImgIx,temp_cat2_list
-             temp_cat0 = temp_tool.category[0]
-            if (temp_tool.category[1]) {
-                temp_cat1 = temp_tool.category[1]
-                temp_cat2_list = getCatL2List([temp_cat0,temp_cat1]);
-            } else {
-                temp_cat1 = ""
-            }
+        let temp_cat0,temp_cat1, temp_cat2,temp_showedImgIx,temp_cat2_list
+            temp_cat0 = temp_tool.category[0]
+        if (temp_tool.category[1]) {
+            temp_cat1 = temp_tool.category[1]
+            temp_cat2_list = getCatL2List([temp_cat0,temp_cat1]);
+        } else {
+            temp_cat1 = ""
+        }
 
-            if (temp_tool.category[2]) {
-                temp_cat2 = temp_tool.category[2]
-            } else {
-                temp_cat2 = ""
-            }
-            let temp_cat1_list = getCatL1List(temp_cat0);
-            let numberOfImages = temp_tool.images.length
-            if (numberOfImages > 0) {
-                temp_showedImgIx = numberOfImages-1
-            }
-            
-            this.setState({ ToolInfo: temp_tool,
-                            catL0List: temp_cat0_list,
-                            selectedCatL0: temp_cat0,
-                            selectedCatL1: temp_cat1,
-                            selectedCatL2: temp_cat2,
-                            showedImageIx: temp_showedImgIx,
-                            catL1List: temp_cat1_list,
-                            catL2List: temp_cat2_list
-                        })
+        if (temp_tool.category[2]) {
+            temp_cat2 = temp_tool.category[2]
+        } else {
+            temp_cat2 = ""
+        }
+        let temp_cat1_list = getCatL1List(temp_cat0);
+        let numberOfImages = temp_tool.images.length
+        if (numberOfImages > 0) {
+            temp_showedImgIx = numberOfImages-1
+        }
+        
+        this.setState({ ToolInfo: temp_tool,
+                        catL0List: temp_cat0_list,
+                        selectedCatL0: temp_cat0,
+                        selectedCatL1: temp_cat1,
+                        selectedCatL2: temp_cat2,
+                        showedImageIx: temp_showedImgIx,
+                        catL1List: temp_cat1_list,
+                        catL2List: temp_cat2_list
+                    })
     }
 
     componentDidMount () {
@@ -329,17 +352,20 @@ class toolDetail extends Component {
                                             <Row>
                                                 <Col className="flex-row-center">
                                                     <Button className="image-nav"
-                                                            disabled={this.state.showedImageIx <= 0}
-                                                            onClick={this.showPreviousImage}
+                                                            disabled={this.state.showedImageIx >= this.state.ToolInfo.images.length-1}
+                                                            onClick={this.showNextImage}
                                                     >
                                                         <Image src="https://res.cloudinary.com/persia/image/upload/v1591398282/toolshare/Layout/left-arrow_dpm7hk.png" roundedCircle className="image-navigation" alt="previous image"/>
                                                     </Button>
                                                     
                                                 </Col>
+                                                <Col sm="2" lg="2">
+                                            <p><span>{this.state.ToolInfo.images.length-this.state.showedImageIx}</span>/<span>{this.state.ToolInfo.images.length}</span></p>
+                                                </Col>
                                                 <Col className="flex-row-center">
                                                     <Button className="image-nav"
-                                                            disabled={this.state.showedImageIx >= this.state.ToolInfo.images.length-1}
-                                                            onClick={this.showNextImage}
+                                                            disabled={this.state.showedImageIx <= 0}
+                                                            onClick={this.showPreviousImage}
                                                     >
                                                         <Image src="https://res.cloudinary.com/persia/image/upload/v1591398282/toolshare/Layout/right-arrow_fvsw7s.png" roundedCircle className="image-navigation"
                                                         alt="next image" />
@@ -388,18 +414,30 @@ class toolDetail extends Component {
                                 <Col sm="9" md="10">
                                     <Button 
                                         className="primary-btn"
-                                        variant="primary"
+                                        // variant="primary"
                                         name={this.state.ToolInfo.id} 
                                         type="submit">
                                             Update
                                     </Button>
                                     <Button 
                                         className="delete-btn" 
-                                        variant="secondary"
+                                        // variant="secondary"
                                         name= {this.state.ToolInfo.id}
                                         onClick={this.handleDeleteButton}>
                                             Delete
                                     </Button>
+                                </Col>
+                                <Col sm="3" md="2" lg="2">
+                                    {!this.state.ToolInfo.shared &&
+                                        <Button 
+                                            className="secondary-btn info-btn" 
+                                            // variant="primary"
+                                            name= {this.state.ToolInfo.id}
+                                            onClick={this.handleShareButton}>
+                                                Offer
+                                        </Button>
+                                    }
+                                    
                                 </Col>
                             </Row>                                
                         </Form>                      
