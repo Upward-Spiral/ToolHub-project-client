@@ -197,11 +197,11 @@ class toolDetail extends Component {
         temp_tool.modelNo        = toolDetails.toolData.modelNo
         temp_tool.owner          = toolDetails.toolData.owner
         temp_tool.id             = toolDetails.toolData._id
-        temp_tool.requested_by   = toolDetails.requested_by
-        temp_tool.reserved_by    = toolDetails.reserved_by
-        temp_tool.shared         = toolDetails.shared
-        temp_tool.lended_to      = toolDetails.lended_to
-        temp_tool.available      = toolDetails.available 
+        temp_tool.requested_by   = toolDetails.toolData.requested_by
+        temp_tool.reserved_by    = toolDetails.toolData.reserved_by
+        temp_tool.shared         = toolDetails.toolData.shared
+        temp_tool.lended_to      = toolDetails.toolData.lended_to
+        temp_tool.available      = toolDetails.toolData.available 
 
         let temp_cat0,temp_cat1, temp_cat2,temp_showedImgIx,temp_cat2_list
             temp_cat0 = temp_tool.category[0]
