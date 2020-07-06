@@ -130,8 +130,6 @@ export const updateTool = (updatedTool)=> {
 
 }
 
-
-
 export const searchTools = (searchData) => {
     debugger
     return axios({
@@ -160,7 +158,7 @@ export const shareTool = (toolId) => {
             url: `/share/${toolId}`,   
         })
         .then((response)=>{
-            if (response.status!==200){
+            if (response.status===200){
                 console.log(response);
                 response=response.data
             }
@@ -179,7 +177,7 @@ export const unshareTool = (toolId) => {
             url: `/unshare/${toolId}`,   
         })
         .then((response)=>{
-            if (response.status!==200){
+            if (response.status===200){
                 console.log(response);
                 response=response.data
             }

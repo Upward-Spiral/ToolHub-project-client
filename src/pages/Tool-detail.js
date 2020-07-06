@@ -22,6 +22,7 @@ class toolDetail extends Component {
         this.handleImageSelect  = this.handleImageSelect.bind(this);
         this.showNextImage      = this.showNextImage.bind(this);
         this.showPreviousImage  = this.showPreviousImage.bind(this);
+        this.handleUnshareButton= this.handleUnshareButton.bind(this);
 
         this.state = {
             
@@ -98,8 +99,9 @@ class toolDetail extends Component {
                 .then((res)=>{
                     console.log(res)
                     let temp_Tool = {...this.state.ToolInfo};
+                    let tempIx = this.state.showedImageIx
                     temp_Tool.images.push(response);
-                    this.setState({ showedImage:res, ToolInfo:temp_Tool });
+                    this.setState({ ToolInfo:temp_Tool, showedImageIx:tempIx+1});
                 })
             
           })
@@ -162,11 +164,26 @@ class toolDetail extends Component {
         debugger
         shareTool(e.target.name)
             .then((response)=>{ 
-                this.fetchToolList()     
+                console.log(response);
+                this.loadToolDetails(response);
+
             })
             .catch ((err) => {
-                console.log(err)
+                console.log(err);
             })       
+    }
+
+    handleUnshareButton (e) {
+        debugger
+        unshareTool(e.target.name)
+            .then((response)=>{ 
+                console.log(response);
+                this.loadToolDetails(response);
+
+            })
+            .catch ((err) => {
+                console.log(err);
+            })  
     }
 
     handleFormSubmit = (e) => {
@@ -189,19 +206,19 @@ class toolDetail extends Component {
         let temp_cat0_list = getCatL0List();
         
         let temp_tool = {}
-        temp_tool.name           = toolDetails.toolData.name
-        temp_tool.brand          = toolDetails.toolData.brand
-        temp_tool.category       = toolDetails.toolData.category
-        temp_tool.description    = toolDetails.toolData.description
-        temp_tool.images         = toolDetails.toolData.images
-        temp_tool.modelNo        = toolDetails.toolData.modelNo
-        temp_tool.owner          = toolDetails.toolData.owner
-        temp_tool.id             = toolDetails.toolData._id
-        temp_tool.requested_by   = toolDetails.toolData.requested_by
-        temp_tool.reserved_by    = toolDetails.toolData.reserved_by
-        temp_tool.shared         = toolDetails.toolData.shared
-        temp_tool.lended_to      = toolDetails.toolData.lended_to
-        temp_tool.available      = toolDetails.toolData.available 
+        temp_tool.name           = toolDetails.name
+        temp_tool.brand          = toolDetails.brand
+        temp_tool.category       = toolDetails.category
+        temp_tool.description    = toolDetails.description
+        temp_tool.images         = toolDetails.images
+        temp_tool.modelNo        = toolDetails.modelNo
+        temp_tool.owner          = toolDetails.owner
+        temp_tool.id             = toolDetails._id
+        temp_tool.requested_by   = toolDetails.requested_by
+        temp_tool.reserved_by    = toolDetails.reserved_by
+        temp_tool.shared         = toolDetails.shared
+        temp_tool.lended_to      = toolDetails.lended_to
+        temp_tool.available      = toolDetails.available 
 
         let temp_cat0,temp_cat1, temp_cat2,temp_showedImgIx,temp_cat2_list
             temp_cat0 = temp_tool.category[0]
@@ -240,7 +257,7 @@ class toolDetail extends Component {
         let toolID = this.props.location.state.toolId
         getToolDetails(toolID)
         .then((response)=>{
-            this.loadToolDetails(response)
+            this.loadToolDetails(response.toolData)
         })
     }
 
@@ -428,13 +445,25 @@ class toolDetail extends Component {
                                     </Button>
                                 </Col>
                                 <Col sm="3" md="2" lg="2">
-                                    {!this.state.ToolInfo.shared &&
+                                    {(!this.state.ToolInfo.shared 
+                                        // && !this.state.ToolInfo.lended_to
+                                        // && this.state.ToolInfo.reserved_by.length === 0
+                                        &&
                                         <Button 
                                             className="secondary-btn info-btn" 
                                             // variant="primary"
                                             name= {this.state.ToolInfo.id}
                                             onClick={this.handleShareButton}>
                                                 Offer
+                                        </Button>
+                                    )
+                                    ||
+                                        <Button 
+                                            className="secondary-btn info-btn" 
+                                            // variant="primary"
+                                            name= {this.state.ToolInfo.id}
+                                            onClick={this.handleUnshareButton}>
+                                                Shelf
                                         </Button>
                                     }
                                     

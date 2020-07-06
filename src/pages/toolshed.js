@@ -143,7 +143,7 @@ class toolshed extends Component {
                                                 tool.shared  
                                                 &&                               
                                                     <Button 
-                                                        className="primary-btn sharing-btn" 
+                                                        className="secondary-btn share-btn toolshed-unshare-btn" 
                                                         // variant="primary"
                                                         name= {tool._id}
                                                         onClick={this.handleUnshareButton}>
