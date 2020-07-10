@@ -62,10 +62,15 @@ class AddTool extends Component {
         
         UploadToolImg(uploadData)
         .then(response => {
-            console.log('response is: ', response);
-            let temp_Tool = {...this.state.tempToolInfo};
-            temp_Tool.images.push(response);
-            this.setState({ tempToolInfo:temp_Tool });
+            if (response.status === 200) {
+                console.log('response is: ', response);
+                let temp_Tool = {...this.state.tempToolInfo};
+                temp_Tool.images.push(response.data);
+                this.setState({ tempToolInfo:temp_Tool });
+            } else {
+                this.setState({error:response.message.message})
+            }
+            
           })
           .catch(err => {
             console.log("Error while uploading the file: ", err);
@@ -340,6 +345,11 @@ class AddTool extends Component {
                                                     onClick={this.handleFileUpload}>
                                                         Upload
                                                 </Button>
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col>
+                                                <h5>{this.state.error}</h5>
                                             </Col>
                                         </Row>
                                         

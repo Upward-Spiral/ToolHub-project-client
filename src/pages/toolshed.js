@@ -180,6 +180,7 @@ class toolshed extends Component {
                                             <Row> 
                                                 <Link 
                                                     to={{pathname:'/tool/detail',
+                                                    // search : `?id=${tool._id}`
                                                     state : { toolId:tool._id}
 
                                                 }}>

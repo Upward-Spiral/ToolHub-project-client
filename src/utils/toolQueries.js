@@ -53,16 +53,25 @@ export const UploadToolImg = (theFile)=> {
             data: theFile    
         })
         .then((response)=>{
-            if (response.status===200)
+            if (response.status === 200)
             {
                 console.log(response);
-                response=response.data
+                // response=response.data
+            } else {
+                response = {
+                    status: 500
+                }
             }
                 
             return (response)
         })
         .catch ((err) => {
-            console.log(err)
+            console.log("Error uploading: ",err)
+            let res = {
+                status : 500,
+                message : err
+            }
+            return (res)
         })
 }
 
@@ -74,7 +83,7 @@ export const updateToolImage = (newToolImage) => {
         data: qs.stringify(newToolImage)    
     })
     .then((response)=>{
-        if (response.status===200){
+        if (response.status === 200){
             console.log(response);
             response=response.data
         }
@@ -116,11 +125,11 @@ export const updateTool = (updatedTool)=> {
         data: qs.stringify(updatedTool)    
     })
     .then((response)=>{
-        if (response.status!==200)
-        {
-            console.log(response);
-            response=response.data
-        }
+        if (response.status === 200)
+            {
+                console.log(response);
+                response=response.data
+            } 
             
         return (response)
     })
@@ -138,7 +147,7 @@ export const searchTools = (searchData) => {
         data: qs.stringify(searchData)    
     })
     .then((response)=>{
-        if (response.status!==200){
+        if (response.status===200){
             console.log(response);
             response=response.data
             
@@ -196,7 +205,7 @@ export const BorrowTool = (toolId) => {
             url: `/borrow/${toolId}`,   
         })
         .then((response)=>{
-            if (response.status!==200){
+            if (response.status===200){
                 console.log(response);
                 response=response.data
             }
@@ -215,7 +224,7 @@ export const reserveTool = (toolId) => {
             url: `/reserve/${toolId}`,   
         })
         .then((response)=>{
-            if (response.status!==200){
+            if (response.status===200){
                 console.log(response);
                 response=response.data
             }
@@ -236,7 +245,7 @@ export const lendTool = (req,tool)=> {
         data: qs.stringify(req_tool)    
     })
     .then((response)=>{
-        if (response.status!==200){
+        if (response.status===200){
             console.log(response);
             response=response.data
         }

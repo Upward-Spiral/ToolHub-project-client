@@ -56,10 +56,10 @@ class toolDetail extends Component {
     }
     
     handleInputChange (event) {
-        // debugger
-        let temp_tool = {...this.state.tempToolInfo};
+        debugger
+        let temp_tool = {...this.state.ToolInfo};
         temp_tool[event.target.name] = event.target.value;
-        this.setState({tempToolInfo:temp_tool})
+        this.setState({ToolInfo:temp_tool})
     }
 
     handleImageSelect (e) {
@@ -189,14 +189,15 @@ class toolDetail extends Component {
     handleFormSubmit = (e) => {
         e.preventDefault();
         debugger
-        let toolID = window.localStorage.getItem("visitedToolId")
+        // let toolID = window.localStorage.getItem("visitedToolId")
+        let toolID = this.props.location.state.toolId
         let {name,brand,modelNo,description,category}  = this.state.ToolInfo
         let temp_tool = {name,brand,modelNo,description,category}
         temp_tool.id = toolID
 
         updateTool(temp_tool)
             .then((response)=>{
-                this.updateToolDetails(response)
+                this.loadToolDetails(response)
             })
         
     } 
