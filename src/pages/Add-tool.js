@@ -68,6 +68,7 @@ class AddTool extends Component {
                 temp_Tool.images.push(response.data);
                 this.setState({ tempToolInfo:temp_Tool });
             } else {
+                let errorMessage = response.message.message + "File name should not include any special characters (!@#$%^&*)"
                 this.setState({error:response.message.message})
             }
             
@@ -349,7 +350,7 @@ class AddTool extends Component {
                                         </Row>
                                         <Row>
                                             <Col>
-                                                <h5>{this.state.error}</h5>
+                                                <p className="error-message">{this.state.error}</p>
                                             </Col>
                                         </Row>
                                         
