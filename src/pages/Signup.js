@@ -250,10 +250,7 @@ class Signup extends Component {
                                                     onBlur={this.checkUserPass}
                                                 />
                                             </Form.Group>
-                                            <ErrorMessage
-                                                errorsArray={this.state.errors}
-                                                
-                                            />
+                                            <ErrorMessage errorsArray={this.state.errors} />
                                             <div><p className="errorMessage" id="userPassControlMessage"></p></div>
                                         </Col>
                                     <Col>

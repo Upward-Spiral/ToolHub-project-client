@@ -147,7 +147,7 @@ export const searchTools = (searchData) => {
         data: qs.stringify(searchData)    
     })
     .then((response)=>{
-        if (response.status===200){
+        if (response.status === 200){
             console.log(response);
             response=response.data
             
@@ -198,14 +198,33 @@ export const unshareTool = (toolId) => {
         })
 }
 
-export const BorrowTool = (toolId) => {
+export const borrowTool = (toolId) => {
     debugger
     return axios({
             method: "GET",
             url: `/borrow/${toolId}`,   
         })
         .then((response)=>{
-            if (response.status===200){
+            if (response.status === 200){
+                console.log(response);
+                response=response.data
+            }
+                
+            return (response)
+        })
+        .catch ((err) => {
+            console.log(err)
+        })
+}
+
+export const unborrowTool = (toolId) => {
+    debugger
+    return axios({
+            method: "GET",
+            url: `/unborrow/${toolId}`,   
+        })
+        .then((response)=>{
+            if (response.status === 200){
                 console.log(response);
                 response=response.data
             }

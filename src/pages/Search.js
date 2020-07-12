@@ -49,15 +49,14 @@ class Search extends Component {
         let theSearchData = this.state.searchData
         searchTools(theSearchData)
             .then((result)=>{
-                // let goodSearchResults = result.data
-                let tempsearchResults = result.data
+                // let tempsearchResults = result.data
                 let goodSearchResults 
                 let temp_flag = false
-                if (tempsearchResults.length===0) {
+                if (result.length === 0) {
                     temp_flag=true
                 }
                 var temp_user = getUser()
-                goodSearchResults = tempsearchResults.filter((item)=>{
+                goodSearchResults = result.filter((item)=>{
                     return item.owner[0].username !== temp_user.username
                 })
                 let markers = goodSearchResults.map((tool)=>{
@@ -105,126 +104,122 @@ class Search extends Component {
     render() {
         return (
             <DefaultLayout>
-                <div className="search-page">
-                    
-                        <Container fluid id="search-form">
-                            <Row>
-                                <Col>
-                                <Form onSubmit={this.handleSearch} className="search-form">
-                                        <Form.Row>
-                                            <Form.Group controlId="formSearchWord">                                          
-                                                <Form.Control 
-                                                    name="word" type="text" 
-                                                    placeholder="Search" 
-                                                    onChange={this.handleInputChange}/>
-               
-                                            </Form.Group>
-                                            <Button variant="primary" type="submit" className="search-btn">
-                                                Search
-                                            </Button>
-                                        </Form.Row>
-                                    </Form>
-                                </Col>
-                                
-                            </Row>     
-                        </Container> 
-                        <Container className="map">
-                            <Row>
+                <div className="search-page">                
+                    <Container fluid id="search-form">
+                        <Row>
+                            <Col>
+                            <Form onSubmit={this.handleSearch} className="search-form">
+                                    <Form.Row>
+                                        <Form.Group controlId="formSearchWord">                                          
+                                            <Form.Control 
+                                                name="word" type="text" 
+                                                placeholder="Search" 
+                                                onChange={this.handleInputChange}/>
+            
+                                        </Form.Group>
+                                        <Button variant="primary" type="submit" className="search-btn">
+                                            Search
+                                        </Button>
+                                    </Form.Row>
+                                </Form>
+                            </Col>
+                            
+                        </Row>     
+                    </Container> 
+                    <Container className="map">
+                        <Row>
 
-                           
-                        {this.state.showedResults && this.state.showedResults.length > 0  && 
-                        <div style={{width:"40vw", height:'40vh', 'border-radius': '10px' }}>
-                            <WrappedMap googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
-                            loadingElement={<div style={{height:"100%"}}/>}
-                            containerElement={<div style={{height:"100%"}}/>}
-                            mapElement={<div style={{height:"100%"}}/>}
-                            markers={this.state.markers}
-                            center={this.state.userLocation}
-                           
-                            />
-                        </div> 
-                        }     
-                         </Row>     
-                        </Container>              
                         
-                        <Container>
+                    {this.state.showedResults && this.state.showedResults.length > 0  && 
+                    <div style={{width:"40vw", height:'40vh', 'borderRadius': '10px' }}>
+                        <WrappedMap googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
+                        loadingElement={<div style={{height:"100%"}}/>}
+                        containerElement={<div style={{height:"100%"}}/>}
+                        mapElement={<div style={{height:"100%"}}/>}
+                        markers={this.state.markers}
+                        center={this.state.userLocation}
+                        
+                        />
+                    </div> 
+                    }     
+                        </Row>     
+                    </Container>                                     
+                    <Container id="search-results">
                             <Row>
                                 <Col>
                                     {this.state.showedResults
-                                       ?
-                                    this.state.showedResults.map((tool)=>{
-                                        return (
-                                            <Container  key={tool._id}>
-                                                <Media className="toolshed-element" >
-                                                    <img
-                                                        width={64}
-                                                        height={64}
-                                                        className="mr-3"
-                                                        src={tool.images[0] 
-                                                            ?
-                                                            tool.images[0].imgPath 
-                                                            : 
-                                                            "https://res.cloudinary.com/persia/image/upload/v1586933354/toolshare/Layout/tools-avatar_rbb7hn.jpg"}
-                                                        alt="Generic tool icon"
-                                                    />
-                                                    <Media.Body>
-                                                        <Row>
-                                                            <Col sm={8}>
-                                                                <h4>Name: {tool.name}</h4>
-                                                                <h5>Category:{tool.category[0]}</h5>
-                                                                <h6>Brand:{tool.brand}</h6>
-                                                                <br/>
-                                                                <p>{tool.description}</p>
-                                                                <p>{tool.owner[0].displayname}</p>
-                                                            </Col>
-                                                            <Col sm={2}> 
-                                                                <p>{Math.round(tool.distanceFrom/1000)}</p>
-                                                                    <p><small>Km away</small></p>
-                                                                    <p>{tool.available ? <small>available</small> : <small>unavailable</small> }</p>  
+                                        ?
+                                        this.state.showedResults.map((tool)=>{
+                                            return (
+                                                <Container  key={tool._id}>
+                                                    <Media className="item" >
+                                                        <Col sm={3}>
+                                                            <img
+                                                                width={128}
+                                                                height={128}
+                                                                className="mr-3"
+                                                                src={tool.images[0] 
+                                                                    ?
+                                                                    tool.images[0].imgPath 
+                                                                    : 
+                                                                    "https://res.cloudinary.com/persia/image/upload/v1586933354/toolshare/Layout/tools-avatar_rbb7hn.jpg"}
+                                                                alt="Generic tool icon"
+                                                            /> 
+                                                            <p className="status">
+                                                                {tool.available 
+                                                                ? 
+                                                                <small className="ok-message"><strong>available</strong></small> 
+                                                                : 
+                                                                <small className="error-message"><strong>unavailable</strong></small> }
+                                                            </p>
+                                                        </Col>
+                                                        <Col sm={9}>
+                                                            <Media.Body>
+                                                                <Row>
+                                                                    <Col sm={9}>
+                                                                        <h4 className="mt-3">{tool.name}</h4>
+                                                                        <h5>Category: {tool.category[0]}, {tool.category[1]}</h5>
+                                                                        <h6>Brand: {tool.brand}</h6>
+                                                                        <br/>
+                                                                        <p>{tool.description}</p>
+                                                                        <p>Owner: {tool.owner[0].displayname}</p>
+                                                                    </Col>
+                                                                    <Col sm={3}> 
+                                                                        <p className="mt-3">{Math.round(tool.distanceFrom/1000)} <small>Km away</small></p>
+                                                                        <p></p>
+                                                                        
 
-                                                                    <Link 
-                                                                        to={{pathname:'/tool/detail',
-                                                                        state : { toolId:tool._id}
-
-                                                                    }}>
-                                                                        <Button 
-                                                                        className="tool-detail-btn" 
-                                                                        variant="primary"
-                                                                        // name= {tool._id}
-                                                                        // onClick={this.handleDetailButton}
-                                                                        >
-                                                                            Detail
-                                                                        </Button> 
-                                                                    </Link>
- 
-                                                            </Col>                                                     
-                                                        </Row>      
-                                                    </Media.Body>
-                                                </Media>
-                                            </Container>
-                                        )
-                                    })
-                                   :
-                                    // {!this.state.showedResults.length >0 &&
+                                                                        <Link 
+                                                                            to={{pathname:'/tool/detail',
+                                                                            state : { toolId:tool._id}
+                                                                        }}>
+                                                                            <Button className="primary-btn  detail-btn">
+                                                                                Detail
+                                                                            </Button> 
+                                                                        </Link>
+                                                                    </Col>                                                     
+                                                                </Row>      
+                                                            </Media.Body>        
+                                                        </Col>
+                                                        
+                                                    </Media>
+                                                </Container>
+                                            )
+                                        })
+                                        :
                                         <p></p>
                                     }
                                     {
                                         this.state.flag && 
                                         <h4>Found 0 results! Refine your search and try again.</h4>
-                                    }
-                                    
-                                </Col>
-                                
+                                    }                                  
+                                </Col>                              
                             </Row>
                         </Container>
-                            
-                                                     
-            
-
                     <Container>
-                    <Row>
-                        <Col className="previous-search"><h4>Previous Searches</h4></Col>
-                    </Row>
+                        <Row>
+                            <Col className="previous-search"><h4>Previous Searches</h4></Col>
+                        </Row>
                         <Row>
                             <Col sm={3}>
                                 <Card className="previous-search-card"/* style={{ width: '18rem' }} */>
@@ -281,8 +276,7 @@ class Search extends Component {
                             <Col sm></Col>
                         </Row>
                     </Container>
-               </div> 
-                
+               </div>               
             </DefaultLayout>
         )
     }

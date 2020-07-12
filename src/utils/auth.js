@@ -79,8 +79,13 @@ export const login = (user) => {
         data: qs.stringify(user)
     })
     .then((response)=>{
-        if (response.status===201) 
+        if (response.status === 201) {
             setUser(response.data);
+        } else if (response.status === 204) {
+            response = "This username does not exist."           
+        } else {
+            response = response.data.messageBody
+        }           
         return (response)       
     })
     .catch(err => {

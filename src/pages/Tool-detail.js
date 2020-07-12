@@ -1,28 +1,32 @@
 import React, { Component } from 'react';
 import DefaultLayout from "../layouts/Default";
 import {Col,Button,Card,Form,Container,Row, Image} from 'react-bootstrap';
-import {getToolDetails,UploadToolImg,updateToolImage,updateTool,deleteTool} from '../utils/toolQueries';
+import {getToolDetails,UploadToolImg,updateToolImage,updateTool,deleteTool, reserveTool} from '../utils/toolQueries';
 import {getCatL0List, getCatL1List, getCatL2List} from '../utils/service';
-import {shareTool, unshareTool,lendTool} from '../utils/toolQueries';
+import {shareTool, unshareTool, lendTool, borrowTool, unborrowTool} from '../utils/toolQueries';
+import { getUser } from '../utils/auth';
 
 
 class toolDetail extends Component {
     constructor(props) {
         super(props)
 
-        this.loadToolDetails    = this.loadToolDetails.bind(this)
-        this.handleInputChange  = this.handleInputChange.bind(this);
-        this.handleFormSubmit   = this.handleFormSubmit.bind(this);
-        this.handleFileUpload   = this.handleFileUpload.bind(this);
-        this.handleCatL0Select  = this.handleCatL0Select.bind(this);
-        this.handleCatL1Select  = this.handleCatL1Select.bind(this);
-        this.handleCatL2Select  = this.handleCatL2Select.bind(this);
-        this.handleDeleteButton = this.handleDeleteButton.bind(this);
-        this.handleShareButton  = this.handleShareButton.bind(this);
-        this.handleImageSelect  = this.handleImageSelect.bind(this);
-        this.showNextImage      = this.showNextImage.bind(this);
-        this.showPreviousImage  = this.showPreviousImage.bind(this);
-        this.handleUnshareButton= this.handleUnshareButton.bind(this);
+        this.loadToolDetails             = this.loadToolDetails.bind(this)
+        this.handleInputChange           = this.handleInputChange.bind(this);
+        this.handleFormSubmit            = this.handleFormSubmit.bind(this);
+        this.handleFileUpload            = this.handleFileUpload.bind(this);
+        this.handleCatL0Select           = this.handleCatL0Select.bind(this);
+        this.handleCatL1Select           = this.handleCatL1Select.bind(this);
+        this.handleCatL2Select           = this.handleCatL2Select.bind(this);
+        this.handleDeleteButton          = this.handleDeleteButton.bind(this);
+        this.handleShareButton           = this.handleShareButton.bind(this);
+        this.handleImageSelect           = this.handleImageSelect.bind(this);
+        this.showNextImage               = this.showNextImage.bind(this);
+        this.showPreviousImage           = this.showPreviousImage.bind(this);
+        this.handleUnshareButton         = this.handleUnshareButton.bind(this);
+        this.handleBorrowButton         = this.handleBorrowButton.bind(this);
+        this.handleWithdrawBorrowButton = this.handleWithdrawBorrowButton.bind(this);
+        this.handleReserveButton         = this.handleReserveButton.bind(this);
 
         this.state = {
             
@@ -46,9 +50,13 @@ class toolDetail extends Component {
                 reserved_by: [],
                 lended_to: {},
                 available: true,
-                id:""
+                id:"",
+                ownerId:""
                 
             }, 
+            readOnly: false,
+            alreadyRequestedByMe: false,
+            alreadyReservedByMe: false,
             error:null ,
             tempCatText: "No subcategory",
             tempImgFile: null   
@@ -186,6 +194,42 @@ class toolDetail extends Component {
             })  
     }
 
+    handleBorrowButton (e) {
+        debugger
+        borrowTool(this.state.ToolInfo.id)
+            .then((response)=>{
+                console.log(response);
+                this.loadToolDetails(response);
+            })
+            .catch ((err) => {
+                console.log(err);
+            }) 
+    }
+
+    handleWithdrawBorrowButton (e) {
+        debugger
+        unborrowTool(this.state.ToolInfo.id)
+            .then((response)=>{
+                console.log(response);
+                this.loadToolDetails(response);
+            })
+            .catch ((err) => {
+                console.log(err);
+            }) 
+    }
+
+    handleReserveButton (e) {
+        debugger
+        reserveTool(this.state.ToolInfo.id)
+            .then((response)=>{
+                console.log(response);
+                this.loadToolDetails(response);
+            })
+            .catch ((err) => {
+                console.log(err);
+            }) 
+    }
+
     handleFormSubmit = (e) => {
         e.preventDefault();
         debugger
@@ -204,8 +248,9 @@ class toolDetail extends Component {
 
     loadToolDetails (toolDetails) {
         debugger
-        let temp_cat0_list = getCatL0List();
-        
+        let visitor = getUser();
+        let read_only = false;
+        let temp_cat0_list = getCatL0List();        
         let temp_tool = {}
         temp_tool.name           = toolDetails.name
         temp_tool.brand          = toolDetails.brand
@@ -219,8 +264,17 @@ class toolDetail extends Component {
         temp_tool.reserved_by    = toolDetails.reserved_by
         temp_tool.shared         = toolDetails.shared
         temp_tool.lended_to      = toolDetails.lended_to
-        temp_tool.available      = toolDetails.available 
+        temp_tool.available      = toolDetails.available
 
+        if (visitor._id !== temp_tool.owner._id) {
+            read_only = true;
+        }
+        if (temp_tool.requested_by.indexOf(visitor._id)) {
+            this.setState({alreadyRequestedByMe:true});
+        }
+        if (temp_tool.reserved_by.indexOf(visitor._id)) {
+            this.setState({alreadyReservedByMe:true})
+        }
         let temp_cat0,temp_cat1, temp_cat2,temp_showedImgIx,temp_cat2_list
             temp_cat0 = temp_tool.category[0]
         if (temp_tool.category[1]) {
@@ -248,7 +302,8 @@ class toolDetail extends Component {
                         selectedCatL2: temp_cat2,
                         showedImageIx: temp_showedImgIx,
                         catL1List: temp_cat1_list,
-                        catL2List: temp_cat2_list
+                        catL2List: temp_cat2_list,
+                        readOnly:read_only
                     })
     }
 
@@ -269,7 +324,7 @@ class toolDetail extends Component {
                     <Container className= "add-form update-form">
                         <Row>
                             <Col>
-                            <h1 className="title page-title">Tool Detail/Update<span></span></h1>
+                            <h1 className="title page-title">Tool Detail<span></span></h1>
                             </Col>
                         </Row>
                         <Form className="update-tool-detail-form" onSubmit={this.handleFormSubmit}>                
@@ -280,6 +335,7 @@ class toolDetail extends Component {
                                         <Form.Control 
                                             type="text" 
                                             name="name" 
+                                            readOnly = {this.state.readOnly}
                                             value={this.state.ToolInfo.name} 
                                             onChange={this.handleInputChange}/>
                                     </Form.Group>
@@ -288,6 +344,7 @@ class toolDetail extends Component {
                                         <Form.Control 
                                             type="text" 
                                             name="brand" 
+                                            readOnly = {this.state.readOnly}
                                             value={this.state.ToolInfo.brand} 
                                             onChange={this.handleInputChange}/>
                                     </Form.Group>
@@ -296,6 +353,7 @@ class toolDetail extends Component {
                                         <Form.Control 
                                             type="text" 
                                             name="modelNo" 
+                                            readOnly = {this.state.readOnly}
                                             value={this.state.ToolInfo.modelNo} 
                                             onChange={this.handleInputChange}/>
                                     </Form.Group>
@@ -303,6 +361,7 @@ class toolDetail extends Component {
                                         <Form.Label className="form-field-label">Main Category:</Form.Label>
                                         <Form.Control as="select"
                                             name="category" 
+                                            readOnly = {this.state.readOnly}
                                             value={this.state.selectedCatL0}
                                             onChange={this.handleCatL0Select}>
 
@@ -318,7 +377,8 @@ class toolDetail extends Component {
                                     <Form.Group className="tool-detail-form-1" controlId="tool-detail-subcat1">
                                         <Form.Label className="form-field-label">First subcategory:</Form.Label>
                                         <Form.Control as="select"
-                                            name="subcategory1" 
+                                            name="subcategory1"
+                                            readOnly = {this.state.readOnly} 
                                             value={this.state.selectedCatL1==="" 
                                                     ? 
                                                     this.state.tempCatText 
@@ -340,6 +400,7 @@ class toolDetail extends Component {
                                         <Form.Label className="form-field-label">Second subcategory:</Form.Label>
                                         <Form.Control as="select"
                                             name="subcategory2" 
+                                            readOnly = {this.state.readOnly}
                                             value={this.state.selectedCatL2==="" && this.state.tempCatText }
                                             onChange={this.handleCatL2Select} 
                                             disabled={this.state.catL2List===[]}>
@@ -356,7 +417,7 @@ class toolDetail extends Component {
                                     </Form.Group>
                                 </Col>
                                 <Col sm="7" md="6">
-                                    <Card /* style={{ width: '100%' }} */ >
+                                    <Card >
                                         <Card.Img 
                                             variant="top" 
                                             id="tool-detail-img" 
@@ -391,25 +452,32 @@ class toolDetail extends Component {
                                                     
                                                 </Col>
                                             </Row>
-                                            <Card.Title className="flex-row-center">Upload a picture</Card.Title>
-                                            <Row>
-                                                <Col sm="8" md="8">
-                                                   <Form.File 
-                                                        id="custom-file" 
-                                                        name="tool-img"
-                                                        onChange={this.handleImageSelect}
-                                                    />  
-                                                </Col>
-                                                <Col sm="4" md="4">
-                                                    <Button 
-                                                        variant="primary" 
-                                                        className="primary-btn"
-                                                        disabled={this.state.tempImgFile === null}
-                                                        onClick={this.handleFileUpload}>
-                                                            Upload
-                                                    </Button>
-                                                </Col>
-                                            </Row>             
+                                            
+                                            {!this.state.readOnly && 
+                                                <>
+                                                    <Card.Title className="flex-row-center">Upload a picture</Card.Title>
+                                                    <Row>
+                                                        <Col sm="8" md="8">
+                                                        <Form.File 
+                                                                id="custom-file" 
+                                                                name="tool-img"
+                                                                onChange={this.handleImageSelect}
+                                                            />  
+                                                        </Col>
+                                                        <Col sm="4" md="4">
+                                                            <Button 
+                                                                variant="primary" 
+                                                                className="primary-btn"
+                                                                disabled={this.state.tempImgFile === null}
+                                                                onClick={this.handleFileUpload}>
+                                                                    Upload
+                                                            </Button>
+                                                        </Col>
+                                                    </Row>
+                                                </>
+                                                
+                                            }
+                                                         
                                         </Card.Body>
                                     </Card>
                                 </Col>                              
@@ -421,6 +489,7 @@ class toolDetail extends Component {
                                         <Form.Control as="textarea" rows="3"
                                             className="textarea" 
                                             name="description"
+                                            readOnly = {this.state.readOnly}
                                             placeholder="Give it a brief description"
                                             value={this.state.ToolInfo.description}
                                             onChange={this.handleInputChange}
@@ -428,47 +497,91 @@ class toolDetail extends Component {
                                     </Form.Group>
                                 </Col> 
                             </Row>
-                            <Row>    
-                                <Col sm="9" md="10">
-                                    <Button 
-                                        className="primary-btn"
-                                        // variant="primary"
-                                        name={this.state.ToolInfo.id} 
-                                        type="submit">
-                                            Update
-                                    </Button>
-                                    <Button 
-                                        className="delete-btn" 
-                                        // variant="secondary"
-                                        name= {this.state.ToolInfo.id}
-                                        onClick={this.handleDeleteButton}>
-                                            Delete
-                                    </Button>
-                                </Col>
-                                <Col sm="3" md="2" lg="2">
-                                    {(!this.state.ToolInfo.shared 
-                                        // && !this.state.ToolInfo.lended_to
-                                        // && this.state.ToolInfo.reserved_by.length === 0
-                                        &&
-                                        <Button 
-                                            className="secondary-btn info-btn" 
-                                            // variant="primary"
-                                            name= {this.state.ToolInfo.id}
-                                            onClick={this.handleShareButton}>
-                                                Offer
-                                        </Button>
-                                    )
-                                    ||
-                                        <Button 
-                                            className="secondary-btn info-btn" 
-                                            // variant="primary"
-                                            name= {this.state.ToolInfo.id}
-                                            onClick={this.handleUnshareButton}>
-                                                Shelf
-                                        </Button>
-                                    }
-                                    
-                                </Col>
+                            <Row>
+                                {this.state.readOnly 
+                                    ?
+                                    <Col>
+                                        {this.state.ToolInfo.available 
+                                        ?
+                                        <>
+                                            {!this.state.alreadyRequestedByMe 
+                                                ?
+                                                <Button 
+                                                    className="primary-btn"
+                                                    name={this.state.ToolInfo.id} 
+                                                    onClick={this.handleBorrowButton}>
+                                                        Request
+                                                </Button>
+                                                :
+                                                <Button 
+                                                    className="primary-btn"
+                                                    name={this.state.ToolInfo.id} 
+                                                    onClick={this.handleWithdrawBorrowButton}>
+                                                        Withdraw My Request
+                                                </Button>
+                                            }
+                                        </>    
+                                        :
+                                        <>
+                                            {!this.state.alreadyReservedByMe
+                                            ?
+                                            <Button 
+                                                className="primary-btn"
+                                                name={this.state.ToolInfo.id} 
+                                                onClick={this.handleReserveButton}>
+                                                    Reserve
+                                            </Button>
+                                            :
+                                            <Button 
+                                                className="primary-btn"
+                                                name={this.state.ToolInfo.id} 
+                                                onClick={this.handleWithdrawReserveButton}>
+                                                    Withdraw My Reserve
+                                            </Button>
+                                            }
+                                        </>
+                                        
+                                        }
+                                    </Col>
+                                    :
+                                    <>
+                                        <Col sm="9" md="10">
+                                            <Button 
+                                                className="primary-btn"
+                                                name={this.state.ToolInfo.id} 
+                                                type="submit">
+                                                    Update
+                                            </Button>
+                                            <Button 
+                                                className="delete-btn" 
+                                                name= {this.state.ToolInfo.id}
+                                                onClick={this.handleDeleteButton}>
+                                                    Delete
+                                            </Button>
+                                        </Col> 
+                                        <Col sm="3" md="2" lg="2">
+                                            {(!this.state.ToolInfo.shared 
+                                                // && !this.state.ToolInfo.lended_to
+                                                // && this.state.ToolInfo.reserved_by.length === 0
+                                                &&
+                                                <Button 
+                                                    className="secondary-btn info-btn" 
+                                                    name= {this.state.ToolInfo.id}
+                                                    onClick={this.handleShareButton}>
+                                                        Offer
+                                                </Button>
+                                            )
+                                            ||
+                                                <Button 
+                                                    className="secondary-btn info-btn" 
+                                                    name= {this.state.ToolInfo.id}
+                                                    onClick={this.handleUnshareButton}>
+                                                        Shelf
+                                                </Button>
+                                            }  
+                                        </Col>
+                                    </>                            
+                                }    
                             </Row>                                
                         </Form>                      
                     </Container>                               

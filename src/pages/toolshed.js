@@ -87,8 +87,7 @@ class toolshed extends Component {
 
     render() {
         return (
-            <DefaultLayout>
-                
+            <DefaultLayout>    
                 <section id="toolshed">
                     <Link to="/tool/add"><Button id="add-tool-btn"  variant="primary">Add a tool</Button></Link>
                     {this.state.showedToolList.length > 0 ?
@@ -180,14 +179,9 @@ class toolshed extends Component {
                                             <Row> 
                                                 <Link 
                                                     to={{pathname:'/tool/detail',
-                                                    // search : `?id=${tool._id}`
                                                     state : { toolId:tool._id}
-
                                                 }}>
-                                                    <Button 
-                                                    className="primary-btn  detail-btn" 
-                                                    // variant="primary"
-                                                    >
+                                                    <Button className="primary-btn  detail-btn" >
                                                         Detail
                                                     </Button> 
                                                 </Link>

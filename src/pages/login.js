@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {login} from "../utils/auth";
 import { Link } from 'react-router-dom';
 import {Button,Form,Container,Row,Col,Image} from 'react-bootstrap';
+import ErrorMessage from '../components/errorMessage';
 
 class Login extends Component {
     constructor() {
@@ -17,7 +18,7 @@ class Login extends Component {
                 password : "", 
             }, 
             newUser:{},
-            error: null   
+            errors: null   
         }
     }
 
@@ -25,7 +26,7 @@ class Login extends Component {
         // debugger
         let temp_user = {...this.state.loginData};
         temp_user[event.target.name] = event.target.value;
-        this.setState({loginData:temp_user})
+        this.setState({ loginData:temp_user, errors: null })
     }
 
     handleFormSubmit(event) {
@@ -33,14 +34,18 @@ class Login extends Component {
         debugger
         login(this.state.loginData)
         .then((response) => {
-            if (response.status===201) {
-                this.setState({error:null}, ()=>{
+            console.log(response);
+            if (response.status && response.status === 201) {
+                this.setState({errors:null}, ()=>{
                     this.props.history.push({
                         pathname:`/user/home`
                     })
                 })
             } else {
-                this.setState({error:response.data.messageBody}, ()=>{
+                let errorMessage = response.toString();
+                let errArray = [];
+                errArray.push(errorMessage);
+                this.setState({errors: errArray}, ()=>{
                     this.props.history.push({
                         pathname:`/login`
                     })
@@ -59,9 +64,9 @@ class Login extends Component {
             return (          
                 <>
                     {this.state.error ?
-                        <div>
-                            <h6>Something went wrong!</h6>
-                            {/* <h6>{this.state.error}</h6> */}
+                        <div className="error-message">
+                            <h6>{this.state.errors[0]}</h6>
+                            
                         </div>:
                         ""     
                     } 
@@ -95,7 +100,7 @@ class Login extends Component {
                                             value={this.state.loginData.password} 
                                             onChange={this.handleInputChange} />   {/* the handler gets the event object by default */}
                                     </Form.Group>
-
+                                    {this.state.errors && <ErrorMessage errorsArray={this.state.errors} />}                               
                                     <Button className="secondary-btn login-page-btn" variant="primary" type="submit">Login</Button>
                                     <Button className="back-btn" variant="secondary"><Link to="/">Back</Link></Button>
                                 </Form>
