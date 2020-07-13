@@ -266,13 +266,13 @@ class toolDetail extends Component {
         temp_tool.lended_to      = toolDetails.lended_to
         temp_tool.available      = toolDetails.available
 
-        if (visitor._id !== temp_tool.owner._id) {
+        if (visitor._id !== temp_tool.owner) {
             read_only = true;
         }
-        if (temp_tool.requested_by.indexOf(visitor._id)) {
+        if (temp_tool.requested_by.indexOf(visitor._id) !== -1) {
             this.setState({alreadyRequestedByMe:true});
         }
-        if (temp_tool.reserved_by.indexOf(visitor._id)) {
+        if (temp_tool.reserved_by.indexOf(visitor._id) !== -1) {
             this.setState({alreadyReservedByMe:true})
         }
         let temp_cat0,temp_cat1, temp_cat2,temp_showedImgIx,temp_cat2_list
@@ -504,7 +504,8 @@ class toolDetail extends Component {
                                         {this.state.ToolInfo.available 
                                         ?
                                         <>
-                                            {!this.state.alreadyRequestedByMe 
+                                            {(!this.state.alreadyRequestedByMe && 
+                                                !this.state.ToolInfo.lended_to)
                                                 ?
                                                 <Button 
                                                     className="primary-btn"
@@ -523,7 +524,8 @@ class toolDetail extends Component {
                                         </>    
                                         :
                                         <>
-                                            {!this.state.alreadyReservedByMe
+                                            {!this.state.alreadyReservedByMe &&
+                                                this.state.ToolInfo.lended_to
                                             ?
                                             <Button 
                                                 className="primary-btn"
