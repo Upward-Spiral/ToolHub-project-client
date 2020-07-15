@@ -26,6 +26,14 @@
     height: 38px;
 }
 
+.delete-btn {
+    background-color: rgb(168, 103, 6);
+    border-color: rgb(168, 103, 6);
+    color: $darkBrown;
+    margin:10px 20px;
+    width: 80px;
+}
+
 #search-form {
     margin: 50px 20vw;
 }

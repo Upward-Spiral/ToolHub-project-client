@@ -1,13 +1,12 @@
 import Axios from "axios";
 import qs from "qs";
-// import {setUser} from "../utils/auth";
+
 
 const axios = Axios.create({
     baseURL: `${process.env.REACT_APP_API_BASE}/tool`,
     withCredentials: true,
     headers: { 'content-type': 'application/x-www-form-urlencoded' }
 });
-
 
 export const getToolList = (userId) => {
     debugger
@@ -25,6 +24,26 @@ export const getToolList = (userId) => {
     .catch ((err) => {
         console.log(err)
     })
+}
+
+export const getRequestList = () => {
+    debugger
+    return axios({
+        method: "GET",
+        url: "/requests",
+        // data: qs.stringify(toolIdList)  
+    })
+    .then((response)=>{
+        if (response.status === 200){
+            console.log(response)
+            response = response.data
+        }     
+        return (response)
+    })
+    .catch ((err) => {
+        console.log(err)
+    })
+
 }
 
 export const getToolDetails = (toolId) => {
@@ -255,16 +274,16 @@ export const reserveTool = (toolId) => {
         })
 }
 
-export const lendTool = (req,tool)=> {
+export const lendTool = (reqId,toolId)=> {
     debugger
-    let req_tool = {requester:req, tool:tool}
+    let req_tool = {requesterId:reqId, toolId:toolId}
     return axios({
         method: "POST",
         url: "/lend",
         data: qs.stringify(req_tool)    
     })
     .then((response)=>{
-        if (response.status===200){
+        if (response.status === 200){
             console.log(response);
             response=response.data
         }

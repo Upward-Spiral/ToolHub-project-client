@@ -3,7 +3,7 @@ import DefaultLayout from "../layouts/Default";
 import {Col,Button,Card,Form,Container,Row, Image} from 'react-bootstrap';
 import {getToolDetails,UploadToolImg,updateToolImage,updateTool,deleteTool, reserveTool} from '../utils/toolQueries';
 import {getCatL0List, getCatL1List, getCatL2List} from '../utils/service';
-import {shareTool, unshareTool, lendTool, borrowTool, unborrowTool} from '../utils/toolQueries';
+import {shareTool, unshareTool, borrowTool, unborrowTool} from '../utils/toolQueries';
 import { getUser } from '../utils/auth';
 
 
@@ -54,6 +54,7 @@ class toolDetail extends Component {
                 ownerId:""
                 
             }, 
+            toolOwner: null,
             readOnly: false,
             alreadyRequestedByMe: false,
             alreadyReservedByMe: false,
@@ -266,14 +267,18 @@ class toolDetail extends Component {
         temp_tool.lended_to      = toolDetails.lended_to
         temp_tool.available      = toolDetails.available
 
-        if (visitor._id !== temp_tool.owner) {
+        if (visitor._id !== temp_tool.owner._id) {
             read_only = true;
         }
         if (temp_tool.requested_by.indexOf(visitor._id) !== -1) {
             this.setState({alreadyRequestedByMe:true});
+        } else {
+            this.setState({alreadyRequestedByMe:false});
         }
         if (temp_tool.reserved_by.indexOf(visitor._id) !== -1) {
             this.setState({alreadyReservedByMe:true})
+        } else {
+            this.setState({alreadyReservedByMe:false})
         }
         let temp_cat0,temp_cat1, temp_cat2,temp_showedImgIx,temp_cat2_list
             temp_cat0 = temp_tool.category[0]
@@ -296,6 +301,7 @@ class toolDetail extends Component {
         }
         
         this.setState({ ToolInfo: temp_tool,
+                        toolOwner: temp_tool.owner,
                         catL0List: temp_cat0_list,
                         selectedCatL0: temp_cat0,
                         selectedCatL1: temp_cat1,
@@ -439,7 +445,7 @@ class toolDetail extends Component {
                                                     
                                                 </Col>
                                                 <Col sm="2" lg="2">
-                                            <p><span>{this.state.ToolInfo.images.length-this.state.showedImageIx}</span>/<span>{this.state.ToolInfo.images.length}</span></p>
+                                                    <p><span>{this.state.ToolInfo.images.length-this.state.showedImageIx}</span>/<span>{this.state.ToolInfo.images.length}</span></p>
                                                 </Col>
                                                 <Col className="flex-row-center">
                                                     <Button className="image-nav"
@@ -453,7 +459,8 @@ class toolDetail extends Component {
                                                 </Col>
                                             </Row>
                                             
-                                            {!this.state.readOnly && 
+                                            {!this.state.readOnly
+                                            ? 
                                                 <>
                                                     <Card.Title className="flex-row-center">Upload a picture</Card.Title>
                                                     <Row>
@@ -475,11 +482,17 @@ class toolDetail extends Component {
                                                         </Col>
                                                     </Row>
                                                 </>
+                                            :
+                                            <Row>
+                                                <Col>
+                                                    <Card.Title className="flex-row-center">Owner: {this.state.toolOwner.displayname}</Card.Title>
+                                                </Col>
                                                 
-                                            }
-                                                         
+                                            </Row>                                            
+                                            }                         
                                         </Card.Body>
                                     </Card>
+
                                 </Col>                              
                             </Row>
                             <Row>

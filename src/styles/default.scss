@@ -38,7 +38,7 @@
   border-color: $secondary-border-color;
   border-width: 2px;
   color: $darkBrown;
-  margin: 10px 20px 10px 0px;
+  margin: 10px 20px;
   width: 85px;
   a {
     color: $darkBrown;
@@ -50,13 +50,7 @@
   }
 }
 
-.delete-btn {
-  background-color: rgb(168, 103, 6);
-  border-color: rgb(168, 103, 6);
-  color: $darkBrown;
-  margin:10px 20px;
-  width: 80px;
-}
+
 
 .back-btn {
   background-color: $lightGrey;

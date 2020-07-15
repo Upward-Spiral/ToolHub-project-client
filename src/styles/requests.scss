@@ -1,0 +1,28 @@
+#Requests {
+   .element-tool {
+        border: 2px solid $halfOpaqueLightYellow;
+        border-radius: 10px;
+        margin: 10px 0px;
+        background-color: $halfOpaqueLightYellow;
+        width: 55vw;
+        .element-requester, .element-reserver {
+            color: $darkBrown;
+            margin: 5px;
+            h4 {
+                margin-top: 10px;
+            }
+            .row {
+                padding-top: 10px;
+            }
+        }
+        img {
+            margin: 10px;
+            border-radius: 10px;
+        }
+        
+    } 
+}
+
+
+
+

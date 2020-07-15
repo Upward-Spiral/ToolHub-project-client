@@ -2,18 +2,18 @@
 import React, { Component } from 'react';
 import DefaultLayout from "../layouts/Default";
 import {getUser} from '../utils/auth';
-
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import {Container,Row,Col,Media,Button} from 'react-bootstrap';
+import { getRequestList, lendTool } from '../utils/toolQueries';
+// import RequesterItem from '../components/requester';
 
 class Requests extends Component {
     constructor(props) {
         super(props)
 
-        this.handleAcceptButton = this.handleAcceptButton.bind(this)
-        this.handleRejectButton = this.handleRejectButton.bind(this)
-        this.fetchRequestList = this.fetchRequestList.bind(this);
+        this.handleAcceptRequest = this.handleAcceptRequest.bind(this)
+        this.handleRejectRequest = this.handleRejectRequest.bind(this)
+        this.fetchRequestList    = this.fetchRequestList.bind(this);
         // this.handleDetailButton = this.handleDetailButton.bind(this)
 
         this.state = {
@@ -21,8 +21,6 @@ class Requests extends Component {
             showedRequestList:[],  // must add filtering feature later  
             requestaccepted: 0
         }
-        
-
     }
 
     // handleDetailButton (e) {
@@ -32,18 +30,19 @@ class Requests extends Component {
     //     })
     // }
 
-    handleAcceptButton (e) {
+    handleAcceptRequest (e) {
         debugger
-        // acceptRequest(e.target.name)
-        //     .then((response)=>{ 
-        //         this.fetchRequestList()     
-        //     })
-        //     .catch ((err) => {
-        //         console.log(err)
-        //     })       
+        lendTool(e.target.name, e.target.value)
+            .then((response)=>{ 
+                console.log(response)
+                this.fetchRequestList()     
+            })
+            .catch ((err) => {
+                console.log(err)
+            })       
     }
 
-    handleRejectButton (e) {
+    handleRejectRequest (e) {
         debugger
         // rejectRequest(e.target.name)
         //     .then((response)=>{
@@ -56,98 +55,162 @@ class Requests extends Component {
 
 
     fetchRequestList(){
-        // var temp_tool_list= []
-        // getRequestList()
-        // .then((response)=>{
-        //     console.log(response)
-        //     temp_tool_list = response ;
-        //     this.setState({toolList:temp_tool_list, showedRequestList:temp_tool_list})
-        // })
-        // .catch ((err) => {
-        //     console.log(err)
-        // })
+        debugger
+        var tool_list
+        getRequestList()
+            .then((response)=>{
+                console.log(response)
+                tool_list = response ;
+                this.setState({requestList:tool_list, showedRequestList:tool_list})
+            })
+            .catch ((err) => {
+                console.log(err)
+            })
+        this.setState({toolList:tool_list, showedToolList:tool_list})
+        
     }
 
     componentDidMount () {
+        debugger
         let tempUser = getUser()
         if (tempUser.new_reqs) {
             this.fetchRequestList()
-        } else {
-
-        }
-             
+        }        
     }
-
     render() {
         return (
             <DefaultLayout>
                 <Container fluid>
                     <Row>
-                        <Col><h1>Toolshed</h1></Col>
+                        <Col>
+                        <h1 className="title page-title">Requests<span></span></h1>
+                        </Col>
                     </Row>
                 </Container>
                 
                 <section id="Requests">
                     {this.state.showedRequestList.length > 0 ?
-                    this.state.showedRequestList.map((req)=>{
+                        this.state.showedRequestList.map((tool)=>{
                         return (
-
-                            <Container  key={req._id}>
-                                <Media className="reqshed-element" >
+                            <Container  key={tool._id}>
+                                <Media className="element-tool" >
                                     <img
-                                        width={64}
-                                        height={64}
-                                        className="mr-3"
-                                        src={req.images[0] 
+                                        width={256}
+                                        height={256}
+                                        // className="mr-3 ml-3 mt-3 mb-3"
+                                        src={tool.images[0] 
                                             ?
-                                             req.images[0].imgPath 
+                                             tool.images[0].imgPath 
                                             : 
                                             "https://res.cloudinary.com/persia/image/upload/v1586933354/toolshare/Layout/tools-avatar_rbb7hn.jpg"}
                                         alt="Generic tool icon"
                                     />
                                     <Media.Body>
-                                        <Row>
-                                            <Col sm={10}>
-                                                <h4>{req.displayname}</h4>
-                                                <h6>{req.brand}</h6>
-                                                <p>{req.description}</p>
-                                            </Col>
-                                            <Col sm={2}>                                  
-                                                
-                                                    <Button 
-                                                        className="offer-it-btn" 
-                                                        variant="primary"
-                                                        name= {req._id}
-                                                        onClick={this.handleAcceptButton}>
-                                                            Accept!
-                                                        </Button> 
-                                                    
-                                                    <Button 
-                                                        className="offer-it-btn" 
-                                                        variant="primary"
-                                                        name= {req._id}
-                                                        onClick={this.handleRejectButton}>
-                                                            Reject!
-                                                        </Button>
-                                               
-{/*                                                 
-                                                <Link 
-                                                    to={{pathname:'/tool/detail',
-                                                    state : { toolId:tool._id}
+                                        {!tool.lended_to
+                                        ?
+                                        <>
+                                            <Row className="mt-3 ml-3">
+                                                <h6>Requsted by:</h6>
+                                            </Row>                                                               
+                                            {tool.requested_by.map((requester,index ) => {
+                                                return (
+                                                    // <RequesterItem
+                                                    //     index = {index}
+                                                    //     requester = {requester}
+                                                    //     tool = {tool}
+                                                    //     onRequestAccept={this.handleAcceptRequest}
+                                                    //     onrequestReject
 
-                                                }}>
-                                                    <Button 
-                                                    className="tool-detail-btn" 
-                                                    variant="primary"
-                                                    >
-                                                        Detail
-                                                    </Button> 
-                                                </Link> */}
-
-                                              
-                                                
-                                            </Col>                                                     
-                                        </Row>      
+                                                    <Media className="element-requester" key={index}>
+                                                        <img 
+                                                            width={64}
+                                                            height={64}
+                                                            className="mr-3"
+                                                            src={requester.images[0].imgPath} 
+                                                            alt="user's profile"
+                                                        />
+                                                        <Media.Body>
+                                                            <Row className="row">
+                                                                <Col sm={5}>
+                                                                    <h4>{requester.displayname}</h4>
+                                                                    <h6>{requester.address[0].pcode} {requester.address[0].city} </h6>
+                                                                    {/* <p>{requester.description}</p> */}
+                                                                </Col>
+                                                                <Col sm={3}> 
+                                                                    <Button 
+                                                                        className="primary-btn" 
+                                                                        name = {requester._id}
+                                                                        value = {tool._id}
+                                                                        onClick={this.handleAcceptRequest}>
+                                                                            Accept
+                                                                    </Button>
+                                                                </Col>     
+                                                                <Col sm={4}>
+                                                                    <Button 
+                                                                        className="secondary-btn" 
+                                                                        name= {requester._id}
+                                                                        value = {tool._id}
+                                                                        onClick={this.handleRejectRequest}>
+                                                                            Reject
+                                                                    </Button>                                              
+                                                                </Col>                                                     
+                                                            </Row>
+                                                        </Media.Body>
+                                                    </Media> 
+                                                )
+                                            })}
+                                        </>
+                                        :
+                                        <>
+                                            
+                                            <Row className="mt-3 ml-3">
+                                                <h6>Reserved by:</h6>
+                                            </Row> 
+                                            {tool.reserved_by.map((reserver) => {
+                                                return (
+                                                    <Media className="element-reserver">
+                                                        <img 
+                                                            width={64}
+                                                            height={64}
+                                                            className="mr-3"
+                                                            src={reserver.images[0].imgPath} 
+                                                            alt="user's profile"
+                                                        />
+                                                        <Media.Body>
+                                                            <Row className="row">
+                                                                <Col sm={5}>
+                                                                    <h4>{reserver.displayname}</h4>
+                                                                    <h6>{reserver.address[0].city}</h6>
+                                                                    {/* <p>{reserver.description}</p> */}
+                                                                </Col>
+                                                                <Col sm={3}> 
+                                                                    <Button 
+                                                                        className="primary-btn" 
+                                                                        name= {reserver._id}
+                                                                        onClick={this.handleAcceptButton}>
+                                                                            Accept!
+                                                                    </Button>
+                                                                </Col>     
+                                                                <Col sm={4}>
+                                                                    <Button 
+                                                                        className="secondary-btn" 
+                                                                        name= {reserver._id}
+                                                                        onClick={this.handleRejectButton}>
+                                                                            Reject!
+                                                                    </Button>                                              
+                                                                </Col>                                                     
+                                                            </Row>
+                                                        </Media.Body>
+                                                    </Media> 
+                                                )
+                                            })}
+                                        </>
+                                        
+                                         
+                                        }
+                                            
+                                       
+                                             
                                     </Media.Body>
                                 </Media>
                             </Container>
@@ -157,7 +220,7 @@ class Requests extends Component {
                     :
                     <h6>No requests to show!</h6>
                 }
-                    <Link to="/tool/add"><Button id="add-tool-btn"  variant="primary">Add a tool</Button></Link>
+                    <Link to="/tool/add"><Button id="add-tool-btn"  variant="primary">Back</Button></Link>
 
                 </section>
             </DefaultLayout>
