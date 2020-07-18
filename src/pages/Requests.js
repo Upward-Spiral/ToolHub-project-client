@@ -66,7 +66,7 @@ class Requests extends Component {
             .catch ((err) => {
                 console.log(err)
             })
-        this.setState({toolList:tool_list, showedToolList:tool_list})
+        // this.setState({toolList:tool_list, showedToolList:tool_list})
         
     }
 
@@ -106,7 +106,7 @@ class Requests extends Component {
                                         alt="Generic tool icon"
                                     />
                                     <Media.Body>
-                                        {!tool.lended_to
+                                        {tool.lended_to.length === 0
                                         ?
                                         <>
                                             <Row className="mt-3 ml-3">
