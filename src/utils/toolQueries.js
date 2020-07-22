@@ -15,7 +15,25 @@ export const getToolList = (userId) => {
         url: `/toolshed/${userId}`
     })
     .then((response)=>{
-        if (response.status===200){
+        if (response.status === 200){
+            console.log(response)
+            response = response.data
+        }     
+        return (response)
+    })
+    .catch ((err) => {
+        console.log(err)
+    })
+}
+
+export const getBorrowedToolList = (userId) => {
+    debugger
+    return axios({
+        method: "GET",
+        url: `/borrowed/${userId}`
+    })
+    .then((response)=>{
+        if (response.status === 200){
             console.log(response)
             response = response.data
         }     

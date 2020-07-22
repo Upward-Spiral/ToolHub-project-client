@@ -161,14 +161,13 @@ class Requests extends Component {
                                             })}
                                         </>
                                         :
-                                        <>
-                                            
+                                        <> 
                                             <Row className="mt-3 ml-3">
                                                 <h6>Reserved by:</h6>
                                             </Row> 
-                                            {tool.reserved_by.map((reserver) => {
+                                            {tool.reserved_by.map((reserver,index) => {
                                                 return (
-                                                    <Media className="element-reserver">
+                                                    <Media className="element-reserver" key={index}>
                                                         <img 
                                                             width={64}
                                                             height={64}
@@ -183,14 +182,14 @@ class Requests extends Component {
                                                                     <h6>{reserver.address[0].city}</h6>
                                                                     {/* <p>{reserver.description}</p> */}
                                                                 </Col>
-                                                                <Col sm={3}> 
+                                                                {/* <Col sm={3}> 
                                                                     <Button 
                                                                         className="primary-btn" 
                                                                         name= {reserver._id}
                                                                         onClick={this.handleAcceptButton}>
                                                                             Accept!
                                                                     </Button>
-                                                                </Col>     
+                                                                </Col>      */}
                                                                 <Col sm={4}>
                                                                     <Button 
                                                                         className="secondary-btn" 

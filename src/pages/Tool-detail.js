@@ -531,7 +531,7 @@ class toolDetail extends Component {
                                                     className="primary-btn"
                                                     name={this.state.ToolInfo.id} 
                                                     onClick={this.handleWithdrawBorrowButton}>
-                                                        Withdraw My Request
+                                                        Withdraw
                                                 </Button>
                                             }
                                         </>    
