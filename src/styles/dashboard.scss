@@ -1,0 +1,28 @@
+
+.card-board {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+.dashboard-card {
+    margin: 20px;
+    height: 40vh;
+    background-color: $card-bg-color ;
+      
+}
+
+.dashboard-card img {
+    height: 80%;
+}
+
+.dashboard-card-title {
+     color: white;
+}
+
+.dashboard-card-title {
+    color: $darkBrown;
+    text-align: center;
+}
+

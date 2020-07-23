@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import DefaultLayout from "../layouts/Default";
-import {UploadToolImg,createNewTool} from '../utils/toolQueries';
-import {getCatL0List, getCatL1List, getCatL2List} from '../utils/service'
-import {getUser} from '../utils/auth';
-import {Container,Row,Col,Card,Button,Form} from 'react-bootstrap';
+import React, { Component }                             from 'react';
+import { Link }                                         from 'react-router-dom';
+import { getUser }                                      from '../utils/auth';
+import { UploadToolImg,createNewTool }                  from '../utils/toolQueries';
+import { getCatL0List, getCatL1List, getCatL2List }     from '../utils/service'
+import { Container,Row,Col,Card,Button,Form }           from 'react-bootstrap';
+//import DefaultLayout from "../layouts/Default";
 
 class AddTool extends Component {
     constructor(props) {
@@ -189,7 +189,7 @@ class AddTool extends Component {
 
     cancelForm (e) {
         this.props.history.push({
-            pathname:`/tool/shed`
+            pathname:`/home/tool/shed`
         })
     }
 
@@ -202,7 +202,7 @@ class AddTool extends Component {
             console.log('added: ', res);
             // let newToolId = res.data._id
             this.props.history.push({
-                pathname:`/tool/shed`
+                pathname:`/home/tool/shed`
             })
         })
         .catch(err => {

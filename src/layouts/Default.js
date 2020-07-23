@@ -5,7 +5,7 @@ function Default(props) {
     return (
 
             <div className="home-page">
-                <div id="side-panel">
+                <div >
                     <SidePanel/>
                 </div> 
             

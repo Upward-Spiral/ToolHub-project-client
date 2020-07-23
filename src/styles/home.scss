@@ -1,24 +1,424 @@
 
 
+.home-page {
+    position: relative;
+}
 
-.home-page-card {
-    margin: 20px;
-    height: 40vh;
-    background-color: $card-bg-color ;
+#side-panel {
+    position: fixed;
+    min-width: 290px;
+    left: 0px;
+}
+
+
+#main-area {
+    position: fixed;
+}
+
+.side-panel-card {
+    background-color:  $white;
+    height: 96vh;
+
+}
+
+/* Smartphomes ---------------------------------------------------------------*/
+
+/* ----------- iPhone 4 and 4S ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    #side-panel {
+        display: none;
+    }
+
+}
+
+/* Portrait */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+}
+
+/* Landscape */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
     
-   
 }
 
-.home-page-card img {
-    height: 80%;
+/* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    #side-panel {
+        display: none;
+    }
 }
 
-.home-page-card-title {
-     color: white;
+/* Portrait */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
 }
 
-.home-page-card-title {
-    color: $darkBrown;
-    text-align: center;
+/* Landscape */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+
 }
+
+/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2) { 
+    #side-panel {
+        display: none;
+    }
+}
+
+/* Portrait */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) { 
+
+}
+
+/* Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 667px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) { 
+
+}
+
+/* ----------- iPhone 6+, 7+ and 8+ ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+    #side-panel {
+        display: none;
+    }
+}
+
+/* Portrait */
+@media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait) { 
+
+}
+
+/* Landscape */
+@media only screen 
+  and (min-device-width: 414px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: landscape) { 
+
+}
+
+/* ----------- iPhone X ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+    #side-panel {
+        display: none;
+    }
+}
+
+/* Portrait */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait) { 
+
+}
+
+/* Landscape */
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: landscape) { 
+
+}
+
+
+/* iPad ----------------------------------------------------------------------*/
+
+/* ----------- iPad 1, 2, Mini and Air ----------- */
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+
+}
+/* Portrait */
+@media only screen 
+and (min-device-width: 768px) 
+and (max-device-width: 1024px) 
+and (orientation: portrait) 
+and (-webkit-min-device-pixel-ratio: 1) {
+    #side-panel {
+        width: 96vw;
+        height: 25vh;
+        display: none;
+    }
+    
+}
+/* Landscape */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 1) {
+    #side-panel {
+        width: 25vw;
+        height: 100vh; 
+        z-index: 50;
+        left: 0px;
+    }
+    #main-area {
+        // width: 75vw;
+        left: 290px;
+    }
+    .side-panel-contents{
+        margin-top: 2vh;
+        height: 100%;
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 40vw;
+    }
+    
+}
+
+/* ----------- iPad 3, 4 and Pro 9.7" ----------- */
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 834px) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+}
+/* Portrait */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 834px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    #side-panel {
+        display: none;
+    }
+}
+/* Landscape */
+@media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1024px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    #side-panel {
+        width: 25vw;
+        height: 100vh; 
+        z-index: 50;
+        left: 0px;
+    }
+    #main-area {
+        // width: 75vw;
+        left: 290px;
+    }
+}
+
+/* ----------- iPad Pro 10.5" ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 834px) 
+  and (max-device-width: 1023px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    
+}
+/* Portrait */
+/* Declare the same value for min- and max-width to avoid colliding with desktops */
+@media only screen 
+  and (min-device-width: 834px) 
+  and (max-device-width: 834px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    #side-panel {
+      display: none;
+  }
+}
+/* Landscape */
+/* Declare the same value for min- and max-width to avoid colliding with desktops */
+@media only screen 
+  and (min-device-width: 1112px) 
+  and (max-device-width: 1112px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    #side-panel {
+        width: 25vw;
+        height: 100vh; 
+        z-index: 50;
+        left: 0px;
+    }
+    #main-area {
+        // width: 75vw;
+        left: 290px;
+    }
+}
+
+/* ----------- iPad Pro 12.9" ----------- */
+
+/* Portrait and Landscape */
+@media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1199px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    #side-panel {
+      width: 25vw;
+      height: 100vh; 
+      z-index: 50;
+  }
+  #main-area {
+    // width: 75vw;
+    left: 290px;
+}
+//   .side-panel-contents{
+//       margin-top: 2vh;
+//       height: 100%;
+//       position: fixed;
+//       left: 0px;
+//       top: 0px;
+//       width: 40vw;
+//   }
+}
+/* Portrait */
+/* Declare the same value for min- and max-width to avoid colliding with desktops */
+@media only screen 
+  and (min-device-width: 1024px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+
+}
+/* Landscape */
+/* Declare the same value for min- and max-width to avoid colliding with desktops */
+@media only screen 
+  and (min-device-width: 1366px) 
+  and (max-device-width: 1366px) 
+  and (orientation: landscape) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+    #side-panel {
+        width: 25vw;
+        height: 100vh; 
+        z-index: 50;
+        left: 0px;
+    }
+    #main-area {
+        // width: 75vw;
+        left: 290px;
+    }
+  .side-panel-contents{
+      margin-top: 2vh;
+      height: 100%;
+      position: fixed;
+      left: 0px;
+      top: 0px;
+      width: 40vw;
+  }
+}
+
+/* Laptops and other screens ------------------------------------------------------*/
+
+/* ----------- Non-Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 2500px) 
+  and (-webkit-min-device-pixel-ratio: 1) { 
+    #side-panel {
+        width: 25vw;
+        height: 100vh; 
+        z-index: 50;
+        left: 0px;
+    }
+    #main-area {
+        width: 85vw;
+        left: 290px;
+    }
+    .side-panel-contents{
+        margin-top: 2vh;
+        height: 100%;
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 40vw;
+    }
+}
+
+/* ----------- Retina Screens ----------- */
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-width: 2500px) 
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (min-resolution: 192dpi) { 
+    #side-panel {
+        width: 25vw;
+        height: 100vh; 
+        z-index: 50;
+        left: 0px;
+    }
+    #main-area {
+        // width: 75vw;
+        left: 290px;
+    }
+    .side-panel-contents{
+        margin-top: 2vh;
+        height: 100%;
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 40vw;
+    }
+}
+
+
+
+
+
+
+
+
+
+
 

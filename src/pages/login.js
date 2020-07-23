@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import {login} from "../utils/auth";
-import { Link } from 'react-router-dom';
-import {Button,Form,Container,Row,Col,Image} from 'react-bootstrap';
-import ErrorMessage from '../components/errorMessage';
+import { login }            from "../utils/auth";
+import { Link }             from 'react-router-dom';
+import ErrorMessage         from '../components/errorMessage';
+import { Button,Form,Container,Row,Col,Image } from 'react-bootstrap';
 
 class Login extends Component {
     constructor() {
@@ -38,7 +38,7 @@ class Login extends Component {
             if (response.status && response.status === 201) {
                 this.setState({errors:null}, ()=>{
                     this.props.history.push({
-                        pathname:`/user/home`
+                        pathname:`/home`
                     })
                 })
             } else {

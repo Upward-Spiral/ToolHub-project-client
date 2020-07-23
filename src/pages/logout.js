@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-
-import {logout} from "../utils/userQueries";
+import { logout }           from "../utils/userQueries";
 import { Container, Alert } from 'react-bootstrap';
 
 class Logout extends Component {

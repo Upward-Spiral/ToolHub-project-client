@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import DefaultLayout from "../layouts/Default";
-import {Container,Row,Col,Card,Button,Form,Media} from 'react-bootstrap';
-import {getUser} from '../utils/auth';
-import {searchTools} from '../utils/toolQueries';
-import {WrappedMap} from '../components/googleMap';
+import React, { Component }     from 'react';
+import { Link }                 from 'react-router-dom';
+import { getUser }              from '../utils/auth';
+import { searchTools }          from '../utils/toolQueries';
+import { WrappedMap }           from '../components/googleMap';
+import { Container,Row,Col,Card,Button,Form,Media } from 'react-bootstrap';
+//import DefaultLayout from "../layouts/Default";
 
 
 class Search extends Component {
@@ -182,7 +182,7 @@ class Search extends Component {
                                                                         
 
                                                                         <Link 
-                                                                            to={{pathname:'/tool/detail',
+                                                                            to={{pathname:'/home/tool/detail',
                                                                             state : { toolId:tool._id}
                                                                         }}>
                                                                             <Button className="primary-btn  detail-btn">

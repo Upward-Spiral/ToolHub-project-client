@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import {signup,checkUsername,checkEmailUniqueness} from "../utils/auth";
-import {hasNumber,hasMixed,hasSpecial/* ,strengthColor,lengthIndicator */ } from '../utils/passwordStrength';
-import {hasAtSign} from '../utils/emailFormat';
-import ErrorMessage from '../components/errorMessage';
-import {Button,Form,Container,Row,Col,Image} from 'react-bootstrap';
+import React, { Component }                             from 'react';
+import { Link }                                         from 'react-router-dom';
+import { signup,checkUsername,checkEmailUniqueness }    from "../utils/auth";
+import { hasNumber,hasMixed,hasSpecial }                from '../utils/passwordStrength';
+import { hasAtSign }                                    from '../utils/emailFormat';
+import ErrorMessage                                     from '../components/errorMessage';
+import { Button,Form,Container,Row,Col,Image }          from 'react-bootstrap';
 
 class Signup extends Component {
     constructor() {

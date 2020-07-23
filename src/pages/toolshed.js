@@ -1,10 +1,10 @@
-import React, { Component }                 from 'react';
-import DefaultLayout                        from "../layouts/Default";
-import {getToolList, getBorrowedToolList}   from '../utils/toolQueries';
-import {getUser}                            from '../utils/auth';
-import {shareTool, unshareTool,lendTool}    from '../utils/toolQueries';
-import { Link }                             from 'react-router-dom';
-import {Container,Row,Col,Button, Alert}    from 'react-bootstrap';
+import React, { Component }                     from 'react';
+import { Link }                                 from 'react-router-dom';
+import { getUser}                               from '../utils/auth';
+import { getToolList, getBorrowedToolList }     from '../utils/toolQueries';
+import { shareTool, unshareTool,lendTool }      from '../utils/toolQueries';
+import { Container,Row,Col,Button, Alert }      from 'react-bootstrap';
+//import DefaultLayout                        from "../layouts/Default";
 
 class toolshed extends Component {
     constructor(props) {
@@ -136,7 +136,7 @@ class toolshed extends Component {
                                                 </Row>
                                                 <Row> 
                                                     <Link 
-                                                        to={{pathname:'/tool/detail',
+                                                        to={{pathname:'/home/tool/detail',
                                                         state : { toolId:tool._id}
                                                     }}>
                                                         <Button className="primary-btn  detail-btn" >
@@ -229,7 +229,7 @@ class toolshed extends Component {
                                                             <h6>Lended to</h6>
 
                                                             <Link 
-                                                            to={{pathname:'/user/public-page',
+                                                            to={{pathname:'/home/user/public-page',
                                                             state : { lender:tool.lended_to[0]._id}
 
                                                             }}>
@@ -242,7 +242,7 @@ class toolshed extends Component {
                                                 </Row>
                                                 <Row> 
                                                     <Link 
-                                                        to={{pathname:'/tool/detail',
+                                                        to={{pathname:'/home/tool/detail',
                                                         state : { toolId:tool._id}
                                                     }}>
                                                         <Button className="primary-btn  detail-btn" >

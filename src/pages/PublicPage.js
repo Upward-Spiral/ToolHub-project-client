@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
-import DefaultLayout from "../layouts/Default";
-import {Container,Row,Col,Media,Button,Card} from 'react-bootstrap';
-import {getProfile} from '../utils/userQueries';
-import {getToolList} from '../utils/toolQueries';
+import React, { Component }     from 'react'
+import { getProfile }           from '../utils/userQueries';
+import { getToolList }          from '../utils/toolQueries';
+import { Container,Row,Col,Media,Button,Card } from 'react-bootstrap';
 
 class PublicPage extends Component {
     constructor(props) {
@@ -85,7 +84,7 @@ class PublicPage extends Component {
                         })
                     }
                     
-                    <Button variant="outline-light" className="tool-carousel"> > </Button>
+                    <Button variant="outline-light" className="tool-carousel"> something </Button>
                     
                 </Row>
             </Container>

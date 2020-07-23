@@ -1,7 +1,7 @@
 import React, { Component }     from 'react';
-import {Switch,Route}           from 'react-router-dom';
+import { Switch,Route }         from 'react-router-dom';
 import { Link }                 from 'react-router-dom';
-import {getUser}                from "../utils/auth";
+import { getUser }              from "../utils/auth";
 import Profile                  from './profile';
 import Feed                     from './Feed';
 import ToolDetail               from './Tool-detail';
@@ -14,7 +14,8 @@ import AddProject               from './Add-project';
 import AllProjects              from './Projects-list';
 import PublicPage               from './PublicPage';
 import Dashboard                from './Dashboard';
-import {Button,Container,Row,Col,Card,ListGroup} from 'react-bootstrap';
+import Logout                   from './logout';
+import { Button,Container,Row,Col,Card,ListGroup } from 'react-bootstrap';
 
 class Home extends Component {
     constructor() {
@@ -54,48 +55,50 @@ class Home extends Component {
 
     render() {
         return (
-            <Container className="side-panel-contents">
-                <Row>
-                    <Col sm={4}>
+            <Container className="home-page">
+                {/* <Row> */}
+                    <div id="side-panel" /* sm={4} md={4} lg={4} */>
                         <Card className="side-panel-card" style={{ width: '18rem' }}>
                             <Card.Header className="side-panel-header">Hello {this.state.user.displayname}</Card.Header>
                             <Card.Img className="side-panel-img" variant="top" src={this.state.tempImgUrl} />
                             <Card.Body className="side-panel-card-body">
                                 <Card.Title>{this.state.today}</Card.Title> 
-
                             </Card.Body>
                             <ListGroup className="side-panel-flush">
-                                <ListGroup.Item className="sidebar-list-item"><Link to="/user/home">Dashboard</Link></ListGroup.Item>
-                                <ListGroup.Item className="sidebar-list-item"><Link to="/tool/shed">Toolshed</Link></ListGroup.Item>
-                                <ListGroup.Item className="sidebar-list-item"><Link to="/user/feed">Fellow Craftsmen</Link></ListGroup.Item>
-                                <ListGroup.Item className="sidebar-list-item"><Link to="/user/requests">Requests</Link></ListGroup.Item>
-                                <ListGroup.Item className="sidebar-list-item"><Link to="/user/profile">Profile</Link></ListGroup.Item>
-                                <ListGroup.Item className="sidebar-list-item"><Link to="/user/settings">Settings</Link></ListGroup.Item>
+                                <ListGroup.Item className="sidebar-list-item"><Link to="/home">Dashboard</Link></ListGroup.Item>
+                                <ListGroup.Item className="sidebar-list-item"><Link to="/home/tool/shed">Toolshed</Link></ListGroup.Item>
+                                <ListGroup.Item className="sidebar-list-item"><Link to="/home/user/feed">Fellow Craftsmen</Link></ListGroup.Item>
+                                <ListGroup.Item className="sidebar-list-item"><Link to="/home/user/requests">Requests</Link></ListGroup.Item>
+                                <ListGroup.Item className="sidebar-list-item"><Link to="/home/user/profile">Profile</Link></ListGroup.Item>
+                                <ListGroup.Item className="sidebar-list-item"><Link to="/home/user/settings">Settings</Link></ListGroup.Item>
                                 <ListGroup.Item>
-                                    <Link to="/logout"><Button variant="secondary bottom" size="lg" block>Logout</Button></Link>
+                                    <Link to="/home/logout"><Button variant="secondary bottom" size="lg" block>Logout</Button></Link>
                                 </ListGroup.Item>    
                         </ListGroup>
                         </Card>
                             
-                    </Col>
-                    <Col sm={8}>
-                        <Switch> 
-                            <Route exact path="/" component={Dashboard}/>
-                            <Route path="/tool/detail" component={ToolDetail}/>
-                            <Route path="/tool/search" component={Search}/>
-                            <Route path="/tool/add" component={AddTool}/>
-                            <Route path="/tool/shed" component={Toolshed}/>
-                            <Route path="/project/add" component={AddProject}/>
-                            <Route path="/project/list" component={AllProjects}/>
-                            <Route path="/user/feed" component={Feed}/>
-                            <Route path="/user/profile" component={Profile}/>
-                            <Route path="/user/public-page" component={PublicPage}/>
-                            <Route path="/user/settings" component={Settings}/>
-                            <Route path="/user/requests" component={Requests}/>
-                            <Route path="/logout" component={Logout}/>
-                        </Switch>
-                    </Col>
-                </Row>
+                    </div>
+                    <div id="main-area"/* sm={8} md={8} lg={8} */>
+                        <Container >
+                            <Switch> 
+                                <Route exact path="/home" component={Dashboard}/>
+                                <Route path="/home/tool/detail" component={ToolDetail}/>
+                                <Route path="/home/tool/search" component={Search}/>
+                                <Route path="/home/tool/add" component={AddTool}/>
+                                <Route path="/home/tool/shed" component={Toolshed}/>
+                                <Route path="/home/project/add" component={AddProject}/>
+                                <Route path="/home/project/list" component={AllProjects}/>
+                                <Route path="/home/user/feed" component={Feed}/>
+                                <Route path="/home/user/profile" component={Profile}/>
+                                <Route path="/home/user/public-page" component={PublicPage}/>
+                                <Route path="/home/user/settings" component={Settings}/>
+                                <Route path="/home/user/requests" component={Requests}/>
+                                <Route path="/home/logout" component={Logout}/>
+                            </Switch>
+                        </Container>
+                        
+                    </div>
+                {/* </Row> */}
             </Container>
         )
     }

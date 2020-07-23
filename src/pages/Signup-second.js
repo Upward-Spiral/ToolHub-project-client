@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import {signupSecond} from "../utils/auth";
-import {getTempUser} from "../utils/auth";
-import {getGeoCode} from '../utils/geoCode';
-import {Button,Form,Container,Row,Col,Image} from 'react-bootstrap';
+import React, { Component }     from 'react';
+import { Link }                 from 'react-router-dom';
+import { signupSecond }         from "../utils/auth";
+import { getTempUser }          from "../utils/auth";
+import { getGeoCode }           from '../utils/geoCode';
+import { Button,Form,Container,Row,Col,Image } from 'react-bootstrap';
 
 
 class SignupSecond extends Component {

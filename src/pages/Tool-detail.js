@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
-import DefaultLayout from "../layouts/Default";
-import {Col,Button,Card,Form,Container,Row, Image} from 'react-bootstrap';
-import {getToolDetails,UploadToolImg,updateToolImage,updateTool,deleteTool, reserveTool} from '../utils/toolQueries';
-import {getCatL0List, getCatL1List, getCatL2List} from '../utils/service';
-import {shareTool, unshareTool, borrowTool, unborrowTool} from '../utils/toolQueries';
-import { getUser } from '../utils/auth';
+import React, { Component }                                     from 'react';
+import { getUser }                                              from '../utils/auth';
+import { getToolDetails,UploadToolImg,updateToolImage,
+        updateTool,deleteTool, reserveTool }                    from '../utils/toolQueries';
+import { getCatL0List, getCatL1List, getCatL2List }             from '../utils/service';
+import { shareTool, unshareTool, borrowTool, unborrowTool }     from '../utils/toolQueries';
+import { Col,Button,Card,Form,Container,Row, Image }            from 'react-bootstrap';
+//import DefaultLayout from "../layouts/Default";
 
 
 class toolDetail extends Component {
@@ -164,7 +165,7 @@ class toolDetail extends Component {
         deleteTool(tempToolId)
             .then((response)=>{
                 this.props.history.push({
-                    pathname:`/tool/shed`
+                    pathname:`/home/tool/shed`
                 })
             })
     }

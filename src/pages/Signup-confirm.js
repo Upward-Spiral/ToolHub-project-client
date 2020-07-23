@@ -1,6 +1,6 @@
-import React from 'react';
+import React    from 'react';
 import { Link } from 'react-router-dom';
-import {Container,Button,Jumbotron, Col, Row} from 'react-bootstrap';
+import { Container,Button,Jumbotron, Col, Row } from 'react-bootstrap';
 
 function SignupConfirm() {
     return (

@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import DefaultLayout from "../layouts/Default";
-import {Container,Row,Col,Button,Card,Form} from 'react-bootstrap';
-import {getUser, setUser} from "../utils/auth";
-import {updateUserImg,uploadUserImg,updateProfile} from '../utils/userQueries';
-import { getGeoCode } from '../utils/geoCode';
+import React, { Component }                             from 'react';
+import { getUser, setUser }                             from "../utils/auth";
+import { getGeoCode }                                   from '../utils/geoCode';
+import { updateUserImg,uploadUserImg,updateProfile }    from '../utils/userQueries';
+import { Container,Row,Col,Button,Card,Form }           from 'react-bootstrap';
+//import DefaultLayout from "../layouts/Default";
 
 
 class profile extends Component {

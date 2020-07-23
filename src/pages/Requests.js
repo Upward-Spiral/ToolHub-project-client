@@ -1,11 +1,11 @@
 
-import React, { Component } from 'react';
-import DefaultLayout from "../layouts/Default";
-import {getUser} from '../utils/auth';
-import { Link } from 'react-router-dom';
-import {Container,Row,Col,Media,Button} from 'react-bootstrap';
-import { getRequestList, lendTool } from '../utils/toolQueries';
+import React, { Component }                 from 'react';
+import { Link }                             from 'react-router-dom';
+import { getUser }                          from '../utils/auth';
+import { getRequestList, lendTool }         from '../utils/toolQueries';
+import { Container,Row,Col,Media,Button }   from 'react-bootstrap';
 // import RequesterItem from '../components/requester';
+//import DefaultLayout from "../layouts/Default";
 
 class Requests extends Component {
     constructor(props) {

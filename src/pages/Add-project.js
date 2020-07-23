@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import DefaultLayout from "../layouts/Default";
+//import DefaultLayout from "../layouts/Default";
 
 class AddProject extends Component {
     constructor(props) {

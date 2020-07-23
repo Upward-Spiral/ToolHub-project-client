@@ -1,7 +1,7 @@
-import React from 'react';
-import IntroNav from '../components/intro-nav';
-import IntroFooter from '../components/intro-footer';
-import {Carousel} from 'react-bootstrap';
+import React        from 'react';
+import IntroNav     from '../components/intro-nav';
+import IntroFooter  from '../components/intro-footer';
+import { Carousel } from 'react-bootstrap';
 
 
 function intro() {
