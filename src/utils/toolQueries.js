@@ -8,6 +8,7 @@ const axios = Axios.create({
     headers: { 'content-type': 'application/x-www-form-urlencoded' }
 });
 
+// Get the list of all tools which belong to a user
 export const getToolList = (userId) => {
     debugger
     return axios({
@@ -26,6 +27,7 @@ export const getToolList = (userId) => {
     })
 }
 
+// Gets the list of all the tools which a user has borrowed
 export const getBorrowedToolList = (userId) => {
     debugger
     return axios({
@@ -44,6 +46,7 @@ export const getBorrowedToolList = (userId) => {
     })
 }
 
+// Gets the list of all the requests (borrow or reserve) for tools
 export const getRequestList = () => {
     debugger
     return axios({
@@ -281,6 +284,25 @@ export const reserveTool = (toolId) => {
         })
         .then((response)=>{
             if (response.status===200){
+                console.log(response);
+                response=response.data
+            }
+                
+            return (response)
+        })
+        .catch ((err) => {
+            console.log(err)
+        })
+}
+
+export const returnTool = (toolId) => {
+    debugger
+    return axios({
+            method: "GET",
+            url: `/return/${toolId}`,   
+        })
+        .then((response)=>{
+            if (response.status === 200){
                 console.log(response);
                 response=response.data
             }

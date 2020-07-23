@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import DefaultLayout from "../layouts/Default";
-import {getToolList, getBorrowedToolList} from '../utils/toolQueries';
-import {getUser} from '../utils/auth';
-import {shareTool, unshareTool,lendTool} from '../utils/toolQueries';
-import { Link } from 'react-router-dom';
-import {Container,Row,Col,Button, Alert} from 'react-bootstrap';
+import React, { Component }                 from 'react';
+import DefaultLayout                        from "../layouts/Default";
+import {getToolList, getBorrowedToolList}   from '../utils/toolQueries';
+import {getUser}                            from '../utils/auth';
+import {shareTool, unshareTool,lendTool}    from '../utils/toolQueries';
+import { Link }                             from 'react-router-dom';
+import {Container,Row,Col,Button, Alert}    from 'react-bootstrap';
 
 class toolshed extends Component {
     constructor(props) {
@@ -13,8 +13,7 @@ class toolshed extends Component {
         this.handleShareButton      = this.handleShareButton.bind(this);
         this.handleUnshareButton    = this.handleUnshareButton.bind(this);
         this.fetchToolList          = this.fetchToolList.bind(this);
-        this.handleAcceptButton     = this.handleAcceptButton.bind(this);
-        this.handleReturnButton     = this.handleReturnButton.bind(this);
+        this.handleAcceptButton     = this.handleAcceptButton.bind(this); 
 
         this.state = {
             toolList:[] ,
@@ -58,13 +57,6 @@ class toolshed extends Component {
             console.log(err)
         })
     }
-
-    handleReturnButton (e) {
-        debugger
-        let toolId = e.target.name;
-        // TO BE COMPLETED
-    }
-
 
     fetchToolList(){
         debugger
@@ -133,13 +125,13 @@ class toolshed extends Component {
                                                 <Row>
                                                     <Col> 
                                                                                 
-                                                        <Button 
+                                                        {/* <Button 
                                                             className="secondary-btn share-btn toolshed-unshare-btn" 
                                                             // variant="primary"
                                                             name= {tool._id}
                                                             onClick={this.handleReturnButton}>
                                                                 Return
-                                                            </Button> 
+                                                            </Button>  */}
                                                     </Col>   
                                                 </Row>
                                                 <Row> 
@@ -153,22 +145,18 @@ class toolshed extends Component {
                                                     </Link>
                                                 </Row>   
                                             </Col>                                                     
-                                        </Row>      
-                                    
-                                
+                                        </Row>  
                                 </Container>
-
                             )
                         })}
-                    </>
-                    
+                    </>  
                     :
                     <Alert variant="primary" className="no-data-alert">No Tools to show.</Alert>
                     }
                     {this.state.showedToolList.length > 0 ?
                     <>
                         <h1 className="title page-title">My own<span></span></h1>
-                        {this.state.showedToolList.map((tool)=>{
+                        {this.state.showedToolList.map((tool) => {
                             return (
                                 <Container key={tool._id}>                                                                
                                         <Row className="item">
@@ -207,7 +195,6 @@ class toolshed extends Component {
                                                         </>
                                                         )
                                                     })
-                                                
                                                 }
                                             </Col>
                                             <Col className="button-col" sm={2}> 
@@ -264,15 +251,12 @@ class toolshed extends Component {
                                                     </Link>
                                                 </Row>   
                                             </Col>                                                     
-                                        </Row>      
-                                    
-                                
+                                        </Row> 
                                 </Container>
 
                             )
                         })}
-                    </>
-                    
+                    </> 
                     :
                     <Alert variant="primary" className="no-data-alert">No Tools to show.</Alert>
                     }
@@ -280,7 +264,6 @@ class toolshed extends Component {
 
                 </section>
             </DefaultLayout>
-
         )
     }
 }
