@@ -184,7 +184,7 @@ class profile extends Component {
 
     render() {
         return (
-            <DefaultLayout>
+            <>
                 <Container>
                     <Row>
                         <Col>
@@ -365,7 +365,7 @@ class profile extends Component {
                     </Form>
                 </Container>
                 
-            </DefaultLayout>
+            </>
 
         )
     }

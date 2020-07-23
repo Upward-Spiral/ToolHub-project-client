@@ -75,14 +75,6 @@ class Search extends Component {
             })     
     }
 
-    // handleDetailButton (e) {
-    //     window.localStorage.setItem("visitedTool", e.target.name);
-    //     this.props.history.push({
-    //         pathname:'/tool/detail',
-    //         state : { toolId:e.target.name}
-    //     })
-    // }
-
     componentDidMount () {
        debugger
        let temp_user = getUser()
@@ -103,7 +95,7 @@ class Search extends Component {
 
     render() {
         return (
-            <DefaultLayout>
+            
                 <div className="search-page">                
                     <Container fluid id="search-form">
                         <Row>
@@ -277,7 +269,7 @@ class Search extends Component {
                         </Row>
                     </Container>
                </div>               
-            </DefaultLayout>
+            
         )
     }
 }

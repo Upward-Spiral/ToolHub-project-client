@@ -14,7 +14,6 @@ class Requests extends Component {
         this.handleAcceptRequest = this.handleAcceptRequest.bind(this)
         this.handleRejectRequest = this.handleRejectRequest.bind(this)
         this.fetchRequestList    = this.fetchRequestList.bind(this);
-        // this.handleDetailButton = this.handleDetailButton.bind(this)
 
         this.state = {
             requestList:[] ,
@@ -22,13 +21,6 @@ class Requests extends Component {
             requestaccepted: 0
         }
     }
-
-    // handleDetailButton (e) {
-    //     window.localStorage.setItem("visitedToolId", e.target.name);
-    //     this.props.history.push({
-    //         pathname:'/tool/detail'
-    //     })
-    // }
 
     handleAcceptRequest (e) {
         debugger
@@ -52,7 +44,6 @@ class Requests extends Component {
         //         console.log(err)
         //     })    
     }
-
 
     fetchRequestList(){
         debugger
@@ -79,7 +70,7 @@ class Requests extends Component {
     }
     render() {
         return (
-            <DefaultLayout>
+            <>
                 <Container fluid>
                     <Row>
                         <Col>
@@ -222,7 +213,7 @@ class Requests extends Component {
                     <Link to="/tool/add"><Button id="add-tool-btn"  variant="primary">Back</Button></Link>
 
                 </section>
-            </DefaultLayout>
+            </>
 
         )
     }

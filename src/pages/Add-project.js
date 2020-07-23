@@ -12,9 +12,9 @@ class AddProject extends Component {
 
     render() {
         return (
-            <DefaultLayout>
+            <div>
                 add new project page
-            </DefaultLayout>
+            </div>
             
         )
     }

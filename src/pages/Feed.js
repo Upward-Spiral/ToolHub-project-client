@@ -12,9 +12,9 @@ class Feed extends Component {
 
     render() {
         return (
-            <DefaultLayout>
+            
                 <h1>Feed page</h1>
-            </DefaultLayout>
+            
             
         )
     }

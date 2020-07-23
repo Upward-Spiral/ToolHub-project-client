@@ -17,10 +17,6 @@ class PublicPage extends Component {
         }
     }
 
-    // loadUserDetails () {
-    //     let {displayname,city,images}
-    // }
-
     HandleToolListNext () {
         let tempIx = this.state.toolThumbIx +4
         let temp_stl = this.state.toolList.slice(tempIx,tempIx+4)
@@ -49,9 +45,8 @@ class PublicPage extends Component {
     }
 
     render() {
-        return (
-            
-        <DefaultLayout>
+        return (           
+        <>
             <h1>Public Profile</h1>
             <Container>               
                     <Media>
@@ -95,7 +90,7 @@ class PublicPage extends Component {
                 </Row>
             </Container>
                         
-        </DefaultLayout>
+        </>
         )
     }
 }

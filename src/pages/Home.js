@@ -1,62 +1,104 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import DefaultLayout from "../layouts/Default";
-import {Container,Row,Card} from 'react-bootstrap';
+import React, { Component }     from 'react';
+import {Switch,Route}           from 'react-router-dom';
+import { Link }                 from 'react-router-dom';
+import {getUser}                from "../utils/auth";
+import Profile                  from './profile';
+import Feed                     from './Feed';
+import ToolDetail               from './Tool-detail';
+import Toolshed                 from './toolshed';
+import Requests                 from './Requests';
+import Settings                 from './Settings';
+import Search                   from './Search';
+import AddTool                  from './Add-tool';
+import AddProject               from './Add-project';
+import AllProjects              from './Projects-list';
+import PublicPage               from './PublicPage';
+import Dashboard                from './Dashboard';
+import {Button,Container,Row,Col,Card,ListGroup} from 'react-bootstrap';
 
+class Home extends Component {
+    constructor() {
+        super()
 
-class home extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {            
+        this.setToday = this.setToday.bind(this)
+
+        this.state = {
+            user:{},
+            tempImgUrl: "",
+            today: null
         }
+                 
+    }
+
+    setToday () {
+        let tempDate = new Date();
+        let today = tempDate.toDateString()
+        return today
+
+    }
+
+    componentDidMount () {
+        let temp_user = getUser();
+        if (!temp_user.images[0]) {
+            let image = "https://res.cloudinary.com/persia/image/upload/v1586683045/toolshare/Layout/avatar_brcvks.png"
+            this.setState({tempImgUrl: image })
+        } else {
+            this.setState({tempImgUrl:temp_user.images[0].imgPath})
+        }
+        let today = this.setToday()
+        console.log(temp_user);    
+        this.setState({user:temp_user, today:today});
+        
+
     }
 
     render() {
         return (
-            <DefaultLayout> 
-                <div className="card-board">
-                    <Container fluid>
-                        <Row>
-                            {/* <Col sm={5}>                                */}
-                                <Card className="home-page-card" style={{ width: '18rem' }}>
-                                    <Card.Img variant="top" /* fluid */ src="https://res.cloudinary.com/persia/image/upload/v1586649334/toolshare/Layout/find_a_tool_xb9v0q.jpg" />
-                                    <Card.Body>
-                                        <Link to="/tool/search"><Card.Title className="home-page-card-title">Find a tool</Card.Title></Link>
-                                    </Card.Body>
-                                </Card>
-                            {/* </Col> */}
-                            {/* <Col sm={5}> */}
-                                <Card className="home-page-card" style={{ width: '18rem' }}>
-                                    <Card.Img variant="top" /* fluid */ src="https://res.cloudinary.com/persia/image/upload/v1586651915/toolshare/Layout/toolbox_kl52cu.jpg" />
-                                    <Card.Body>
-                                        <Link to="/tool/add"><Card.Title className="home-page-card-title">Add a tool</Card.Title></Link>
-                                    </Card.Body>
-                                </Card>
-                            {/* </Col>        */}
-                        </Row>
-                        <Row>
-                            {/* <Col sm={5}> */}
-                                <Card className="home-page-card" style={{ width: '18rem' }}>
-                                    <Card.Img variant="top" /* fluid */ src="https://res.cloudinary.com/persia/image/upload/v1586652210/toolshare/Layout/laptop-level-tool_ly0yj6.jpg" />
-                                    <Card.Body>
-                                        <Link to="/project/add"><Card.Title className="home-page-card-title">Start a project</Card.Title></Link> 
-                                    </Card.Body>
-                                </Card>
-                            {/* </Col> */}
-                            {/* <Col sm={5}> */}
-                                <Card className="home-page-card" style={{ width: '18rem' }}>
-                                    <Card.Img variant="top" /* fluid */ src="https://res.cloudinary.com/persia/image/upload/v1586652702/toolshare/Layout/inspiration_j3kb3y.jpg" />
-                                    <Card.Body>
-                                        <Link to="/project/list"><Card.Title className="home-page-card-title">Get inspired</Card.Title></Link>
-                                    </Card.Body>
-                                </Card>                                                            
-                            {/* </Col> */}
-                        </Row>
-                    </Container>
-                </div>
-            </DefaultLayout>    
+            <Container className="side-panel-contents">
+                <Row>
+                    <Col sm={4}>
+                        <Card className="side-panel-card" style={{ width: '18rem' }}>
+                            <Card.Header className="side-panel-header">Hello {this.state.user.displayname}</Card.Header>
+                            <Card.Img className="side-panel-img" variant="top" src={this.state.tempImgUrl} />
+                            <Card.Body className="side-panel-card-body">
+                                <Card.Title>{this.state.today}</Card.Title> 
+
+                            </Card.Body>
+                            <ListGroup className="side-panel-flush">
+                                <ListGroup.Item className="sidebar-list-item"><Link to="/user/home">Dashboard</Link></ListGroup.Item>
+                                <ListGroup.Item className="sidebar-list-item"><Link to="/tool/shed">Toolshed</Link></ListGroup.Item>
+                                <ListGroup.Item className="sidebar-list-item"><Link to="/user/feed">Fellow Craftsmen</Link></ListGroup.Item>
+                                <ListGroup.Item className="sidebar-list-item"><Link to="/user/requests">Requests</Link></ListGroup.Item>
+                                <ListGroup.Item className="sidebar-list-item"><Link to="/user/profile">Profile</Link></ListGroup.Item>
+                                <ListGroup.Item className="sidebar-list-item"><Link to="/user/settings">Settings</Link></ListGroup.Item>
+                                <ListGroup.Item>
+                                    <Link to="/logout"><Button variant="secondary bottom" size="lg" block>Logout</Button></Link>
+                                </ListGroup.Item>    
+                        </ListGroup>
+                        </Card>
+                            
+                    </Col>
+                    <Col sm={8}>
+                        <Switch> 
+                            <Route exact path="/" component={Dashboard}/>
+                            <Route path="/tool/detail" component={ToolDetail}/>
+                            <Route path="/tool/search" component={Search}/>
+                            <Route path="/tool/add" component={AddTool}/>
+                            <Route path="/tool/shed" component={Toolshed}/>
+                            <Route path="/project/add" component={AddProject}/>
+                            <Route path="/project/list" component={AllProjects}/>
+                            <Route path="/user/feed" component={Feed}/>
+                            <Route path="/user/profile" component={Profile}/>
+                            <Route path="/user/public-page" component={PublicPage}/>
+                            <Route path="/user/settings" component={Settings}/>
+                            <Route path="/user/requests" component={Requests}/>
+                            <Route path="/logout" component={Logout}/>
+                        </Switch>
+                    </Col>
+                </Row>
+            </Container>
         )
     }
 }
 
-export default home
+export default Home

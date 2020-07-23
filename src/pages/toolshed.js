@@ -93,7 +93,7 @@ class toolshed extends Component {
 
     render() {
         return (
-            <DefaultLayout>    
+                
                 <section id="toolshed">
                     <Link to="/tool/add"><Button id="add-tool-btn"  variant="primary">Add a tool</Button></Link>
                     {this.state.showedBorrowedList.length > 0 ?
@@ -263,7 +263,7 @@ class toolshed extends Component {
                     <Link to="/tool/add"><Button id="add-tool-btn"  variant="primary">Add a tool</Button></Link>
 
                 </section>
-            </DefaultLayout>
+            
         )
     }
 }

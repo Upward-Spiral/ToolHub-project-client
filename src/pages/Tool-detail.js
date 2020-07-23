@@ -325,7 +325,7 @@ class toolDetail extends Component {
 
     render() {
         return (
-            <DefaultLayout>
+            
                 <div >                  
                     <Container className= "add-form update-form">
                         <Row>
@@ -601,8 +601,7 @@ class toolDetail extends Component {
                         </Form>                      
                     </Container>                               
                 </div>
-            </DefaultLayout>
-
+ 
         )
     }
 }

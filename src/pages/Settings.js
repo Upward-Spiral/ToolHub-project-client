@@ -12,9 +12,9 @@ class Settings extends Component {
 
     render() {
         return (
-            <DefaultLayout>
+            <div>
                 <h1>Settings page</h1>
-            </DefaultLayout>
+            </div>
 
         )
     }

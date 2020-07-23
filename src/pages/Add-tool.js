@@ -225,7 +225,7 @@ class AddTool extends Component {
 
     render() {
         return (
-            <DefaultLayout>
+            
                 <div>
                 <Container className="add-tool-frame" fluid>
                     <Row>
@@ -399,7 +399,7 @@ class AddTool extends Component {
                 </Container>
                                       
                 </div>
-            </DefaultLayout>
+            
             
         )
     }
