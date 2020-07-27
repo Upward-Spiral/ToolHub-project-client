@@ -103,7 +103,7 @@ export const UploadToolImg = (theFile)=> {
                 }
             }
                 
-            return (response)
+            return (response.data)
         })
         .catch ((err) => {
             console.log("Error uploading: ",err)
@@ -335,7 +335,6 @@ export const lendTool = (reqId,toolId)=> {
     })
 
 }
-
 
 export const deleteTool = (toolId) => {
     debugger

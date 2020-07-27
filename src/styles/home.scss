@@ -8,12 +8,13 @@
     position: fixed;
     min-width: 290px;
     left: 0px;
+    top: 0px;
 }
 
 
-#main-area {
-    position: fixed;
-}
+//#main-area {
+    // position: relative;
+//}
 
 .side-panel-card {
     background-color:  $white;

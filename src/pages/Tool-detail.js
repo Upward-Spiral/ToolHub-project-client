@@ -408,7 +408,12 @@ class toolDetail extends Component {
                                         <Form.Control as="select"
                                             name="subcategory2" 
                                             readOnly = {this.state.readOnly}
-                                            value={this.state.selectedCatL2==="" && this.state.tempCatText }
+                                            value={this.state.selectedCatL2==="" 
+                                                    ?
+                                                    this.state.tempCatText
+                                                    :
+                                                    this.state.selectedCatL2
+                                                 }
                                             onChange={this.handleCatL2Select} 
                                             disabled={this.state.catL2List===[]}>
 

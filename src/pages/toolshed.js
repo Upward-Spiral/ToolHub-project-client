@@ -96,9 +96,11 @@ class toolshed extends Component {
                 
                 <section id="toolshed">
                     <Link to="/tool/add"><Button id="add-tool-btn"  variant="primary">Add a tool</Button></Link>
-                    {this.state.showedBorrowedList.length > 0 ?
+                    <h1 className="title page-title">Borrowd<span></span></h1>
+                    {this.state.showedBorrowedList.length > 0 
+                    ?
                     <>
-                        <h1 className="title page-title">Borrowd<span></span></h1>
+                        
                         {this.state.showedBorrowedList.map((tool)=>{
                             return (
                                 <Container key={tool._id}>                                                                
@@ -153,7 +155,8 @@ class toolshed extends Component {
                     :
                     <Alert variant="primary" className="no-data-alert">No Tools to show.</Alert>
                     }
-                    {this.state.showedToolList.length > 0 ?
+                    {this.state.showedToolList.length > 0 
+                    ?
                     <>
                         <h1 className="title page-title">My own<span></span></h1>
                         {this.state.showedToolList.map((tool) => {
