@@ -105,13 +105,6 @@ class Requests extends Component {
                                             </Row>                                                               
                                             {tool.requested_by.map((requester,index ) => {
                                                 return (
-                                                    // <RequesterItem
-                                                    //     index = {index}
-                                                    //     requester = {requester}
-                                                    //     tool = {tool}
-                                                    //     onRequestAccept={this.handleAcceptRequest}
-                                                    //     onrequestReject
-
                                                     <Media className="element-requester" key={index}>
                                                         <img 
                                                             width={64}

@@ -3,9 +3,9 @@ import { getUser }                                              from '../utils/a
 import { getToolDetails,UploadToolImg,updateToolImage,
         updateTool,deleteTool, reserveTool }                    from '../utils/toolQueries';
 import { getCatL0List, getCatL1List, getCatL2List }             from '../utils/service';
-import { shareTool, unshareTool, borrowTool, unborrowTool }     from '../utils/toolQueries';
+import { shareTool, unshareTool, borrowTool, 
+        unborrowTool, unreserveTool }                           from '../utils/toolQueries';
 import { Col,Button,Card,Form,Container,Row, Image }            from 'react-bootstrap';
-//import DefaultLayout from "../layouts/Default";
 
 
 class toolDetail extends Component {
@@ -19,15 +19,16 @@ class toolDetail extends Component {
         this.handleCatL0Select           = this.handleCatL0Select.bind(this);
         this.handleCatL1Select           = this.handleCatL1Select.bind(this);
         this.handleCatL2Select           = this.handleCatL2Select.bind(this);
-        this.handleDeleteButton          = this.handleDeleteButton.bind(this);
-        this.handleShareButton           = this.handleShareButton.bind(this);
+        this.handleDelete                = this.handleDelete.bind(this);
+        this.handleShare                 = this.handleShare.bind(this);
         this.handleImageSelect           = this.handleImageSelect.bind(this);
         this.showNextImage               = this.showNextImage.bind(this);
         this.showPreviousImage           = this.showPreviousImage.bind(this);
-        this.handleUnshareButton         = this.handleUnshareButton.bind(this);
-        this.handleBorrowButton         = this.handleBorrowButton.bind(this);
-        this.handleWithdrawBorrowButton = this.handleWithdrawBorrowButton.bind(this);
-        this.handleReserveButton         = this.handleReserveButton.bind(this);
+        this.handleUnshare               = this.handleUnshare.bind(this);
+        this.handleBorrow                = this.handleBorrow.bind(this);
+        this.handleWithdrawBorrow        = this.handleWithdrawBorrow.bind(this);
+        this.handleReserve               = this.handleReserve.bind(this);
+        this.handleWithdrawReserve       = this.handleWithdrawReserve.bind(this);
 
         this.state = {
             
@@ -49,7 +50,7 @@ class toolDetail extends Component {
                 shared:false,
                 requested_by:[],
                 reserved_by: [],
-                lended_to: {},
+                lended_to: [],
                 available: true,
                 id:"",
                 ownerId:""
@@ -160,7 +161,7 @@ class toolDetail extends Component {
         this.setState({selectedCatL2: selected_cat2, ToolInfo:temp_tool})
     }
 
-    handleDeleteButton(e) {
+    handleDelete(e) {
         let tempToolId = e.target.name
         deleteTool(tempToolId)
             .then((response)=>{
@@ -170,7 +171,7 @@ class toolDetail extends Component {
             })
     }
 
-    handleShareButton (e) {
+    handleShare (e) {
         debugger
         shareTool(e.target.name)
             .then((response)=>{ 
@@ -183,7 +184,7 @@ class toolDetail extends Component {
             })       
     }
 
-    handleUnshareButton (e) {
+    handleUnshare (e) {
         debugger
         unshareTool(e.target.name)
             .then((response)=>{ 
@@ -196,7 +197,7 @@ class toolDetail extends Component {
             })  
     }
 
-    handleBorrowButton (e) {
+    handleBorrow (e) {
         debugger
         borrowTool(this.state.ToolInfo.id)
             .then((response)=>{
@@ -208,7 +209,7 @@ class toolDetail extends Component {
             }) 
     }
 
-    handleWithdrawBorrowButton (e) {
+    handleWithdrawBorrow (e) {
         debugger
         unborrowTool(this.state.ToolInfo.id)
             .then((response)=>{
@@ -220,7 +221,19 @@ class toolDetail extends Component {
             }) 
     }
 
-    handleReserveButton (e) {
+    handleWithdrawReserve (e) {
+        debugger
+        unreserveTool(this.state.ToolInfo.id)
+            .then((response)=>{
+                console.log(response);
+                this.loadToolDetails(response);
+            })
+            .catch ((err) => {
+                console.log(err);
+            }) 
+    }
+
+    handleReserve (e) {
         debugger
         reserveTool(this.state.ToolInfo.id)
             .then((response)=>{
@@ -523,42 +536,45 @@ class toolDetail extends Component {
                                         {this.state.ToolInfo.available 
                                         ?
                                         <>
-                                            {(!this.state.alreadyRequestedByMe && 
-                                                !this.state.ToolInfo.lended_to)
-                                                ?
-                                                <Button 
-                                                    className="primary-btn"
-                                                    name={this.state.ToolInfo.id} 
-                                                    onClick={this.handleBorrowButton}>
-                                                        Request
-                                                </Button>
-                                                :
-                                                <Button 
-                                                    className="primary-btn"
-                                                    name={this.state.ToolInfo.id} 
-                                                    onClick={this.handleWithdrawBorrowButton}>
-                                                        Withdraw
-                                                </Button>
-                                            }
-                                        </>    
-                                        :
-                                        <>
-                                            {!this.state.alreadyReservedByMe &&
-                                                this.state.ToolInfo.lended_to
+                                            {this.state.alreadyRequestedByMe 
+                                                
                                             ?
                                             <Button 
                                                 className="primary-btn"
                                                 name={this.state.ToolInfo.id} 
-                                                onClick={this.handleReserveButton}>
-                                                    Reserve
+                                                onClick={this.handleWithdrawBorrow}>
+                                                    Withdraw
                                             </Button>
                                             :
+                                            <>
                                             <Button 
                                                 className="primary-btn"
                                                 name={this.state.ToolInfo.id} 
-                                                onClick={this.handleWithdrawReserveButton}>
-                                                    Withdraw My Reserve
-                                            </Button>
+                                                onClick={this.handleBorrow}>
+                                                    Request
+                                            </Button>  
+                                            </>
+                                            }
+                                        </>    
+                                        :
+                                        <>
+                                            {this.state.alreadyReservedByMe
+                                                ?
+                                                <Button 
+                                                    className="primary-btn"
+                                                    name={this.state.ToolInfo.id} 
+                                                    onClick={this.handleWithdrawReserveButton}>
+                                                        Withdraw My Reserve
+                                                </Button>
+                                                :
+                                                <>
+                                                <Button 
+                                                    className="primary-btn"
+                                                    name={this.state.ToolInfo.id} 
+                                                    onClick={this.handleReserveButton}>
+                                                        Reserve
+                                                </Button>
+                                                </>
                                             }
                                         </>
                                         

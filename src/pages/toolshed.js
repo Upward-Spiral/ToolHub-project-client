@@ -227,7 +227,7 @@ class toolshed extends Component {
                                                                 Offer
                                                             </Button>                                                                                                              
                                                     }
-                                                    {tool.lended_to &&
+                                                    {tool.lended_to.length !== 0 &&
                                                         <div className="lended-to">
                                                             <h6>Lended to</h6>
 

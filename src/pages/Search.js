@@ -101,14 +101,14 @@ class Search extends Component {
                             <Col>
                             <Form onSubmit={this.handleSearch} className="search-form">
                                     <Form.Row>
-                                        <Form.Group controlId="formSearchWord">                                          
+                                        <Form.Group controlId="formSearchWord" className="mt-10">                                          
                                             <Form.Control 
                                                 name="word" type="text" 
                                                 placeholder="Search" 
                                                 onChange={this.handleInputChange}/>
             
                                         </Form.Group>
-                                        <Button variant="primary" type="submit" className="search-btn">
+                                        <Button variant="primary" type="submit" className="primary-btn search-btn mt-0">
                                             Search
                                         </Button>
                                     </Form.Row>

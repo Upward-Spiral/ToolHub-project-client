@@ -17,19 +17,4 @@
 
 
 
-a {
-  color: $darkBrown;
-  &:hover {
-    text-decoration: none;
-    color: $darkBrown;
-  }
-}
 
-.title {
-  color: $primary-title-color;
-}
-
-.form-field-label {
-  color: $secondary-title-color;
-  margin-top: 10px;
-}

@@ -276,6 +276,25 @@ export const unborrowTool = (toolId) => {
         })
 }
 
+export const unreserveTool = (toolId) => {
+    debugger
+    return axios({
+            method: "GET",
+            url: `/unreserve/${toolId}`,   
+        })
+        .then((response)=>{
+            if (response.status === 200){
+                console.log(response);
+                response=response.data
+            }
+                
+            return (response)
+        })
+        .catch ((err) => {
+            console.log(err)
+        })
+}
+
 export const reserveTool = (toolId) => {
     debugger
     return axios({
