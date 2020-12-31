@@ -69,7 +69,7 @@ class AddTool extends Component {
                 this.setState({ tempToolInfo:temp_Tool });
             } else {
                 let errorMessage = response.message.message + "File name should not include any special characters (!@#$%^&*)"
-                this.setState({error:response.message.message})
+                this.setState({ error: errorMessage})
             }
             
           })

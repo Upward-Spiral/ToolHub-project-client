@@ -109,7 +109,6 @@ class Signup extends Component {
     // Checks if username is the same as password
     checkUserPass (event) {
         // debugger
-
         let $userPassControlMessage = document.getElementById('userPassControlMessage');
         $userPassControlMessage.innerHTML = ""
         if (this.state.tempUser.password===this.state.tempUser.username) {
@@ -130,8 +129,6 @@ class Signup extends Component {
         }
         this.setState({tempUser:temp_user})
     }
-
-    
 
     handleInputChange (event) {
         // debugger
@@ -171,16 +168,13 @@ class Signup extends Component {
             } else  {
                 this.setState({error:response})
                 console.log(response)
-            }
-            
-            
+            }          
         })
         .catch((error)=> {
             console.log(error.response);
             this.setState({error: error.response && error.response.data})
         });
     }
-
 
     render() {
             return (                                          
