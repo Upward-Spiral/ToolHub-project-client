@@ -96,7 +96,7 @@ class toolshed extends Component {
                 
                 <section id="toolshed">
                     <Link to="/tool/add"><Button id="add-tool-btn"  variant="primary">Add a tool</Button></Link>
-                    <h1 className="title page-title">Borrowd<span></span></h1>
+                    <h1 className="title page-title">Borrowed<span></span></h1>
                     {this.state.showedBorrowedList.length > 0 
                     ?
                     <>

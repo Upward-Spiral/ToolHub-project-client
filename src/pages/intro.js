@@ -2,7 +2,9 @@ import React        from 'react';
 import IntroNav     from '../components/intro-nav';
 import IntroFooter  from '../components/intro-footer';
 import { Carousel } from 'react-bootstrap';
-
+import intro1 from '../assets/images/intro1.png'
+import intro2 from '../assets/images/intro2.png'
+import intro3 from '../assets/images/intro3.png'
 
 function intro() {
     return (
@@ -13,7 +15,7 @@ function intro() {
                 <Carousel.Item>
                     <img
                     className="d-block w-100"
-                    src="https://res.cloudinary.com/persia/image/upload/v1587085628/toolshare/Layout/intro1_t1h8rp.png"
+                    src={intro1}
                     alt="First slide"
                     />
                     <Carousel.Caption className="carousel-caption">
@@ -24,8 +26,8 @@ function intro() {
                 <Carousel.Item>
                     <img
                     className="d-block w-100"
-                    src="https://res.cloudinary.com/persia/image/upload/v1587085635/toolshare/Layout/intro2_enwhtj.jpg"
-                    alt="Third slide"
+                        src={intro2}
+                    alt="Second slide"
                     />
 
                     <Carousel.Caption className="carousel-caption">
@@ -36,7 +38,7 @@ function intro() {
                 <Carousel.Item>
                     <img
                     className="d-block w-100"
-                    src="https://res.cloudinary.com/persia/image/upload/v1587085645/toolshare/Layout/intro3_ycbm9q.jpg"
+                        src={intro3}
                     alt="Third slide"
                     />
 

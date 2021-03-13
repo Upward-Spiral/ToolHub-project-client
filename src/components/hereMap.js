@@ -44,9 +44,9 @@ export const DisplayMapFC = (props) => {
         addDomMarker(hMap, marker.img, marker.position)
       })
     }
-
+    // eslint-disable-next-line
     const behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(hMap))
-
+    // eslint-disable-next-line
     const ui = H.ui.UI.createDefault(hMap, defaultLayers)
 
     // This will act as a cleanup to run once this hook runs again.

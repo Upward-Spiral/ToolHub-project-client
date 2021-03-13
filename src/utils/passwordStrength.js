@@ -21,7 +21,7 @@ export const strengthColor = (count) => {
     if (count < 6)
        return 'green';
 }
-export const lengthIndicator = (value) => {
+export const strengthIndicator = (value) => {
     let strengths = 0;
     if (value.length > 5)
        strengths++;
